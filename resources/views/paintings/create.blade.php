@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <examplecomponent></examplecomponent>
+    <createpainting></createpainting>
 
 @endsection

@@ -15,8 +15,22 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ /*
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('painting-component', require('./components/PaintingComponent.vue'));
+*/
+
+import examplecomponent from './components/ExampleComponent.vue';
+import createpainting from './components/CreatePainting.vue';
+import showpainting from './components/ShowPainting.vue';
+import paintinglist from './components/listPainting.vue';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        examplecomponent,
+        createpainting,
+        showpainting,
+        paintinglist
+    }
 });

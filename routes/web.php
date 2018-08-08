@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/painting', 'PaintingController@index');
+Route::get('/painting/show/{painting}', 'PaintingController@show');
+Route::get('/painting/create', 'PaintingController@create');
+
+Route::post('painting/store', 'PaintingController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
