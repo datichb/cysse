@@ -18,8 +18,12 @@ Route::get('/', function () {
 Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/create', 'PaintingController@create');
+Route::get('/collection', 'CollectionController@index');
+Route::get('/collection/show/{painting}', 'CollectionController@show');
+Route::get('/collection/create', 'CollectionController@create');
 
-Route::post('painting/store', 'PaintingController@store');
+Route::post('/painting/store', 'PaintingController@store');
+Route::post('/collection/store', 'CollectionController@store');
 
 Auth::routes();
 

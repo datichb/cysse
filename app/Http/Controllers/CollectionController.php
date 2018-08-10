@@ -7,9 +7,16 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\painting;
 
-class PaintingController extends Controller
+class CollectionController extends Controller
 {
     public function index()
+    {
+        $collections = Collection::all();
+
+        return view('collections.index', compact('collections'));
+    }
+
+    public function create()
     {
         $paintings = Painting::all();
 
@@ -17,35 +24,23 @@ class PaintingController extends Controller
             $value->image = Storage::disk('public_img')->get($value->name.'.txt');
         }
 
-        return view('paintings.index', compact('paintings'));
+        return view('collections.create', compact('paintings'));
     }
 
-    public function create()
+    public function show(Collection $collection)
     {
-        return view('paintings.create');
-    }
-
-    public function show(Painting $painting)
-    {
-        return view('paintings.show', compact('painting'));
+        return view('collections.show', compact('collection'));
     }
 
     public function store(Request $request)
     {
-        Storage::disk('public_img')->put(request('name').'.txt', request('file'));
-        
-
         $this->validate($request, [
             'name' => 'required|max:50',
-            'width' => 'required|max:50',
-            'height' => 'required|max:50',
             'description' => 'required|max:255',
         ]);
 
-        return Painting::create([
+        return Collection::create([
             'name' => request('name'),
-            'width' => request('width'),
-            'height' => request('height'),
             'description' => request('description')
          ]);
     }

@@ -12,7 +12,7 @@
                                     id="pictureInput"
                                     ref="pictureInput" 
                                     @change="onChange"
-                                    accept="image/jpg" 
+                                    accept="image/jpg,image/jpeg,image/png" 
                                     size="10" 
                                     buttonClass="btn"
                                     :customStrings="{
@@ -88,24 +88,24 @@ export default {
         },
     methods: {
         onChange (image) {
-        console.log('New picture selected!')
-        if (image) {
-            console.log('Picture loaded.')
-            this.image = image
-            this.painting.file = this.$refs.pictureInput.image;
-        } else {
-            console.log('FileReader API not supported: use the <form>, Luke!')
-        }
+            console.log('New picture selected!')
+            if (image) {
+                this.image = image
+                this.painting.file = this.$refs.pictureInput.image;
+                this.painting.type = this.$refs.pictureInput.file['type'].split('/')[1];
+            } else {
+                console.log('FileReader API not supported: use the <form>, Luke!')
+            }
         },
         createTask() {
-            axios.post('painting/store', this.painting)
+            axios.post('/painting/store', this.painting)
                 .then((res) => {
                     console.log(res);
                 })
                 .catch((err) => console.error(err));
         },
         mounted() {
-            this.csrf = window.laravel.csrfToken        
+            this.csrf = window.laravel.csrfToken;
         }
     }
 }

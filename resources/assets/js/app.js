@@ -22,14 +22,16 @@ Vue.component('painting-component', require('./components/PaintingComponent.vue'
 
 import examplecomponent from './components/ExampleComponent.vue';
 import createpainting from './components/CreatePainting.vue';
+import createcollection from './components/CreateCollection.vue';
 import showpainting from './components/ShowPainting.vue';
-import paintinglist from './components/listPainting.vue';
+import paintinglist from './components/ListPainting.vue';
 
 const app = new Vue({
     el: '#app',
     components: {
         examplecomponent,
         createpainting,
+        createcollection,
         showpainting,
         paintinglist
     }

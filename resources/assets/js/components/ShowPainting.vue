@@ -3,7 +3,7 @@
         <div class="panel panel-default col-md-8 col-md-offset-2">
             <div class="panel-body">
                 <div class="col-md-4">
-                    <img :src="'/images/' + painting.name + '.jpg'" height="200px" width="200px">
+                    <img :src="painting.image" height="200px" width="200px">
                 </div>
                 <div class="row col-md-8">
                     <div class="col-md-12">
