@@ -45,6 +45,9 @@
                             <a class="navbar-brand" href="{{ url('/painting') }}">
                                 Tableaux
                             </a>
+                            <a class="navbar-brand" href="{{ url('/collection/create') }}">
+                                Collection
+                            </a>
                     </div>
     
                     <div class="collapse navbar-collapse" id="app-navbar-collapse">

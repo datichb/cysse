@@ -20,11 +20,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('painting-component', require('./components/PaintingComponent.vue'));
 */
 
-import examplecomponent from './components/ExampleComponent.vue';
-import createpainting from './components/CreatePainting.vue';
-import createcollection from './components/CreateCollection.vue';
-import showpainting from './components/ShowPainting.vue';
-import paintinglist from './components/ListPainting.vue';
+import examplecomponent from './components/Home.vue';
+import createpainting from './components/painting/CreatePainting.vue';
+import createcollection from './components/collection/CreateCollection.vue';
+import showpainting from './components/painting/ShowPainting.vue';
+import paintinglist from './components/painting/ListPainting.vue';
+import searchcomponent from './components/SearchComponent.vue';
 
 const app = new Vue({
     el: '#app',

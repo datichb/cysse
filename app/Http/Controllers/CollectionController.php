@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\painting;
+use App\collection;
 
 class CollectionController extends Controller
 {
@@ -39,10 +40,18 @@ class CollectionController extends Controller
             'description' => 'required|max:255',
         ]);
 
-        return Collection::create([
+        $var = Collection::create([
             'name' => request('name'),
             'description' => request('description')
          ]);
+
+         foreach(request('paints') as $key => $value) {
+             if(Painting::select('id')->where('id', '=', $key) != null) {
+                 Painting::where('id', $value)->update(['id_col' => $var->id]);
+             }
+         }
+
+         return $request->all();
     }
 
     public function edit($id)

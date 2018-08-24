@@ -13,7 +13,6 @@
 
                                         <div class="col-md-6">
                                             <input v-model="collection.name" id="name" type="text" class="form-control" name="name"  autofocus>
-
                                         </div>
                                     </div>
 
@@ -36,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <searchcomponent :items="paintings"></searchcomponent>
+                                <searchcomponent :items="paintings" v-on:add="PaintAdd" v-on:remove="PaintRemove"></searchcomponent>
                             </div>
                         </form>
                     </div>
@@ -48,7 +47,7 @@
 
 <script>
 import PictureInput from 'vue-picture-input'
-import searchcomponent from './SearchComponent.vue'
+import searchcomponent from '../SearchComponent.vue'
 
 export default {
     components: {
@@ -63,22 +62,34 @@ export default {
             csrf: "",
           collection: {
                 name: 'Test',
-                description: 'TEST'
+                description: 'TEST',
+                paints: new Array()
             }
         };
     },
     methods: {
         createTask() {
-            axios.post('collection/store', this.collection)
+            axios.post('/collection/store', this.collection)
                 .then((res) => {
                     console.log(res);
                 })
                 .catch((err) => console.error(err));
+        },
+        PaintAdd(element) {
+          this.collection.paints.push(element);
+          console.log(this.collection.paints);
+        },
+        PaintRemove(element) {
+          var index = this.collection.paints.indexOf(element);
+          if (index > -1) {
+            this.collection.paints.splice(index, 1);
+          }
+          console.log(this.collection.paints);
         }
     },
         mounted() {
             //this.csrf = window.laravel.csrfToken;
-        }
+        },
 }
 </script>
 

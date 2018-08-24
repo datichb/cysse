@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <collectionlist :collection='{{ json_encode($collection) }}'></collectionlist>
+    <collectionlist :collection='{{ json_encode($collections) }}'></collectionlist>
 
 @endsection

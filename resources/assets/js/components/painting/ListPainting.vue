@@ -26,7 +26,11 @@ export default {
    }
 }
 </script>
-<style scoped>
-
+<style>
+.btn {
+    margin-left:35%;
+    width: 30%;
+    margin-bottom: 2%;
+}
 </style>
 
