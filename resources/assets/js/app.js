@@ -25,7 +25,7 @@ import createpainting from './components/painting/CreatePainting.vue';
 import createcollection from './components/collection/CreateCollection.vue';
 import showpainting from './components/painting/ShowPainting.vue';
 import paintinglist from './components/painting/ListPainting.vue';
-import searchcomponent from './components/SearchComponent.vue';
+import showcollection from './components/collection/ShowCollection.vue';
 
 const app = new Vue({
     el: '#app',
@@ -34,6 +34,7 @@ const app = new Vue({
         createpainting,
         createcollection,
         showpainting,
-        paintinglist
+        paintinglist,
+        showcollection
     }
 });

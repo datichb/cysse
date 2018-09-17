@@ -1,24 +1,24 @@
 <template>
   <div class="content">
     <div class="visit-card">
-        <p style="font-size: 20pt;">CYSSE</p>
-        <div style="margin-left: 75px;width: 550px;height: 15px; border-bottom: 2px solid white; text-align: center">
-          <span class="Subtitle">
-            Maison de plumasserie
-          </span>
+        <div class="line">
+          <p class="Title">Cysse</p>
         </div>
+        <p class="Subtitle">
+            Maison de plumasserie
+        </p>
+    </div>
+    <div style="width: 100%;text-align: center;">
+      <img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/>
+      <img src="/icon/instagram.svg" width="50px"/>
     </div>
     <blockquote>
       <q>
-        <p>Cysse l'esprit tableau,
-            L'art de la plumasserie,
-            Des tableau doux,
-            Plus Haut et plus Loin avec un Tableau,
-            Attention vous allez être Tableauïsez,
-            Par amour de la plume,
-            Seul et unique,
-            Authentique.
-            </p>
+          Créatrice
+      </q>
+      <br>
+      <q>
+          L'art de la plumasserie, Dans vos tableaux. Par amour de la plume, Unique, Authentique. 
       </q>
     </blockquote>
   </div>
@@ -31,19 +31,20 @@ import 'web-animations-js'
 export default {
   methods: {
     splitWords () {
-      let quote = document.querySelector('blockquote q');
-      quote.innerText.replace(/(<([^>]+)>)/ig, '');
-      let quotewords = quote.innerText.split(' '),
-        wordCount = quotewords.length;
-      quote.innerHTML = '';
-      for (let i = 0; i < wordCount; i++) {
-        quote.innerHTML += '<span>' + quotewords[i] + '</span>';
-        if (i < quotewords.length - 1) {
-          quote.innerHTML += ' ';
-        }
-      }
-      quotewords = document.querySelectorAll('blockquote q span');
-      this.fadeWords(this, quotewords);
+      document.querySelector('blockquote').find('q').each(function(){
+          quote[i].innerText.replace(/(<([^>]+)>)/ig, '');
+          let quotewords = quote[i].innerText.split(' '),
+            wordCount = quotewords.length;
+          quote[i].innerHTML = '';
+          for (let i = 0; i < wordCount; i++) {
+            quote[i].innerHTML += '<span>' + quotewords[i] + '</span>';
+            if (i < quotewords.length - 1) {
+              quote[i].innerHTML += ' ';
+            }
+          }
+          quotewords = document.querySelectorAll('blockquote q span');
+          this.fadeWords(this, quotewords);
+      });
     },
     getRandom (min, max) {
       return Math.random() * (max - min) + min;
@@ -73,11 +74,28 @@ export default {
 </script>
 
 <style>
+.Title {
+  font-size: 60pt;
+  font-family: "Dancing Script";
+  width: 45%;
+  margin-left: 27.5%;
+  text-align: center;
+  margin-top: -12.5%;
+  background-color:white;
+}
+
+.line {
+  width: 40%;
+  margin-left: 30%;
+  height: 0%;
+  border: solid;
+  overflow: visible;
+}
+
 .visit-card{
-    margin-top: 100px;
-    width: 700px;
+    margin-top: 15%;
+    width: 100%;
     height: 200px;
-    margin-left: 25%;
 }
 
 .slogant{
@@ -87,12 +105,17 @@ export default {
 }
 
 .Subtitle{
-  font-size: 20px;
-  padding: 0 60px;
+  margin-top: 3%;
+  text-align: center;
+  width: 100%;
   color: black;
+  font-size: 30pt;
+  font-family: "Sorts Mill Goudy";
 }
 
 blockquote{
+  text-align: center;
+  border-left: none;
   margin-top: 150px;
   font-size: 18pt;
   -webkit-transform-style: preserve-3d;
@@ -103,14 +126,13 @@ q{
 cite{
   display: block;
   text-align: right;
-  font-family: Verdana, Arial, sans-serif;
   margin-top: 1rem;
   font-size: 18pt;
   color: black;
   font-style: normal;
 }
 blockquote q{
-  font-family: Georgia, serif;
+  font-family: "Sorts Mill Goudy";
   font-style: italic;
   letter-spacing: 1pt;
 }

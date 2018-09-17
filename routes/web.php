@@ -19,7 +19,7 @@ Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/create', 'PaintingController@create');
 Route::get('/collection', 'CollectionController@index');
-Route::get('/collection/show/{painting}', 'CollectionController@show');
+Route::get('/collection/show/{collection}', 'CollectionController@show');
 Route::get('/collection/create', 'CollectionController@create');
 
 Route::post('/painting/store', 'PaintingController@store');

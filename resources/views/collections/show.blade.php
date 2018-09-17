@@ -2,6 +2,6 @@
 
 @section('content')
 
-<showpainting :painting="{{ json_encode($painting) }}"></showpainting>
+    <showcollection :collection="{{ json_encode($collection) }}"></showcollection>
 
 @endsection

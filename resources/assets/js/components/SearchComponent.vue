@@ -37,9 +37,13 @@ export default {
     },
     computed: {
         filteredList() {
-            return this.items.filter(item => {
+            if(typeof(this.items) != 'array'){
+                console.log(new Array(this.items));
+                return new Array(this.items);
+            }
+            console.log( this.items.filter(item => {
                 return item.name.toLowerCase().includes(this.search.toLowerCase())
-            })
+            }));
         }
     },
     methods: {
@@ -51,13 +55,14 @@ export default {
             }
         },
         Selectimg: function (event, item) {
-            var color = event.currentTarget.style.backgroundColor;
-            console.log(item);
-            if(color == 'blue') {
+            console.log(event.currentTarget);
+            if(event.currentTarget.classList.contains("Active")) {
+                event.currentTarget.classList.remove("Active");
                 event.currentTarget.style.backgroundColor = "white";
                 event.currentTarget.children[2].disabled = true;
                 this.$emit('remove', item.id);
             }else {
+                event.currentTarget.classList.add("Active");
                 event.currentTarget.style.backgroundColor = "#33C4FF";
                 event.currentTarget.children[2].disabled = false;
                 this.$emit('add', item.id);

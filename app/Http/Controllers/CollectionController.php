@@ -19,17 +19,25 @@ class CollectionController extends Controller
 
     public function create()
     {
-        $paintings = Painting::all();
+        $paintings = Painting::all();//->where('id_col', '=', NULL)
 
         foreach ($paintings as $key => $value) {
             $value->image = Storage::disk('public_img')->get($value->name.'.txt');
         }
-
+        
         return view('collections.create', compact('paintings'));
     }
 
     public function show(Collection $collection)
     {
+        $paintings = Painting::all()->where('id_col', '=', $collection->id);
+
+        foreach ($paintings as $key => $value) {
+            $value->image = Storage::disk('public_img')->get($value->name.'.txt');
+        }
+
+        $collection->paintings = $paintings;
+        $collection->paints = array();
         return view('collections.show', compact('collection'));
     }
 
