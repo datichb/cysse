@@ -2,28 +2,23 @@
     <div class="row">
         <div class="panel panel-default col-md-8 col-md-offset-2">
             <div class="panel-body">
-                <div class="row col-md-8">
-                    <div class="col-md-12">
-                        <p>{{ collection.name }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <p>{{ collection.description }}</p>
-                    </div>
+                <div class="col-md-12">
+                    <img :src="collection.img" width="100%" height="100%">
                 </div>
             </div>
             <div class="row">
-                <searchcomponent :items="collection.paintings" v-on:add="PaintAdd" v-on:remove="PaintRemove"></searchcomponent>
+                <listitem :searchable="false" :items="collection.paintings" v-on:add="PaintAdd" v-on:remove="PaintRemove"></listitem>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import searchcomponent from '../SearchComponent.vue'
+import listitem from '../ListItem.vue'
 
 export default {
     components: {
-        searchcomponent
+        listitem
     },
     props: {
         collection: Object

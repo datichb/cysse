@@ -19,24 +19,35 @@ class CollectionController extends Controller
 
     public function create()
     {
-        return view('collections.create');
+        $paintings = Painting::all()->where('id_col', '=', NULL);
+
+        foreach ($paintings as $key => $value) {
+            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
+        }
+
+        $paintings = $paintings->values();
+        return view('collections.create', compact('paintings'));
     }
 
     public function show(Collection $collection)
     {
         $paintings = Painting::all()->where('id_col', '=', $collection->id);
-
+        
         foreach ($paintings as $key => $value) {
-            $value->image = Storage::disk('public_img')->get($value->name.'.txt');
+            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
         }
-
-        $collection->paintings = $paintings;
+        
+        $collection->img = Storage::disk('collection_img')->get($collection->name.'.txt');
+        $collection->paintings = $paintings->values();
         $collection->paints = array();
+
         return view('collections.show', compact('collection'));
     }
 
     public function store(Request $request)
     {
+        Storage::disk('collection_img')->put(request('name').'.txt', request('file'));
+
         $this->validate($request, [
             'name' => 'required|max:50',
             'description' => 'required|max:255',
@@ -54,6 +65,12 @@ class CollectionController extends Controller
          }
 
          return $request->all();
+    }
+
+    public function deletepainting(Request $request){
+        Painting::where('id', request('painting'))->update(['id_col' => NULL]);
+
+        return;
     }
 
     public function edit($id)

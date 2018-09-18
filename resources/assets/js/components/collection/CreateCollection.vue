@@ -7,7 +7,20 @@
                     <div class="panel-body">
                         <form class="form-horizontal" action="#" @submit.prevent="createTask()">
                             <div class="row">
-                                <div class="col-md-8">
+                              <div class=" col-md-3">
+                                    <picture-input
+                                    id="pictureInput"
+                                    ref="pictureInput" 
+                                    @change="onChange"
+                                    accept="image/jpg,image/jpeg,image/png" 
+                                    size="10" 
+                                    buttonClass="btn"
+                                    :customStrings="{
+                                        upload: '<h1>Bummer!</h1>',
+                                    }">
+                                    </picture-input>
+                                </div>
+                                <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="name" class="col-md-4 control-label">Nom</label>
 
@@ -35,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <searchcomponent v-on:add="PaintAdd" v-on:remove="PaintRemove"></searchcomponent>
+                                <searchcomponent :items="paintings" v-on:add="PaintAdd" v-on:remove="PaintRemove"></searchcomponent>
                             </div>
                         </form>
                     </div>
@@ -54,17 +67,31 @@ export default {
         PictureInput,
         searchcomponent
     },
+    props: {
+      paintings: Array
+    },
     data() {
         return {
             csrf: "",
           collection: {
                 name: 'Test',
                 description: 'TEST',
-                paints: new Array()
+                paints: new Array(),
+                file: ''
             }
         };
     },
     methods: {
+      onChange (image) {
+            console.log('New picture selected!')
+            if (image) {
+                this.image = image
+                this.collection.file = this.$refs.pictureInput.image;
+                this.collection.type = this.$refs.pictureInput.file['type'].split('/')[1];
+            } else {
+                console.log('FileReader API not supported: use the <form>, Luke!')
+            }
+        },
         createTask() {
             axios.post('/collection/store', this.collection)
                 .then((res) => {
@@ -83,6 +110,7 @@ export default {
     },
         mounted() {
             //this.csrf = window.laravel.csrfToken;
+            console.log(this.paintings);
         },
 }
 </script>

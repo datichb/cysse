@@ -54,9 +54,15 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-        'public_img' => [
+        'painting_img' => [
             'driver' => 'local',
-            'root'   => public_path() . '/images',
+            'root'   => public_path() . '/images/painting',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        'collection_img' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/images/collection',
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],

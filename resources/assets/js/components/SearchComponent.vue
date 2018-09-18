@@ -1,17 +1,18 @@
 <template>
     <div class="search-container" ref="searchcontainer">
-        <div class="search-wrapper">
+        <div class="search-wrapper" v-show="searchable">
             <label>{{ answer }}</label>
             <br/>
             <input v-model="search" placeholder="Search title.."/>
         </div>
         <div class="wrapper">
             <div class="card" @click="Selectimg($event, item)" :key="item.id" v-for="item in filteredList">
-                    <img :src="item.image"/>
-                    <p>
-                        {{ item.name }}
-                    </p>
-                    <input disabled type="hidden" :name="item.name" :model="item.id"/>
+                <img :src="item.image"/>
+                <p>
+                    {{ item.name }}
+                </p>
+                
+                <input disabled type="hidden" :name="item.name" :model="item.id"/>
             </div>
         </div>
     </div>
@@ -19,12 +20,22 @@
 
 <script>
 export default {
+    props: {
+        items: Array,
+        searchable: {
+            type: Boolean,
+            default: true
+        },
+        deletable: {
+            type: Boolean,
+            default: true
+        }
+    },
     data() {
         return {
             csrf: "",
             search: '',
-            answer: 'Search title:',
-            items: []
+            answer: 'Search title:'
         };
     },
     watch: {
@@ -67,13 +78,6 @@ export default {
                 this.$emit('add', item.id);
             }
         }
-    },
-    beforeCreate: function() {
-        axios.get('/painting/freepainting')
-            .then(res => {
-                this.items = res.data.paintings
-                console.log(this.items)
-            });
     },
     created: function () {
         this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);

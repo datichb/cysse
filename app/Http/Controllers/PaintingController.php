@@ -14,21 +14,10 @@ class PaintingController extends Controller
         $paintings = Painting::all();
 
         foreach ($paintings as $key => $value) {
-            $value->image = Storage::disk('public_img')->get($value->name.'.txt');
+            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
         }
 
         return view('paintings.index', compact('paintings'));
-    }
-
-    public function getFree()
-    {
-        $paintings = Painting::all();
-
-        foreach ($paintings as $key => $value) {
-            $value->image = Storage::disk('public_img')->get($value->name.'.txt');
-        }
-
-        return compact('paintings');
     }
 
     public function create()
@@ -43,7 +32,7 @@ class PaintingController extends Controller
 
     public function store(Request $request)
     {
-        Storage::disk('public_img')->put(request('name').'.txt', request('file'));
+        Storage::disk('painting_img')->put(request('name').'.txt', request('file'));
         
 
         $this->validate($request, [
