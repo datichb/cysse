@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <searchcomponent :items="paintings" v-on:add="PaintAdd" v-on:remove="PaintRemove"></searchcomponent>
+                                <searchcomponent v-on:add="PaintAdd" v-on:remove="PaintRemove"></searchcomponent>
                             </div>
                         </form>
                     </div>
@@ -53,9 +53,6 @@ export default {
     components: {
         PictureInput,
         searchcomponent
-    },
-    props: {
-      paintings: Array
     },
     data() {
         return {

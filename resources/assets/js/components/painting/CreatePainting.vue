@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Ajouter un nouveau tableau</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="#" @submit.prevent="createTask()">
+                        <form class="form-horizontal" action="#" @submit.prevent="createTask">
                             <div class="row">
                                 <div class="col-md-4">
                                     <picture-input
@@ -100,9 +100,11 @@ export default {
         createTask() {
             axios.post('/painting/store', this.painting)
                 .then((res) => {
-                    console.log(res);
+                    
                 })
                 .catch((err) => console.error(err));
+            event.target.reset();
+            this.$refs.pictureInput.removeImage();
         },
         mounted() {
             this.csrf = window.laravel.csrfToken;

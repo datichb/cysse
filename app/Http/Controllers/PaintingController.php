@@ -20,6 +20,17 @@ class PaintingController extends Controller
         return view('paintings.index', compact('paintings'));
     }
 
+    public function getFree()
+    {
+        $paintings = Painting::all();
+
+        foreach ($paintings as $key => $value) {
+            $value->image = Storage::disk('public_img')->get($value->name.'.txt');
+        }
+
+        return compact('paintings');
+    }
+
     public function create()
     {
         return view('paintings.create');

@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div class="search-container" ref="searchcontainer">
         <div class="search-wrapper">
             <label>{{ answer }}</label>
             <br/>
             <input v-model="search" placeholder="Search title.."/>
         </div>
         <div class="wrapper">
-            <div class="card" @click="Selectimg($event, item)" v-for="item in filteredList">
+            <div class="card" @click="Selectimg($event, item)" :key="item.id" v-for="item in filteredList">
                     <img :src="item.image"/>
                     <p>
                         {{ item.name }}
@@ -19,14 +19,12 @@
 
 <script>
 export default {
-    props: {
-        items: Array
-    },
     data() {
         return {
             csrf: "",
             search: '',
-            answer: 'Search title:'
+            answer: 'Search title:',
+            items: []
         };
     },
     watch: {
@@ -37,18 +35,19 @@ export default {
     },
     computed: {
         filteredList() {
-            if(typeof(this.items) != 'array'){
-                console.log(new Array(this.items));
-                return new Array(this.items);
+            if(this.items.length <= 0) {
+                return;
             }
-            console.log( this.items.filter(item => {
-                return item.name.toLowerCase().includes(this.search.toLowerCase())
-            }));
+            else {
+                return this.items.filter(item => {
+                    return item.name.toLowerCase().includes(this.search.toLowerCase())
+                });
+            }
         }
     },
     methods: {
         getAnswer:  function () {
-            if(this.filteredList.length == 0) {
+            if(this.filteredList.length <= 0) {
                 this.answer = 'Aucun résultats ne correspond à votre recherche';
             }else {
                 this.answer = 'Voici les résultats correspondant à votre recherche :';
@@ -69,9 +68,17 @@ export default {
             }
         }
     },
+    beforeCreate: function() {
+        axios.get('/painting/freepainting')
+            .then(res => {
+                this.items = res.data.paintings
+                console.log(this.items)
+            });
+    },
     created: function () {
-        this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+        this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);
     }
+
 }
 </script>
 

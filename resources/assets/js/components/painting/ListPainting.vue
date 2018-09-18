@@ -3,7 +3,7 @@
         <button v-on:click="create()" class="btn btn-primary">
             Ajouter un nouveau Tableau
         </button>
-        <div v-for='item in paintings'>
+        <div :key='item.id' v-for='item in paintings'>
             <showpainting :painting="item"></showpainting>
         </div>
     </div>
