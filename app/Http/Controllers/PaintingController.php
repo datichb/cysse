@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\CardUpdated;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\painting;
@@ -27,6 +28,8 @@ class PaintingController extends Controller
 
     public function show(Painting $painting)
     {
+        $painting->image = Storage::disk('painting_img')->get($painting->name.'.txt');
+
         return view('paintings.show', compact('painting'));
     }
 
@@ -60,6 +63,11 @@ class PaintingController extends Controller
         $paintings = $paintings->values();
 
         return compact('paintings');
+    }
+
+    public function buy(Request $request) {
+        
+        CardUpdated::dispatch(request('buy'));
     }
 
     public function edit($id)
