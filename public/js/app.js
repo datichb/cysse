@@ -50439,7 +50439,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50452,6 +50452,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListItem_vue__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListItem_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ListItem_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Modallist_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Modallist_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Modallist_vue__);
 //
 //
 //
@@ -50467,34 +50469,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        listitem: __WEBPACK_IMPORTED_MODULE_0__ListItem_vue___default.a
+        listitem: __WEBPACK_IMPORTED_MODULE_0__ListItem_vue___default.a,
+        modal: __WEBPACK_IMPORTED_MODULE_1__Modallist_vue___default.a
     },
     props: {
         collection: Object
     },
+    data: function data() {
+        return {
+            items: [],
+            collectionitems: this.collection
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get("/painting/freepainting").then(function (res) {
+            _this.items = res.data;
+        });
+    },
+
     methods: {
-        createTask: function createTask() {
-            axios.post('/collection/store', this.collection).then(function (res) {
-                console.log(res);
-            }).catch(function (err) {
-                return console.error(err);
-            });
+        addpainting: function addpainting(painting) {
+            this.items.paintings.push(painting[0]);
         },
-        PaintAdd: function PaintAdd(element) {
-            this.collection.paints.push(element);
-            console.log(this.collection.paints);
-        },
-        PaintRemove: function PaintRemove(element) {
-            var index = this.collection.paints.indexOf(element);
-            if (index > -1) {
-                this.collection.paints.splice(index, 1);
-            }
-            console.log(this.collection.paints);
+        addToCol: function addToCol(painting) {
+
+            this.collectionitems.paintings = this.collectionitems.paintings.concat(painting);
         }
     }
 });
@@ -50507,31 +50528,93 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "panel panel-default col-md-8 col-md-offset-2" }, [
-      _c("div", { staticClass: "panel-body" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("img", {
-            attrs: { src: _vm.collection.img, width: "100%", height: "100%" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
+  return _c(
+    "div",
+    [
       _c(
-        "div",
-        { staticClass: "row" },
+        "modal",
+        {
+          attrs: {
+            items: _vm.items.paintings,
+            collection: _vm.collectionitems.id
+          },
+          on: { newpaiting: _vm.addToCol }
+        },
         [
-          _c("listitem", {
-            attrs: { searchable: false, items: _vm.collection.paintings },
-            on: { add: _vm.PaintAdd, remove: _vm.PaintRemove }
-          })
+          _c("template", { slot: "title" }, [
+            _vm._v("\n            This is my new title !    \n        ")
+          ])
         ],
-        1
-      )
-    ])
-  ])
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "panel panel-default col-md-8 col-md-offset-2" },
+          [
+            _c("div", { staticClass: "panel-body" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("img", {
+                  attrs: {
+                    src: _vm.collectionitems.img,
+                    width: "100%",
+                    height: "100%"
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              [
+                _c("listitem", {
+                  attrs: {
+                    searchable: false,
+                    items: _vm.collectionitems.paintings
+                  },
+                  on: { deletepainting: _vm.addpainting }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        )
+      ])
+    ],
+    1
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-4 col-md-offset-4" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: {
+              type: "button",
+              "data-toggle": "modal",
+              "data-target": "#exampleModalCenter"
+            }
+          },
+          [
+            _vm._v(
+              "\n                        Ajouter des tableaux à la collection\n                    "
+            )
+          ]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -50668,7 +50751,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -50680,8 +50762,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            csrf: "",
-            itemslist: this.items
+            csrf: ""
         };
     },
 
@@ -50691,13 +50772,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return console.log(res);
             });
 
-            this.itemslist.splice(this.indexWhere(this.itemslist, function (item) {
+            this.$emit('deletepainting', this.item.splice(this.indexWhere(this.item, function (item) {
                 return item.id === id;
-            }), 1);
+            }), 1));
         },
         indexWhere: function indexWhere(array, conditionFn) {
             var item = array.find(conditionFn);
             return array.indexOf(item);
+        }
+    },
+    computed: {
+        item: function item() {
+            return this.items;
         }
     }
 
@@ -50718,7 +50804,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "wrapper" },
-        _vm._l(_vm.itemslist, function(item) {
+        _vm._l(_vm.item, function(item) {
           return _c("div", { key: item.id, staticClass: "card" }, [
             _c("button", {
               staticClass: "delete",
@@ -50747,11 +50833,7 @@ var render = function() {
             })
           ])
         })
-      ),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-primary" }, [
-        _vm._v("Ajouter un tableau à cette collection")
-      ])
+      )
     ]
   )
 }
@@ -50762,6 +50844,331 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-704dc988", module.exports)
+  }
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(99)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(101)
+/* template */
+var __vue_template__ = __webpack_require__(102)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Modallist.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-79c021b8", Component.options)
+  } else {
+    hotAPI.reload("data-v-79c021b8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(100);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("73a52eca", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-79c021b8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modallist.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-79c021b8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modallist.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        items: Array,
+        collection: Number
+    },
+    data: function data() {
+        return {
+            checkedPainting: []
+        };
+    },
+
+    methods: {
+        addpainting: function addpainting() {
+            var _this = this;
+
+            axios.post("/collection/addpainting", { checkedpainting: this.checkedPainting, collection: this.collection });
+
+            var newToCol = new Array();
+
+            this.checkedPainting.forEach(function (element) {
+                newToCol.push(_this.items.splice(_this.indexWhere(_this.items, function (item) {
+                    return item.id === element.id;
+                }), 1)[0]);
+            });
+
+            this.$emit('newpaiting', newToCol);
+        },
+        indexWhere: function indexWhere(array, conditionFn) {
+            var item = array.find(conditionFn);
+            return array.indexOf(item);
+        }
+    }
+});
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal",
+      attrs: {
+        id: "exampleModalCenter",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "exampleModalCenterTitle",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "h5",
+                  { staticClass: "modal-title col-md-6" },
+                  [_vm._t("title", [_vm._v("Modal title")])],
+                  2
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "modal-body" },
+              [
+                _vm._l(_vm.items, function(item) {
+                  return _c("li", { key: item.id }, [
+                    _c("label", { attrs: { for: item.name } }, [
+                      _vm._v(" " + _vm._s(item.name) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.checkedPainting,
+                          expression: "checkedPainting"
+                        }
+                      ],
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        value: item.id,
+                        checked: Array.isArray(_vm.checkedPainting)
+                          ? _vm._i(_vm.checkedPainting, item.id) > -1
+                          : _vm.checkedPainting
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.checkedPainting,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = item.id,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                (_vm.checkedPainting = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.checkedPainting = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.checkedPainting = $$c
+                          }
+                        }
+                      }
+                    })
+                  ])
+                }),
+                _vm._v(" "),
+                _c("span", [
+                  _vm._v("Noms cochés : " + _vm._s(_vm.checkedPainting))
+                ])
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "modal-footer" },
+              [
+                _vm._t("footer", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button", "data-dismiss": "modal" },
+                      on: { click: _vm.addpainting }
+                    },
+                    [_vm._v("Save changes")]
+                  )
+                ])
+              ],
+              2
+            )
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close col-md-2",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-79c021b8", module.exports)
   }
 }
 

@@ -26,6 +26,7 @@ Route::get('/collection/create', 'CollectionController@create');
 
 
 Route::post('/painting/store', 'PaintingController@store');
+Route::post('/collection/addpainting', 'CollectionController@addpainting');
 Route::post('/collection/store', 'CollectionController@store');
 Route::post('/collection/deletepainting', 'CollectionController@deletepainting');
 

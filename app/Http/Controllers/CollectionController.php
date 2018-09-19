@@ -73,6 +73,15 @@ class CollectionController extends Controller
         return;
     }
 
+    public function addpainting(Request $request){
+
+        foreach(request('checkedpainting') as $key => $value) {
+            Painting::where('id', $value)->update(['id_col' => request('collection')]);   
+        }
+
+        return;
+    }
+
     public function edit($id)
     {
         //

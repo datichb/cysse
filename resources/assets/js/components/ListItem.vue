@@ -1,7 +1,7 @@
 <template>
     <div class="search-container" ref="searchcontainer">
         <div class="wrapper">
-            <div class="card" :key="item.id" v-for="item in itemslist">
+            <div class="card" :key="item.id" v-for="item in item">
                 <button @click="remove(item.id)" class="delete"></button>
                 <img :src="item.image"/>
                 <p>
@@ -11,7 +11,6 @@
                 <input disabled type="hidden" :name="item.name" :model="item.id"/>
             </div>
         </div>
-        <button class="btn btn-primary">Ajouter un tableau à cette collection</button>
     </div>
 </template>
 
@@ -26,8 +25,7 @@ export default {
     },
     data() {
         return {
-            csrf: "",
-            itemslist: this.items
+            csrf: ""
         };
     },
     methods: {
@@ -35,11 +33,16 @@ export default {
             axios.post("/collection/deletepainting", {painting: id})
                 .then(res => console.log(res));
             
-            this.itemslist.splice(this.indexWhere(this.itemslist, item => item.id === id), 1);
+            this.$emit('deletepainting', this.item.splice(this.indexWhere(this.item, item => item.id === id), 1));
         },
         indexWhere: function(array, conditionFn) {
             const item = array.find(conditionFn);
             return array.indexOf(item);
+        }
+    },
+    computed: {
+        item: function () {
+            return this.items;
         }
     }
 

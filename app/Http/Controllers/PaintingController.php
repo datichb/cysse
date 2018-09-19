@@ -50,6 +50,18 @@ class PaintingController extends Controller
          ]);
     }
 
+    public function getFree() {
+        $paintings = Painting::all()->where('id_col', NULL);
+
+        foreach ($paintings as $key => $value) {
+            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
+        }
+
+        $paintings = $paintings->values();
+
+        return compact('paintings');
+    }
+
     public function edit($id)
     {
         //
