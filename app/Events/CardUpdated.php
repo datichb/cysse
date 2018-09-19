@@ -22,6 +22,8 @@ class CardUpdated implements ShouldBroadcast
     public function __construct($buy)
     {
         $this->buy = $buy;
+
+        $this->dontBroadcastToCurrentUser();
     }
 
     /**
