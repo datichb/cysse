@@ -74,8 +74,8 @@ export default {
         return {
             csrf: "",
           collection: {
-                name: 'Test',
-                description: 'TEST',
+                name: '',
+                description: '',
                 paints: new Array(),
                 file: ''
             }

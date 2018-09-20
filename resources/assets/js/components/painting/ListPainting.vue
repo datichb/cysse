@@ -1,10 +1,10 @@
 <template>
     <div>
-        <button v-on:click="create()" class="btn btn-primary">
+        <button v-on:click="create()" ref="newPaint" class="btn btn-primary" v-show="isVisible">
             Ajouter un nouveau Tableau
         </button>
         <div :key='item.id' v-for='item in paintings'>
-            <showpainting :painting="item"></showpainting>
+            <showpainting :list="true" :painting="item"></showpainting>
         </div>
     </div>
 </template>
@@ -14,7 +14,16 @@ import showpainting from './ShowPainting.vue'
 
 export default {
     props: {
-        paintings: Array
+        paintings: Array,
+        auth: {
+            type: Boolean,
+            default: false
+        }
+   },
+   data() {
+       return {
+           isVisible: this.auth
+       }
    },
    components: {
        'showpainting': showpainting

@@ -15,17 +15,13 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- /*
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('painting-component', require('./components/PaintingComponent.vue'));
-*/
-
 import examplecomponent from './components/Home.vue';
 import createpainting from './components/painting/CreatePainting.vue';
 import createcollection from './components/collection/CreateCollection.vue';
 import showpainting from './components/painting/ShowPainting.vue';
 import paintinglist from './components/painting/ListPainting.vue';
 import showcollection from './components/collection/ShowCollection.vue';
+import modifypainting from './components/painting/ModifyPainting.vue';
 
 const app = new Vue({
     el: '#app',
@@ -35,6 +31,7 @@ const app = new Vue({
         createcollection,
         showpainting,
         paintinglist,
-        showcollection
+        showcollection,
+        modifypainting
     }
 });

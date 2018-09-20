@@ -66,15 +66,23 @@ class PaintingController extends Controller
     }
 
     public function buy(Request $request) {
-        
-        CardUpdated::dispatch(request('buy'));
+
+        Painting::where('id', request('painting'))->update(['stock' => request('stock') - request('buy')]);
+
+        event(
+            (new CardUpdated(request('buy')))
+        );
     }
 
-    public function edit($id)
-    {
-        //
-    }
+    public function modify() {
+        $paintings = Painting::all();
 
+        foreach ($paintings as $key => $value) {
+            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
+        }
+
+        return view('paintings.modify', compact('paintings'));
+    }
     /**
      * Update the specified resource in storage.
      *
