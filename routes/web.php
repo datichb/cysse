@@ -26,11 +26,15 @@ Route::get('/painting/modify', 'PaintingController@modify')
     ->middleware('is_admin')
     ->name('admin');
 
+Route::get('/collection/getall', 'CollectionController@getAll');
 Route::get('/collection', 'CollectionController@index');
 Route::get('/collection/show/{collection}', 'CollectionController@show');
 Route::get('/collection/create', 'CollectionController@create')
     ->middleware('is_admin')
     ->name('admin');
+
+
+
 
 Route::post('/painting/store', 'PaintingController@store')
     ->middleware('is_admin')

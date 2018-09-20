@@ -49,11 +49,7 @@
                                     <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
                                         Les tableaux
                                     </a>
-                                    <div class="dropdown-content">
-                                    <a href="#">Link 1</a>
-                                    <a href="#">Link 2</a>
-                                    <a href="#">Link 3</a>
-                                    </div>
+                                    <getcollection></getcollection>
                                 </div>
                                 <div class="navbar-brand" style="">
                                     <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
@@ -63,12 +59,6 @@
                                     <a href="#">Demandes particulières</a>
                                     </div>
                                 </div>
-                                <a class="navbar-brand" href="{{ url('/painting') }}">
-                                    Tableaux
-                                </a>
-                                <a class="navbar-brand" href="{{ url('/collection/create') }}">
-                                    Collection
-                                </a>
                         </div>
         
                         <div class="collapse navbar-collapse" id="app-navbar-collapse">

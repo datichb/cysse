@@ -17,6 +17,12 @@ class CollectionController extends Controller
         return view('collections.index', compact('collections'));
     }
 
+    public function getAll() {
+        $collections = Collection::all()->values();
+
+        return compact('collections');
+    }
+
     public function create()
     {
         $paintings = Painting::all()->where('id_col', '=', NULL);

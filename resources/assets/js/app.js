@@ -22,6 +22,7 @@ import showpainting from './components/painting/ShowPainting.vue';
 import paintinglist from './components/painting/ListPainting.vue';
 import showcollection from './components/collection/ShowCollection.vue';
 import modifypainting from './components/painting/ModifyPainting.vue';
+import getcollection from './components/GetCollectionLink.vue';
 
 const app = new Vue({
     el: '#app',
@@ -32,6 +33,7 @@ const app = new Vue({
         showpainting,
         paintinglist,
         showcollection,
-        modifypainting
+        modifypainting,
+        getcollection
     }
 });
