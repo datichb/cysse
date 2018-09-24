@@ -24,90 +24,100 @@
     <div id="app">
         <div id="app-second">
             <nav class="navbar navbar-default navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-        
-                            <!-- Collapsed Hamburger -->
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                                <span class="sr-only">Toggle Navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-        
-                            <!-- Branding Image -->
+                <div class="container">
+                    <div class="navbar-header">
+    
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+    
+                        <!-- Branding Image -->
+                        <div class="navbar-brand" style="">
                             @guest
-                                <a class="navbar-brand" href="{{ url('/') }}">
+                                <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/') }}">
                                     {{ config('app.name', 'Cysse') }}
                                 </a>
                             @else
-                                <a class="navbar-brand" href="{{ url('/home') }}">
+                                <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/home') }}">
                                     {{ config('app.name', 'Cysse') }}
                                 </a>
                             @endguest
-                                <div class="navbar-brand" style="">
-                                    <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
-                                        Les tableaux
-                                    </a>
-                                    <getcollection></getcollection>
-                                </div>
-                                <div class="navbar-brand" style="">
-                                    <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
-                                        Sur mesure
-                                    </a>
-                                    <div class="dropdown-content">
-                                    <a href="#">Demandes particulières</a>
-                                    </div>
-                                </div>
+                            <div class="dropdown-content">
+                                <a href="#">La marque</a>
+                                <a href="#">contact</a>
+                            </div>
                         </div>
-        
-                        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                            <!-- Left Side Of Navbar -->
-                            <ul class="nav navbar-nav">
-                                &nbsp;
-                            </ul>
-        
-                            <!-- Right Side Of Navbar -->
-                            <ul class="nav navbar-nav navbar-right">
-                                <!-- Authentication Links -->
-                                @guest
-                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                    <li><a href="{{ route('register') }}">Register</a></li>
-                                @else
-                                    @if(Auth::user()->isAdmin())
-                                        <li>
-                                            <a href="{{ route('admin') }}" class="">Admin</a>
-                                        </li>
-                                    @endif
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                            {{ Auth::user()->name }} <span class="caret"></span>
-                                        </a>
-        
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                                    Logout
-                                                </a>
-        
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    {{ csrf_field() }}
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                @endguest
-                            </ul>
+                        <div class="navbar-brand" style="">
+                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                                Les tableaux
+                            </a>
+                            <getcollection></getcollection>
+                        </div>
+                        <div class="navbar-brand" style="">
+                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                                Sur mesure
+                            </a>
+                            <div class="dropdown-content">
+                            <a href="#">Demandes particulières</a>
+                            </div>
                         </div>
                     </div>
-                </nav>
+    
+                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            &nbsp;
+                        </ul>
+    
+                        <!-- Right Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Authentication Links -->
+                            @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                            @else
+                                @if(Auth::user()->isAdmin())
+                                    <li>
+                                        <a href="{{ route('admin') }}" class="">Admin</a>
+                                    </li>
+                                @endif
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+    
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+    
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
             @yield('content')
+
+            <div class="footer modal-footer">
+                <p>®All rights reserved to Cysse.com. Made by Benjamin Datiche</p>
+            </div>
         </div>
     </div>
-
+    
     <!-- Scripts -->
     <script src="/js/app.js"></script>
 </body>
@@ -119,6 +129,7 @@
         border-left: solid;
         border-right: solid;
         height: 100vh;
+        overflow: hidden;
     }
     #app-second {
         width: 98.6%;
@@ -127,6 +138,22 @@
         border-right: solid;
         border-width: 1px;
         height: 100vh;
+        overflow-y: scroll;
+        box-sizing: content-box;
+    }
+
+    .footer {
+        background-color: ##f8f8f8;
+        position:relative;
+        bottom:0;
+        width: 100%;
+        padding-top: 0.2%;
+        padding-bottom: 0.2%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
     }
 
     .dropbtn {

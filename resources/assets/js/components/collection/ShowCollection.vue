@@ -6,7 +6,7 @@
             </template>
         </modal>
         <div class="row">
-            <div class="panel panel-default col-md-8 col-md-offset-2">
+            <div class="col-md-9 col-md-offset-10">
                 <div class="panel-body">
                     <div class="col-md-12">
                         <img :src="collectionitems.img" width="100%" height="100%">
