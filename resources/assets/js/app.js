@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 import examplecomponent from './components/Home.vue';
+import markcomponent from './components/Mark.vue';
 import createpainting from './components/painting/CreatePainting.vue';
 import createcollection from './components/collection/CreateCollection.vue';
 import showpainting from './components/painting/ShowPainting.vue';
@@ -34,6 +35,7 @@ const app = new Vue({
         paintinglist,
         showcollection,
         modifypainting,
-        getcollection
+        getcollection,
+        markcomponent
     }
 });

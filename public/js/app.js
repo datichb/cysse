@@ -14411,20 +14411,22 @@ module.exports = __webpack_require__(111);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Home_vue__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Home_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Home_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_painting_CreatePainting_vue__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_painting_CreatePainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_painting_CreatePainting_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collection_CreateCollection_vue__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_collection_CreateCollection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_collection_CreateCollection_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_painting_ShowPainting_vue__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_painting_ShowPainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_painting_ShowPainting_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_painting_ListPainting_vue__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_painting_ListPainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_painting_ListPainting_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_collection_ShowCollection_vue__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_collection_ShowCollection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_collection_ShowCollection_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_painting_ModifyPainting_vue__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_painting_ModifyPainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_painting_ModifyPainting_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_GetCollectionLink_vue__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_GetCollectionLink_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_GetCollectionLink_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Mark_vue__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Mark_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Mark_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_painting_CreatePainting_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_painting_CreatePainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_painting_CreatePainting_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_collection_CreateCollection_vue__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_collection_CreateCollection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_collection_CreateCollection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_painting_ShowPainting_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_painting_ShowPainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_painting_ShowPainting_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_painting_ListPainting_vue__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_painting_ListPainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_painting_ListPainting_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collection_ShowCollection_vue__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_collection_ShowCollection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_collection_ShowCollection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_painting_ModifyPainting_vue__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_painting_ModifyPainting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_painting_ModifyPainting_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_GetCollectionLink_vue__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_GetCollectionLink_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_GetCollectionLink_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14451,17 +14453,19 @@ window.Vue = __webpack_require__(43);
 
 
 
+
 var app = new Vue({
     el: '#app',
     components: {
         examplecomponent: __WEBPACK_IMPORTED_MODULE_0__components_Home_vue___default.a,
-        createpainting: __WEBPACK_IMPORTED_MODULE_1__components_painting_CreatePainting_vue___default.a,
-        createcollection: __WEBPACK_IMPORTED_MODULE_2__components_collection_CreateCollection_vue___default.a,
-        showpainting: __WEBPACK_IMPORTED_MODULE_3__components_painting_ShowPainting_vue___default.a,
-        paintinglist: __WEBPACK_IMPORTED_MODULE_4__components_painting_ListPainting_vue___default.a,
-        showcollection: __WEBPACK_IMPORTED_MODULE_5__components_collection_ShowCollection_vue___default.a,
-        modifypainting: __WEBPACK_IMPORTED_MODULE_6__components_painting_ModifyPainting_vue___default.a,
-        getcollection: __WEBPACK_IMPORTED_MODULE_7__components_GetCollectionLink_vue___default.a
+        createpainting: __WEBPACK_IMPORTED_MODULE_2__components_painting_CreatePainting_vue___default.a,
+        createcollection: __WEBPACK_IMPORTED_MODULE_3__components_collection_CreateCollection_vue___default.a,
+        showpainting: __WEBPACK_IMPORTED_MODULE_4__components_painting_ShowPainting_vue___default.a,
+        paintinglist: __WEBPACK_IMPORTED_MODULE_5__components_painting_ListPainting_vue___default.a,
+        showcollection: __WEBPACK_IMPORTED_MODULE_6__components_collection_ShowCollection_vue___default.a,
+        modifypainting: __WEBPACK_IMPORTED_MODULE_7__components_painting_ModifyPainting_vue___default.a,
+        getcollection: __WEBPACK_IMPORTED_MODULE_8__components_GetCollectionLink_vue___default.a,
+        markcomponent: __WEBPACK_IMPORTED_MODULE_1__components_Mark_vue___default.a
     }
 });
 
@@ -61989,6 +61993,169 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(116)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(118)
+/* template */
+var __vue_template__ = __webpack_require__(119)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Mark.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0fb10df8", Component.options)
+  } else {
+    hotAPI.reload("data-v-0fb10df8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(117);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("7c7a32f2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fb10df8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0fb10df8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.Title {\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n  width: 45%;\n  margin-left: 27.5%;\n  text-align: center;\n  margin-top: -12.5%;\n  background-color:white;\n}\n.line {\n  width: 40%;\n  margin-left: 30%;\n  height: 0%;\n  border: solid;\n  overflow: visible;\n}\n.visit-card{\n    margin-top: 15%;\n    width: 100%;\n    height: 200px;\n}\n.slogant{\n    width: 300px;\n    margin-left: 39%;\n    margin-top: 8%;\n}\n.Subtitle{\n  margin-top: 3%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* eslint-disable */
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content" }, [
+      _c("div", { staticClass: "visit-card" }, [
+        _c("div", { staticClass: "line" }, [
+          _c("p", { staticClass: "Title" }, [_vm._v("Cysse")])
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "Subtitle" }, [
+          _vm._v("\n          La marque\n      ")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0fb10df8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

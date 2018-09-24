@@ -47,7 +47,7 @@
                                 </a>
                             @endguest
                             <div class="dropdown-content">
-                                <a href="#">La marque</a>
+                                <a href="{{ url('/mark') }}">La marque</a>
                                 <a href="#">contact</a>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
 
             @yield('content')
 
-            <div class="footer modal-footer">
+            <div class="footer footer-panel modal-footer">
                 <p>®All rights reserved to Cysse.com. Made by Benjamin Datiche</p>
             </div>
         </div>
@@ -143,7 +143,8 @@
     }
 
     .footer {
-        background-color: ##f8f8f8;
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
         position:relative;
         bottom:0;
         width: 100%;
@@ -173,6 +174,10 @@
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+    }
+    
+    .content {
+        height: 68%;
     }
 
     .dropdown-content a {

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/mark', function () {
+    return view('mark');
+});
+
 Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/freepainting', 'PaintingController@getFree');
@@ -54,3 +58,4 @@ Route::post('/collection/deletepainting', 'CollectionController@deletepainting')
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
