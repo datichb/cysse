@@ -19,6 +19,10 @@ Route::get('/mark', function () {
     return view('mark');
 });
 
+Route::get('/artiste', function () {
+    return view('artiste');
+});
+
 Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/freepainting', 'PaintingController@getFree');

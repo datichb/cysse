@@ -48,7 +48,7 @@
                             @endguest
                             <div class="dropdown-content">
                                 <a href="{{ url('/mark') }}">La marque</a>
-                                <a href="#">contact</a>
+                                <a href="{{ url('/artiste') }}">L'artiste</a>
                             </div>
                         </div>
                         <div class="navbar-brand" style="">
