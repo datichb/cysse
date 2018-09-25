@@ -74,6 +74,17 @@ class PaintingController extends Controller
         );
     }
 
+    public function cart(Request $request) {
+        $paintings = array();
+
+        foreach(request('id') as $key => $value) {
+            array_push($painting, Painting::all()->where('id', $value));
+        }
+
+        $paintings = $paintings->values();
+        compact('paintings');
+    }
+
     public function modify() {
         $paintings = Painting::all();
 

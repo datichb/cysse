@@ -45,30 +45,30 @@
                                     {{ config('app.name', 'Cysse') }}
                                 </a>
                             @endguest
-                                <div class="navbar-brand" style="">
-                                    <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
-                                        Les tableaux
-                                    </a>
-                                    <getcollection></getcollection>
-                                </div>
-                                <div class="navbar-brand" style="">
-                                    <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
-                                        Sur mesure
-                                    </a>
-                                    <div class="dropdown-content">
-                                    <a href="#">Demandes particulières</a>
-                                    </div>
-                                </div>
                         </div>
         
                         <div class="collapse navbar-collapse" id="app-navbar-collapse">
                             <!-- Left Side Of Navbar -->
                             <ul class="nav navbar-nav">
-                                &nbsp;
+                                <div class="navbar-brand" style="">
+                                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                                            Les tableaux
+                                        </a>
+                                        <getcollection></getcollection>
+                                    </div>
+                                    <div class="navbar-brand" style="">
+                                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                                            Sur mesure
+                                        </a>
+                                        <div class="dropdown-content">
+                                        <a href="#">Demandes particulières</a>
+                                        </div>
+                                    </div>
                             </ul>
         
                             <!-- Right Side Of Navbar -->
                             <ul class="nav navbar-nav navbar-right">
+                                <cart></cart>
                                 <!-- Authentication Links -->
                                 @guest
                                     <li><a href="{{ route('login') }}">Login</a></li>
@@ -129,6 +129,18 @@
         height: 100vh;
     }
 
+    .cart {
+        margin-top: 5%;
+        margin-right: 5%;
+        width: 11%;
+        float: left;
+    }
+
+    .navbar-right{
+        width: 20%;
+        height: 2vw;
+    } 
+
     .dropbtn {
         font-size: 16px;
         border: none;
@@ -152,6 +164,7 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+        background-color: white;
     }
 
     .dropdown-content a:hover {background-color: #ddd;}

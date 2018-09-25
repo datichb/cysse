@@ -19,7 +19,7 @@ class CollectionController extends Controller
 
     public function getAll() {
         $collections = Collection::all()->values();
-
+        
         return compact('collections');
     }
 

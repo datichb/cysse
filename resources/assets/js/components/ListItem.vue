@@ -2,7 +2,7 @@
     <div class="search-container" ref="searchcontainer">
         <div class="wrapper">
             <div class="card" :key="item.id" v-for="item in item">
-                <button @click="remove(item.id)" class="delete"></button>
+                <button v-show="isAdmin" @click="remove(item.id)" class="delete"></button>
                 <img :src="item.image"/>
                 <p>
                     {{ item.name }}
@@ -21,11 +21,16 @@ export default {
         deletable: {
             type: Boolean,
             default: true
+        },
+        auth: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
         return {
-            csrf: ""
+            csrf: "",
+            isAdmin: this.auth
         };
     },
     methods: {

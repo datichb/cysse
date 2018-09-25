@@ -9,8 +9,8 @@
         </p>
     </div>
     <div style="width: 100%;text-align: center;">
-      <img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/>
-      <img src="/icon/instagram.svg" width="50px"/>
+      <a target="_blank" href=""><img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/></a>
+      <a target="_blank" href="https://www.instagram.com/cyssemaisondeplumasserie/"><img src="/icon/instagram.svg" width="50px"/></a>
     </div>
     <blockquote>
       <q>

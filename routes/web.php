@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/freepainting', 'PaintingController@getFree');
+Route::post('/painting/cart', 'PaintingController@cart');
 
 Route::get('/painting/create', 'PaintingController@create')
     ->middleware('is_admin')
@@ -32,8 +33,6 @@ Route::get('/collection/show/{collection}', 'CollectionController@show');
 Route::get('/collection/create', 'CollectionController@create')
     ->middleware('is_admin')
     ->name('admin');
-
-
 
 
 Route::post('/painting/store', 'PaintingController@store')
