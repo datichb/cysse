@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
         <button v-on:click="create()" ref="newPaint" class="btn btn-primary" v-show="isVisible">
             Ajouter un nouveau Tableau
         </button>

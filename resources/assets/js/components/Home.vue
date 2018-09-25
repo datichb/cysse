@@ -2,14 +2,16 @@
   <div class="content">
     <div style="height: 20%;"></div>
     <div class="visit-card">
-        <div class="line">
-          <p class="Title">Cysse</p>
-        </div>
+        <h2>
+          <span></span>
+          Cysse
+          <span></span>
+        </h2>
         <p class="Subtitle">
             Maison de plumasserie
         </p>
     </div>
-    <div style="width: 100%;text-align: center;">
+    <div style="width: 100%;text-align: center;margin-top:5%;">
       <a target="_blank" href=""><img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/></a>
       <a target="_blank" href="https://www.instagram.com/cyssemaisondeplumasserie/"><img src="/icon/instagram.svg" width="50px"/></a>
     </div>
@@ -75,22 +77,20 @@ export default {
 </script>
 
 <style>
-.Title {
-  font-size: 60pt;
-  font-family: "Dancing Script";
-  width: 45%;
-  margin-left: 27.5%;
-  text-align: center;
-  margin-top: -12.5%;
-  background-color:white;
+h2 {
+    margin-left:30%;
+    display: flex;
+    align-items: center;
+    width: 40%;
+    font-size: 60pt;
+    font-family: "Dancing Script";
 }
 
-.line {
-  width: 40%;
-  margin-left: 30%;
-  height: 0%;
-  border: solid;
-  overflow: visible;
+h2 span {
+    content:"";
+    flex: 1 1 auto;
+    border-top: 1px solid #000;
+    margin: 20px;
 }
 
 .visit-card{
@@ -98,14 +98,8 @@ export default {
     height: 20%;
 }
 
-.slogant{
-    width: 300px;
-    margin-left: 39%;
-    margin-top: 8%;
-}
-
 .Subtitle{
-  margin-top: 3%;
+  margin-top: 1%;
   text-align: center;
   width: 100%;
   color: black;

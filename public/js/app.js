@@ -57641,7 +57641,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.Title {\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n  width: 45%;\n  margin-left: 27.5%;\n  text-align: center;\n  margin-top: -12.5%;\n  background-color:white;\n}\n.line {\n  width: 40%;\n  margin-left: 30%;\n  height: 0%;\n  border: solid;\n  overflow: visible;\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.slogant{\n    width: 300px;\n    margin-left: 39%;\n    margin-top: 8%;\n}\n.Subtitle{\n  margin-top: 3%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n    margin-left:30%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 40%;\n    font-size: 60pt;\n    font-family: \"Dancing Script\";\n}\nh2 span {\n    content:\"\";\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n    border-top: 1px solid #000;\n    margin: 20px;\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -57687,6 +57687,8 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js__);
+//
+//
 //
 //
 //
@@ -57779,34 +57781,46 @@ var staticRenderFns = [
       _c("div", { staticStyle: { height: "20%" } }),
       _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
-        _c("div", { staticClass: "line" }, [
-          _c("p", { staticClass: "Title" }, [_vm._v("Cysse")])
-        ]),
+        _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
         _vm._v(" "),
         _c("p", { staticClass: "Subtitle" }, [
           _vm._v("\n          Maison de plumasserie\n      ")
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticStyle: { width: "100%", "text-align": "center" } }, [
-        _c("a", { attrs: { target: "_blank", href: "" } }, [
-          _c("img", {
-            staticStyle: { "margin-right": "50px" },
-            attrs: { src: "/icon/facebook-2.svg", width: "50px" }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            attrs: {
-              target: "_blank",
-              href: "https://www.instagram.com/cyssemaisondeplumasserie/"
-            }
-          },
-          [_c("img", { attrs: { src: "/icon/instagram.svg", width: "50px" } })]
-        )
-      ]),
+      _c(
+        "div",
+        {
+          staticStyle: {
+            width: "100%",
+            "text-align": "center",
+            "margin-top": "5%"
+          }
+        },
+        [
+          _c("a", { attrs: { target: "_blank", href: "" } }, [
+            _c("img", {
+              staticStyle: { "margin-right": "50px" },
+              attrs: { src: "/icon/facebook-2.svg", width: "50px" }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              attrs: {
+                target: "_blank",
+                href: "https://www.instagram.com/cyssemaisondeplumasserie/"
+              }
+            },
+            [
+              _c("img", {
+                attrs: { src: "/icon/instagram.svg", width: "50px" }
+              })
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("blockquote", [
         _c("q", [_vm._v("\n        Créatrice\n    ")]),
@@ -57917,7 +57931,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.Title {\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n  width: 45%;\n  margin-left: 27.5%;\n  text-align: center;\n  margin-top: -12.5%;\n  background-color:white;\n}\n.line {\n  width: 40%;\n  margin-left: 30%;\n  height: 0%;\n  border: solid;\n  overflow: visible;\n}\n.visit-card{\n    margin-top: 15%;\n    width: 100%;\n    height: 200px;\n}\n.slogant{\n    width: 300px;\n    margin-left: 39%;\n    margin-top: 8%;\n}\n.Subtitle{\n  margin-top: 3%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n  margin-left:30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content:\"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  margin-left: 15%;\n  width: 70%;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -57930,6 +57944,19 @@ exports.push([module.i, "\n.Title {\n  font-size: 60pt;\n  font-family: \"Dancin
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -57968,17 +57995,60 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content" }, [
+      _c("div", { staticStyle: { height: "10%" } }),
+      _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
-        _c("div", { staticClass: "line" }, [
-          _c("p", { staticClass: "Title" }, [_vm._v("Cysse")])
-        ]),
+        _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
         _vm._v(" "),
         _c("p", { staticClass: "Subtitle" }, [
           _vm._v("\n          La marque\n      ")
         ])
       ]),
       _vm._v(" "),
-      _c("div")
+      _c("div", { staticClass: "text" }, [
+        _c("span", [_vm._v("Cysse est une Maison de Plumasserie.")]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes."
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver\n            les merveilles de la nature."
+          )
+        ]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Pour parler de la marques, Cysse s'implante dans le design, la\n      décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a\n      sa manière et est de très haute qualité."
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [_vm._v("c'est un savoir faire très rare.")]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques."
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [_vm._v("Sur mesure rien que pour vous.")]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [_vm._v("Fabrication Artisanales Française.")]),
+        _c("br")
+      ])
     ])
   }
 ]
@@ -58077,7 +58147,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.Title {\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n  width: 45%;\n  margin-left: 27.5%;\n  text-align: center;\n  margin-top: -12.5%;\n  background-color:white;\n}\n.line {\n  width: 40%;\n  margin-left: 30%;\n  height: 0%;\n  border: solid;\n  overflow: visible;\n}\n.visit-card{\n    margin-top: 15%;\n    width: 100%;\n    height: 200px;\n}\n.slogant{\n    width: 300px;\n    margin-left: 39%;\n    margin-top: 8%;\n}\n.Subtitle{\n  margin-top: 3%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n  margin-left:30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content:\"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  margin-left: 15%;\n  width: 70%;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -58090,6 +58160,17 @@ exports.push([module.i, "\n.Title {\n  font-size: 60pt;\n  font-family: \"Dancin
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58128,17 +58209,65 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content" }, [
+      _c("div", { staticStyle: { height: "10%" } }),
+      _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
-        _c("div", { staticClass: "line" }, [
-          _c("p", { staticClass: "Title" }, [_vm._v("Cysse")])
-        ]),
+        _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
         _vm._v(" "),
         _c("p", { staticClass: "Subtitle" }, [
           _vm._v("\n          L'artiste\n      ")
         ])
       ]),
       _vm._v(" "),
-      _c("div")
+      _c("div", { staticClass: "text" }, [
+        _c("span", [
+          _vm._v(
+            "Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris."
+          )
+        ]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Mais pour en arrver la elle a dans un premier temps fait des études d'Art dans différentes écoles de Paris tel que Auguste Renoir, Lisaa ou encore l'ENSAAMA Olivier de serres, ou elle a pu\n            apprendre et développer sa créativité."
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Au fil des années et ayant la volonté de se perfectionner dans un\n            savoir faire unique . Elle se dirigera vers le lycée Octave Feuillet, seul établissement apportant la formations de plumasserie."
+          )
+        ]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "De la, ne cessera de se développer son amour pour la plumes, les oiseaux et leur couleurs."
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Ayant finit ses études elle découvrit l'entreprise Lemarié qui lui permit de perfectionner son savoir faire et de travailler grâce a eux sur de grand projets pour de grands Noms tel que Chanel, Valentino, Dior, St Laurent."
+          )
+        ]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v(
+            "Fière de cette passion et tout en continuant ses collaborations, elle nous propose aujourd'hui sa marque, Cysse pour embellir notre quotidien."
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("span", [_vm._v("Une Touche unique pour intérieur.")]),
+        _c("br")
+      ])
     ])
   }
 ]
@@ -60633,6 +60762,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "content" },
     [
       _c(
         "button",
@@ -61429,7 +61559,7 @@ var render = function() {
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "panel-body" }, [
-            _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
               _c("img", {
                 attrs: {
                   src: _vm.collectionitems.img,

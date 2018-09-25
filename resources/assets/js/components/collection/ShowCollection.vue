@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel-body">
-                    <div class="col-md-12">
+                    <div class="col-md-8 col-md-offset-2">
                         <img :src="collectionitems.img" width="100%" height="100%">
                     </div>
                 </div>

@@ -140,14 +140,12 @@
         border-right: solid;
         border-width: 1px;
         height: 100%;
-        overflow-y: scroll;
-        box-sizing: content-box;
     }
 
     .footer {
-        border: 15px;
+        border: 1px;
         background-color: #f8f8f8;
-        border-color: black;
+        border-color: #e7e7e7;
         position:relative;
         bottom:0;
         width: 100%;
@@ -199,6 +197,8 @@
     .content {
         height: 92%;
         margin: 0;
+        overflow-y: scroll;
+        box-sizing: content-box;
     }
 
     .dropdown-content a {

@@ -1,15 +1,28 @@
 <template>
   <div class="content">
+    <div style="height: 10%;"></div>
     <div class="visit-card">
-        <div class="line">
-          <p class="Title">Cysse</p>
-        </div>
+        <h2>
+          <span></span>
+          Cysse
+          <span></span>
+        </h2>
         <p class="Subtitle">
             La marque
         </p>
     </div>
-    <div>
-
+    <div class="text">
+        <span>Cysse est une Maison de Plumasserie.</span></br></br>
+        <span>Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes.</span></br>
+        <span>Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver
+              les merveilles de la nature.</span></br></br>
+        <span>Pour parler de la marques, Cysse s'implante dans le design, la
+        décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a
+        sa manière et est de très haute qualité.</span></br>
+        <span>c'est un savoir faire très rare.</span></br></br>
+        <span>Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques.</span></br>
+        <span>Sur mesure rien que pour vous.</span></br>
+        <span>Fabrication Artisanales Française.</span></br>
     </div>
   </div>
 </template>
@@ -19,42 +32,45 @@
 import 'web-animations-js'
 
 export default {
+  
 }
 </script>
 
 <style>
-.Title {
+h2 {
+  margin-left:30%;
+  display: flex;
+  align-items: center;
+  width: 40%;
   font-size: 60pt;
   font-family: "Dancing Script";
-  width: 45%;
-  margin-left: 27.5%;
-  text-align: center;
-  margin-top: -12.5%;
-  background-color:white;
 }
 
-.line {
-  width: 40%;
-  margin-left: 30%;
-  height: 0%;
-  border: solid;
-  overflow: visible;
+h2 span {
+  content:"";
+  flex: 1 1 auto;
+  border-top: 1px solid #000;
+  margin: 20px;
+}
+
+.text {
+  margin-left: 15%;
+  width: 70%;
+  text-align: center;
+}
+
+.text span {
+  font-size: 14pt;
+  font-family: "Sorts Mill Goudy";
 }
 
 .visit-card{
-    margin-top: 15%;
     width: 100%;
-    height: 200px;
-}
-
-.slogant{
-    width: 300px;
-    margin-left: 39%;
-    margin-top: 8%;
+    height: 20%;
 }
 
 .Subtitle{
-  margin-top: 3%;
+  margin-top: 1%;
   text-align: center;
   width: 100%;
   color: black;

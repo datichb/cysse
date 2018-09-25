@@ -1,15 +1,26 @@
 <template>
   <div class="content">
+    <div style="height: 10%;"></div>
     <div class="visit-card">
-        <div class="line">
-          <p class="Title">Cysse</p>
-        </div>
+        <h2>
+          <span></span>
+          Cysse
+          <span></span>
+        </h2>
         <p class="Subtitle">
             L'artiste
         </p>
     </div>
-    <div>
-
+    <div class="text">
+        <span>Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris.</span><br><br>
+        <span>Mais pour en arrver la elle a dans un premier temps fait des études d'Art dans différentes écoles de Paris tel que Auguste Renoir, Lisaa ou encore l'ENSAAMA Olivier de serres, ou elle a pu
+              apprendre et développer sa créativité.</span><br>
+        <span>Au fil des années et ayant la volonté de se perfectionner dans un
+              savoir faire unique . Elle se dirigera vers le lycée Octave Feuillet, seul établissement apportant la formations de plumasserie.</span><br><br>
+        <span>De la, ne cessera de se développer son amour pour la plumes, les oiseaux et leur couleurs.</span><br>
+        <span>Ayant finit ses études elle découvrit l'entreprise Lemarié qui lui permit de perfectionner son savoir faire et de travailler grâce a eux sur de grand projets pour de grands Noms tel que Chanel, Valentino, Dior, St Laurent.</span><br><br>
+        <span>Fière de cette passion et tout en continuant ses collaborations, elle nous propose aujourd'hui sa marque, Cysse pour embellir notre quotidien.</span><br>
+        <span>Une Touche unique pour intérieur.</span><br>
     </div>
   </div>
 </template>
@@ -19,42 +30,45 @@
 import 'web-animations-js'
 
 export default {
+  
 }
 </script>
 
 <style>
-.Title {
+h2 {
+  margin-left:30%;
+  display: flex;
+  align-items: center;
+  width: 40%;
   font-size: 60pt;
   font-family: "Dancing Script";
-  width: 45%;
-  margin-left: 27.5%;
-  text-align: center;
-  margin-top: -12.5%;
-  background-color:white;
 }
 
-.line {
-  width: 40%;
-  margin-left: 30%;
-  height: 0%;
-  border: solid;
-  overflow: visible;
+h2 span {
+  content:"";
+  flex: 1 1 auto;
+  border-top: 1px solid #000;
+  margin: 20px;
+}
+
+.text {
+  margin-left: 15%;
+  width: 70%;
+  text-align: center;
+}
+
+.text span {
+  font-size: 14pt;
+  font-family: "Sorts Mill Goudy";
 }
 
 .visit-card{
-    margin-top: 15%;
     width: 100%;
-    height: 200px;
-}
-
-.slogant{
-    width: 300px;
-    margin-left: 39%;
-    margin-top: 8%;
+    height: 20%;
 }
 
 .Subtitle{
-  margin-top: 3%;
+  margin-top: 1%;
   text-align: center;
   width: 100%;
   color: black;
