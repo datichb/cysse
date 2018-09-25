@@ -17,7 +17,7 @@ export default {
     created() {
         axios.get("/collection/getall")
             .then(res => {
-                this.collections = res.data;
+                this.collections = res.data.collections;
             });
     },
     methods: {
@@ -29,4 +29,7 @@ export default {
 </script>
 
 <style>
+li {
+    list-style: none;
+}
 </style>

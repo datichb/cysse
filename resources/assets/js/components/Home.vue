@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <div style="height: 20%;"></div>
     <div class="visit-card">
         <div class="line">
           <p class="Title">Cysse</p>
@@ -9,8 +10,8 @@
         </p>
     </div>
     <div style="width: 100%;text-align: center;">
-      <img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/>
-      <img src="/icon/instagram.svg" width="50px"/>
+      <a target="_blank" href=""><img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/></a>
+      <a target="_blank" href="https://www.instagram.com/cyssemaisondeplumasserie/"><img src="/icon/instagram.svg" width="50px"/></a>
     </div>
     <blockquote>
       <q>
@@ -93,9 +94,8 @@ export default {
 }
 
 .visit-card{
-    margin-top: 15%;
     width: 100%;
-    height: 200px;
+    height: 20%;
 }
 
 .slogant{

@@ -25,6 +25,7 @@ import paintinglist from './components/painting/ListPainting.vue';
 import showcollection from './components/collection/ShowCollection.vue';
 import modifypainting from './components/painting/ModifyPainting.vue';
 import getcollection from './components/GetCollectionLink.vue';
+import cart from './components/cart.vue';
 
 const app = new Vue({
     el: '#app',
@@ -38,6 +39,7 @@ const app = new Vue({
         modifypainting,
         getcollection,
         markcomponent,
-        artiste
+        artiste,
+        cart
     }
 });

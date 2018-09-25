@@ -1,21 +1,21 @@
 <template>
-    <div>
+    <div class="content">
         <modal :items="items.paintings" :collection="collectionitems.id" v-on:newpaiting="addToCol">
             <template slot="title">
                 This is my new title !    
             </template>
         </modal>
         <div class="row">
-            <div class="col-md-9 col-md-offset-10">
+            <div class="col-md-12">
                 <div class="panel-body">
                     <div class="col-md-12">
                         <img :src="collectionitems.img" width="100%" height="100%">
                     </div>
                 </div>
                 <div class="row">
-                    <listitem v-on:deletepainting="addpainting" :searchable="false" :items="collectionitems.paintings"></listitem>
+                    <listitem :auth="isAdmin" v-on:deletepainting="addpainting" :searchable="false" :items="collectionitems.paintings"></listitem>
                 </div>
-                <div class="row">
+                <div v-show="isAdmin" class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                             Ajouter des tableaux à la collection
@@ -37,12 +37,17 @@ export default {
         modal
     },
     props: {
-        collection: Object
+        collection: Object,
+        auth: {
+            type: Boolean,
+            default: false
+        }
    },
    data() {
        return {
-           items: [],
-           collectionitems: this.collection
+            items: [],
+            collectionitems: this.collection,
+            isAdmin: this.auth
        }
    },
    created() {
