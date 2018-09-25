@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div class="row">
+    <div class="content">
+        <div class="row" style="margin-top:2%;">
             <div class="col-md-12" style="height: 500px;">
                 <div class="panel panel-default">
                     <div class="panel-heading">Ajouter un nouveau tableau</div>

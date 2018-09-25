@@ -75,14 +75,15 @@ class PaintingController extends Controller
     }
 
     public function cart(Request $request) {
-        $paintings = array();
+        $i = 0;
+        $paintings = [];
 
-        foreach(request('id') as $key => $value) {
-            array_push($painting, Painting::all()->where('id', $value));
+        
+        foreach(request('painting') as $key => $value) {
+            $paintings[$i++] = Painting::all()->where('id', $value)->values()[0];
         }
 
-        $paintings = $paintings->values();
-        compact('paintings');
+        return compact('paintings');
     }
 
     public function modify() {

@@ -36,15 +36,9 @@
 
                     <!-- Branding Image -->
                     <div class="navbar-brand" style="">
-                        @guest
-                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/') }}">
-                                {{ config('app.name', 'Cysse') }}
-                            </a>
-                        @else
-                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/home') }}">
-                                {{ config('app.name', 'Cysse') }}
-                            </a>
-                        @endguest
+                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/') }}">
+                            {{ config('app.name', 'Cysse') }}
+                        </a>
                         <div class="dropdown-content">
                             <a href="{{ url('/mark') }}">La marque</a>
                             <a href="{{ url('/artiste') }}">L'artiste</a>
@@ -54,8 +48,24 @@
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
                             Les tableaux
                         </a>
-                        <getcollection></getcollection>
+                            <getcollection></getcollection>
                     </div>
+                    @auth
+                        @if(Auth::user()->isAdmin())
+                        <div class="navbar-brand" style="">
+                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                                Création
+                            </a>
+                            <div class="dropdown-content">
+                                <li>
+                                    <a href="{{ url('/painting/create') }}">Créer un tableau</a>
+                                    <a href="{{ url('/collection/create') }}">Créer une collection</a>
+                                </li>
+                            </div>
+                        </div>
+                        @endif
+                    @endauth
+                                
                     <div class="navbar-brand" style="">
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
                             Sur mesure
@@ -74,7 +84,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <cart style="display:none;"></cart>
+                        <li><img style='margin-top: 75%;' class="img" src="/icon/shopping-cart.svg" data-toggle="modal" data-target="#ModalCart"/></li>
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -84,7 +94,14 @@
                                 <li>
                                     <a href="{{ route('admin') }}" class="">Admin</a>
                                 </li>
+                            @else
+                                <li>
+                                    <a href="{{ url('/home') }}">
+                                        home
+                                    </a>
+                                </li>
                             @endif
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -108,7 +125,7 @@
                     </ul>
                 </div>
             </nav>
-
+            <cart></cart>
             @yield('content')
 
             <div class="footer footer-panel modal-footer">
@@ -167,7 +184,7 @@
     }
 
     .navbar-right{
-        width: 20%;
+        width: 25%;
     } 
 
     .navbar {
@@ -199,6 +216,8 @@
         margin: 0;
         overflow-y: scroll;
         box-sizing: content-box;
+        padding-left: 2%;
+        padding-right: 2%;
     }
 
     .dropdown-content a {

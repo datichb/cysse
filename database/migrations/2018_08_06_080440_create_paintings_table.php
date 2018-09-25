@@ -17,6 +17,7 @@ class CreatePaintingsTable extends Migration
             $table->increments('id');
             $table->integer('id_col')->nullable()->default(null);
             $table->string('name');
+            $table->integer('price');
             $table->integer('width');
             $table->integer('height');
             $table->text('description');

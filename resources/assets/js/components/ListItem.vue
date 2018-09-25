@@ -3,11 +3,7 @@
         <div class="wrapper">
             <div class="card" :key="item.id" v-for="item in item">
                 <button v-show="isAdmin" @click="remove(item.id)" class="delete"></button>
-                <img :src="item.image"/>
-                <p>
-                    {{ item.name }}
-                </p>
-                
+                <img @click="showPaint(item.id)" :src="item.image"/>
                 <input disabled type="hidden" :name="item.name" :model="item.id"/>
             </div>
         </div>
@@ -43,6 +39,9 @@ export default {
         indexWhere: function(array, conditionFn) {
             const item = array.find(conditionFn);
             return array.indexOf(item);
+        },
+        showPaint: function(id) {
+            window.location.href = '/painting/show/'+id;
         }
     },
     computed: {
@@ -97,6 +96,7 @@ export default {
     width: 90%;
     margin-left: 5%;
     margin-top: 5%;
+    cursor: pointer;
 }
 .card p {
     text-align: center;

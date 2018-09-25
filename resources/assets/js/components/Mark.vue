@@ -12,17 +12,17 @@
         </p>
     </div>
     <div class="text">
-        <span>Cysse est une Maison de Plumasserie.</span></br></br>
-        <span>Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes.</span></br>
+        <span>Cysse est une Maison de Plumasserie.</span><br><br>
+        <span>Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes.</span><br>
         <span>Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver
-              les merveilles de la nature.</span></br></br>
+              les merveilles de la nature.</span><br><br>
         <span>Pour parler de la marques, Cysse s'implante dans le design, la
         décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a
-        sa manière et est de très haute qualité.</span></br>
-        <span>c'est un savoir faire très rare.</span></br></br>
-        <span>Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques.</span></br>
-        <span>Sur mesure rien que pour vous.</span></br>
-        <span>Fabrication Artisanales Française.</span></br>
+        sa manière et est de très haute qualité.</span><br>
+        <span>c'est un savoir faire très rare.</span><br><br>
+        <span>Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques.</span><br>
+        <span>Sur mesure rien que pour vous.</span><br>
+        <span>Fabrication Artisanales Française.</span><br>
     </div>
   </div>
 </template>
