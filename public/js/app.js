@@ -58366,7 +58366,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58448,6 +58448,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58455,22 +58485,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         PictureInput: __WEBPACK_IMPORTED_MODULE_0_vue_picture_input___default.a
     },
+    props: {
+        plumes: Array,
+        sizes: Array
+    },
     data: function data() {
         return {
             csrf: "",
             painting: {
                 name: 'Test',
-                width: '22',
-                height: '33',
                 description: 'TEST',
-                file: ''
+                file: '',
+                Painttype: [{ id: '0', plume: '', size: '', price: '' }]
             }
         };
     },
 
     methods: {
         onChange: function onChange(image) {
-            console.log('New picture selected!');
             if (image) {
                 this.image = image;
                 this.painting.file = this.$refs.pictureInput.image;
@@ -58486,10 +58518,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             event.target.reset();
             this.$refs.pictureInput.removeImage();
         },
+        addType: function addType() {
+            this.painting.Painttype.push({ id: this.painting.Painttype.length, size: '', plume: '', price: '' });
+        },
+        deleteType: function deleteType() {
+            this.painting.Painttype.pop();
+        },
         mounted: function mounted() {
             this.csrf = window.laravel.csrfToken;
         }
     }
+
 });
 
 /***/ }),
@@ -59410,173 +59449,372 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-8" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "col-md-4 control-label",
-                            attrs: { for: "name" }
-                          },
-                          [_vm._v("Nom")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.painting.name,
-                                expression: "painting.name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              id: "name",
-                              type: "text",
-                              name: "name",
-                              autofocus: ""
+                    _c(
+                      "div",
+                      { staticClass: "col-md-8" },
+                      [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "col-md-2 col-md-offset-2 control-label",
+                              staticStyle: { "text-align": "left" },
+                              attrs: { for: "name" }
                             },
-                            domProps: { value: _vm.painting.name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                            [_vm._v("Nom")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.painting.name,
+                                  expression: "painting.name"
                                 }
-                                _vm.$set(
-                                  _vm.painting,
-                                  "name",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "col-md-4 control-label",
-                            attrs: { for: "size" }
-                          },
-                          [_vm._v("Taille")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-2" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.painting.width,
-                                expression: "painting.width"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              id: "width",
-                              type: "number",
-                              name: "width"
-                            },
-                            domProps: { value: _vm.painting.width },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                id: "name",
+                                type: "text",
+                                name: "name",
+                                autofocus: ""
+                              },
+                              domProps: { value: _vm.painting.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.painting,
+                                    "name",
+                                    $event.target.value
+                                  )
                                 }
-                                _vm.$set(
-                                  _vm.painting,
-                                  "width",
-                                  $event.target.value
-                                )
                               }
-                            }
-                          })
+                            })
+                          ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-2" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.painting.height,
-                                expression: "painting.height"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              id: "height",
-                              type: "number",
-                              name: "height"
+                        _vm._l(_vm.painting.Painttype, function(item) {
+                          return _c(
+                            "li",
+                            {
+                              key: item.id,
+                              staticStyle: { "margin-bottom": "2%" }
                             },
-                            domProps: { value: _vm.painting.height },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.painting,
-                                  "height",
-                                  $event.target.value
+                            [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "col-md-2 col-md-offset-1 control-label",
+                                    staticStyle: { "text-align": "left" },
+                                    attrs: { for: "size" }
+                                  },
+                                  [_vm._v("Taille : ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item.size,
+                                        expression: "item.size"
+                                      }
+                                    ],
+                                    staticClass: "col-md-2",
+                                    staticStyle: { "margin-top": "1%" },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          item,
+                                          "size",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "", selected: "" } },
+                                      [_vm._v("Selectionner la taille")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.sizes, function(item) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: item.id,
+                                          domProps: { value: item.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(item.width) +
+                                              " mm x " +
+                                              _vm._s(item.height) +
+                                              " mm\n                                            "
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "col-md-2 col-md-offset-1 control-label",
+                                    staticStyle: { "text-align": "left" },
+                                    attrs: { for: "plume" }
+                                  },
+                                  [_vm._v("Plume : ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item.plume,
+                                        expression: "item.plume"
+                                      }
+                                    ],
+                                    staticClass: "col-md-2",
+                                    staticStyle: { "margin-top": "1%" },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          item,
+                                          "plume",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { attrs: { value: "", selected: "" } },
+                                      [_vm._v("Selectionner le type de plume")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.plumes, function(item) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: item.id,
+                                          domProps: { value: item.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(item.name) +
+                                              "\n                                            "
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
                                 )
-                              }
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "col-md-4 control-label",
-                            attrs: { for: "desc" }
-                          },
-                          [_vm._v("Déscription")]
-                        ),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "col-md-2 col-md-offset-1 control-label",
+                                    staticStyle: { "text-align": "left" },
+                                    attrs: { for: "marge" }
+                                  },
+                                  [_vm._v("Prix de vente : ")]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-2" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item.price,
+                                        expression: "item.price"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      id: "marge",
+                                      type: "number",
+                                      name: "marge",
+                                      min: "1",
+                                      step: "0.1"
+                                    },
+                                    domProps: { value: item.price },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          item,
+                                          "price",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            ]
+                          )
+                        }),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.painting.description,
-                                expression: "painting.description"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            staticStyle: { resize: "none" },
-                            attrs: {
-                              id: "desc",
-                              name: "desc",
-                              maxlength: "255",
-                              rows: "4"
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "div",
+                            { staticClass: "col-md-8 col-md-offset-4" },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                      $event.preventDefault()
+                                      return _vm.addType($event)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                            Ajouter un couple taille x plume\n                                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.painting.Painttype.length > 1,
+                                      expression:
+                                        "painting.Painttype.length > 1"
+                                    }
+                                  ],
+                                  staticClass: "btn btn-primary",
+                                  on: {
+                                    click: function($event) {
+                                      $event.stopPropagation()
+                                      $event.preventDefault()
+                                      return _vm.deleteType($event)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                            Supprimer un couple taille x plume\n                                        "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "col-md-2 col-md-offset-2 control-label",
+                              staticStyle: { "text-align": "left" },
+                              attrs: { for: "desc" }
                             },
-                            domProps: { value: _vm.painting.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                            [_vm._v("Déscription")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.painting.description,
+                                  expression: "painting.description"
                                 }
-                                _vm.$set(
-                                  _vm.painting,
-                                  "description",
-                                  $event.target.value
-                                )
+                              ],
+                              staticClass: "form-control",
+                              staticStyle: { resize: "none" },
+                              attrs: {
+                                id: "desc",
+                                name: "desc",
+                                maxlength: "255",
+                                rows: "4"
+                              },
+                              domProps: { value: _vm.painting.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.painting,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
                               }
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(0)
-                    ])
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ],
+                      2
+                    )
                   ])
                 ]
               )
@@ -60354,7 +60592,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60365,6 +60603,11 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -60483,9 +60726,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "panel panel-default" }, [
+  return _c("div", { staticClass: "content" }, [
     _c("div", { staticClass: "panel-body" }, [
-      _c("div", { staticClass: "col col-lg-3" }, [
+      _c("div", { staticClass: "col-lg-3" }, [
         _c("img", {
           attrs: { src: _vm.paint.image, height: "200px", width: "200px" }
         })
@@ -60495,14 +60738,35 @@ var render = function() {
         _c("div", [_c("p", [_vm._v(_vm._s(_vm.paint.name))])]),
         _vm._v(" "),
         _c("div", [
-          _c("p", [
-            _vm._v(
-              _vm._s(_vm.paint.width) +
-                " cm x " +
-                _vm._s(_vm.paint.height) +
-                " cm"
-            )
-          ])
+          _c(
+            "select",
+            _vm._l(_vm.paint.price, function(item) {
+              return _c(
+                "option",
+                {
+                  key: item.id,
+                  on: {
+                    change: function($event) {
+                      _vm.getPrice(item.id)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(item.size.width) +
+                      " x " +
+                      _vm._s(item.size.height) +
+                      " mm => " +
+                      _vm._s(item.plume.name) +
+                      "\n                    "
+                  )
+                ]
+              )
+            })
+          ),
+          _vm._v(" "),
+          _c("input", { ref: "price", attrs: { type: "number", disabled: "" } })
         ]),
         _vm._v(" "),
         _c("div", [_c("p", [_vm._v(_vm._s(_vm.paint.description))])]),

@@ -22,27 +22,57 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="name" class="col-md-4 control-label">Nom</label>
+                                        <label style="text-align: left;" for="name" class="col-md-2 col-md-offset-2 control-label">Nom</label>
 
                                         <div class="col-md-6">
                                             <input v-model="painting.name" id="name" type="text" class="form-control" name="name"  autofocus>
 
                                         </div>
                                     </div>
+                                    
+                                    <li :key="item.id" style="margin-bottom: 2%;" v-for="item in painting.Painttype">
+                                        <div class="form-group">
+                                            <label style="text-align: left;" for="size" class="col-md-2 col-md-offset-1 control-label">Taille : </label>
 
-                                    <div class="form-group">
-                                        <label for="size" class="col-md-4 control-label">Taille</label>
+                                            <select style="margin-top:1%;" class="col-md-2" v-model="item.size">
+                                                <option value='' selected>Selectionner la taille</option>
+                                                <option v-for="item in sizes" :key="item.id" v-bind:value="item.id" >
+                                                    {{ item.width }} mm x {{ item.height }} mm
+                                                </option>
+                                            </select>
 
-                                        <div class="col-md-2">
-                                            <input v-model="painting.width" id="width" type="number" class="form-control" name="width" >
+                                            <label style="text-align: left;" for="plume" class="col-md-2 col-md-offset-1 control-label">Plume : </label>
+
+                                            <select style="margin-top:1%;" class="col-md-2" v-model="item.plume">
+                                                <option value='' selected>Selectionner le type de plume</option>
+                                                <option v-for="item in plumes" :key="item.id" v-bind:value="item.id">
+                                                    {{ item.name }}
+                                                </option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-2">
-                                            <input v-model="painting.height" id="height" type="number" class="form-control" name="height" >
+
+                                        <div class="form-group">
+                                            <label style="text-align: left;" for="marge" class="col-md-2 col-md-offset-1 control-label">Prix de vente : </label>
+
+                                            <div class="col-md-2">
+                                                <input v-model="item.price" id="marge" type="number" class="form-control" name="marge" min="1" step="0.1">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-md-offset-4">
+                                            <button v-on:click.stop.prevent="addType" class="btn btn-primary">
+                                                Ajouter un couple taille x plume
+                                            </button>
+                                            <button v-show="painting.Painttype.length > 1" v-on:click.stop.prevent="deleteType" class="btn btn-primary">
+                                                Supprimer un couple taille x plume
+                                            </button>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="desc" class="col-md-4 control-label">Déscription</label>
+                                        <label style="text-align: left;" for="desc" class="col-md-2 col-md-offset-2 control-label">Déscription</label>
 
                                         <div class="col-md-6">
                                             <textarea v-model="painting.description" id="desc" class="form-control" name="desc" maxlength="255" rows="4" style="resize: none;">
@@ -74,21 +104,23 @@ export default {
     components: {
         PictureInput
     },
+    props: {
+        plumes: Array,
+        sizes: Array
+    },
     data() {
             return {
                 csrf: "",
             	painting: {
                     name: 'Test',
-                    width: '22',
-                    height: '33',
                     description: 'TEST',
-                    file: ''
+                    file: '',
+                    Painttype: [{id: '0', plume: '', size: '', price: ''}]
                 }
             };
         },
     methods: {
         onChange (image) {
-            console.log('New picture selected!')
             if (image) {
                 this.image = image
                 this.painting.file = this.$refs.pictureInput.image;
@@ -106,10 +138,17 @@ export default {
             event.target.reset();
             this.$refs.pictureInput.removeImage();
         },
+        addType() {
+            this.painting.Painttype.push({id: this.painting.Painttype.length, size: '', plume: '', price: ''});
+        },
+        deleteType() {
+            this.painting.Painttype.pop();
+        },
         mounted() {
             this.csrf = window.laravel.csrfToken;
-        }
-    }
+        },
+    },
+    
 }
 </script>
 

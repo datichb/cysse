@@ -2,6 +2,6 @@
 
 @section('content')
 
-    <createpainting></createpainting>
+    <createpainting :plumes="{{ json_encode($plumes) }}" :sizes="{{ json_encode($sizes) }}"></createpainting>
 
 @endsection

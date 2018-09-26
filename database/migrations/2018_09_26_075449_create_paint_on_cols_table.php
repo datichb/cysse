@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionsTable extends Migration
+class CreatePaintOnColsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('paint_on_cols', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('type')->default('Vente');
+            $table->unsignedInteger('id_col');
+            $table->unsignedInteger('id_paint');
+            $table->foreign('id_paint')->references('id')->on('paintings');
+            $table->foreign('id_col')->references('id')->on('collections');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collections');
+        Schema::dropIfExists('paint_on_cols');
     }
 }

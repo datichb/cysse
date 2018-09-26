@@ -7,6 +7,9 @@ use App\Events\CardUpdated;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\painting;
+use App\plume;
+use App\size;
+use App\paint_price;
 
 class PaintingController extends Controller
 {
@@ -23,11 +26,22 @@ class PaintingController extends Controller
 
     public function create()
     {
-        return view('paintings.create');
+        $plumes = Plume::all();
+        $sizes = Size::all();
+
+        return view('paintings.create', compact('plumes', 'sizes'));
     }
 
     public function show(Painting $painting)
     {
+        $painting->price()->get();
+        foreach ($painting->price as $key => $value) {
+            $value->size = $value->size()->get()[0];
+            unset($value->id_size);
+            $value->plume = $value->plume()->get()[0];
+            unset($value->id_plume);
+        }
+
         $painting->image = Storage::disk('painting_img')->get($painting->name.'.txt');
 
         return view('paintings.show', compact('painting'));
@@ -40,17 +54,23 @@ class PaintingController extends Controller
 
         $this->validate($request, [
             'name' => 'required|max:50',
-            'width' => 'required|max:50',
-            'height' => 'required|max:50',
             'description' => 'required|max:255',
         ]);
-
-        return Painting::create([
+        
+        $painting = Painting::create([
             'name' => request('name'),
-            'width' => request('width'),
-            'height' => request('height'),
             'description' => request('description')
-         ]);
+        ]);
+        
+        foreach(request('Painttype') as $key => $value){
+            $PaintPrice = Paint_price::create([
+                'price' => $value['price'],
+                'id_paint' => $painting->id,
+                'id_plume' => $value['plume'],
+                'id_size' => $value['size']
+            ]);
+        }
+
     }
 
     public function getFree() {

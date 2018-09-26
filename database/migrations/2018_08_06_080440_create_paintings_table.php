@@ -14,12 +14,9 @@ class CreatePaintingsTable extends Migration
     public function up()
     {
         Schema::create('paintings', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('id_col')->nullable()->default(null);
             $table->string('name');
-            $table->integer('price');
-            $table->integer('width');
-            $table->integer('height');
             $table->text('description');
             $table->timestamps();
         });

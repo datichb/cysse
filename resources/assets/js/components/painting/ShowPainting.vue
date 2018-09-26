@@ -1,7 +1,7 @@
 <template>
-    <div class="panel panel-default">
+    <div class="content">
         <div class="panel-body">
-            <div class="col col-lg-3">
+            <div class="col-lg-3">
                 <img :src="paint.image" height="200px" width="200px">
             </div>
             <div class="col-lg-3">
@@ -9,7 +9,12 @@
                     <p>{{ paint.name }}</p>
                 </div>
                 <div>
-                    <p>{{ paint.width }} cm x {{ paint.height }} cm</p>
+                    <select>
+                        <option @change="getPrice(item.id)" :key="item.id" v-for="item in paint.price">
+                            {{ item.size.width }} x {{ item.size.height }} mm => {{ item.plume.name }}
+                        </option>
+                    </select>
+                    <input type="number" disabled ref='price'>
                 </div>
                 <div>
                     <p>{{ paint.description }}</p>
