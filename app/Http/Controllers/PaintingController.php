@@ -34,7 +34,8 @@ class PaintingController extends Controller
 
     public function show(Painting $painting)
     {
-        $painting->price()->get();
+        $painting->price()->with(['plume', 'size'])->get();
+        
         foreach ($painting->price as $key => $value) {
             $value->size = $value->size()->get()[0];
             unset($value->id_size);

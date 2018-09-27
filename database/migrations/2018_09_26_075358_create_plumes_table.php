@@ -17,6 +17,7 @@ class CreatePlumesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name');
+            $table->boolean('archive');
             $table->timestamps();
             
         });

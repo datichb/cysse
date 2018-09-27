@@ -9,14 +9,14 @@ class paint_price extends Model
     protected $guarded = [];
 
     public function paint() {
-        return $this->belongsTo('App\painting', 'id');
+        return $this->belongsTo('App\painting', 'id_paint');
     }
 
     public function plume() {
-        return $this->hasOne('App\plume', 'id');
+        return $this->belongsTo('App\plume', 'id_plume');
     }
 
     public function size() {
-        return $this->hasOne('App\size', 'id');
+        return $this->belongsTo('App\size', 'id_size');
     }
 }

@@ -18,6 +18,7 @@ class CreateSizesTable extends Migration
             $table->increments('id');
             $table->integer('width');
             $table->integer('height');
+            $table->boolean('archive');
             $table->timestamps();
         });
     }

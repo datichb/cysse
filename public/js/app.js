@@ -60592,7 +60592,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.paint[data-v-b894f236] {\n    margin-top: 5%;\n    height:70%;\n    width: 35%;\n    float: left;\n}\n.paint img[data-v-b894f236] {\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.Desc[data-v-b894f236] {\n    width: 50%;\n    height: 50%;\n    padding: 5%;\n    margin-top: 12.5%;\n    margin-left: 10%;\n    float: left;\n    -webkit-box-shadow: 0px 0px 10px #888888;\n            box-shadow: 0px 0px 10px #888888;\n    border-radius: 3%;\n}\n.command[data-v-b894f236] {\n    clear: both;\n    height: 10%;\n    padding: 2%;\n}\n", ""]);
 
 // exports
 
@@ -60639,14 +60639,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         painting: Object,
-        list: {
-            type: Boolean,
-            defalut: false
-        },
         isAdmin: {
             type: Boolean,
             default: false
@@ -60656,7 +60655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             paint: this.painting,
             isMounted: false,
-            istList: !this.list
+            currentPrice: ''
         };
     },
 
@@ -60666,7 +60665,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.paint.stock === 0) {
                 this.$refs.stock.innerHTML = '<p>Ce produit n\'est plus en stock. Compter x jours de conception en plus de la livraison.</p>';
             } else {
-                this.$refs.stock.innerHTML = '<label>stock :</label>' + '<input disabled type="number" value="' + this.paint.stock + '">';
+                this.$refs.stock.innerHTML = '<input disabled type="number" value="' + this.paint.stock + '">';
             }
         }
     },
@@ -60689,7 +60688,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (p == null) var p = new Array();else {
                 p.forEach(function (element) {
-                    if (element.id == _this2.paint.id) {
+                    if (element.id == _this2.paint.id && element.type == _this2.$refs.type.value) {
                         element.nb = Number(_this2.$refs.buy.value);
                         isExist = true;
                     }
@@ -60697,7 +60696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             if (!isExist) {
-                var paint = { 'id': this.paint.id, 'nb': Number(this.$refs.buy.value) };
+                var paint = { 'id': this.paint.id, 'type': Number(this.$refs.type.value), 'nb': Number(this.$refs.buy.value) };
                 p.push(paint);
             }
 
@@ -60711,6 +60710,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         EditPaint: function EditPaint() {
             window.location.replace("/painting/edit/" + this.paint.id);
+        },
+        getPrice: function getPrice(id) {
+            console.log(id);
+            var res = this.paint.price.find(function (obj) {
+                if (obj.id == id) return obj;
+            });
+            console.log(res);
+            this.currentPrice = res.price;
         }
     },
     mounted: function mounted() {
@@ -60727,146 +60734,116 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content" }, [
-    _c("div", { staticClass: "panel-body" }, [
-      _c("div", { staticClass: "col-lg-3" }, [
-        _c("img", {
-          attrs: { src: _vm.paint.image, height: "200px", width: "200px" }
-        })
+    _c("div", { staticClass: "paint" }, [
+      _c("img", {
+        attrs: { src: _vm.paint.image, width: "100%", height: "100%" }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "Desc" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("label", { staticClass: "col-md-2" }, [_vm._v("Nom : ")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "col-md-2" }, [_vm._v(_vm._s(_vm.paint.name))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-lg-3" }, [
-        _c("div", [_c("p", [_vm._v(_vm._s(_vm.paint.name))])]),
+      _c("div", { staticClass: "row" }, [
+        _c("label", { staticClass: "col-md-2" }, [_vm._v("Type : ")]),
         _vm._v(" "),
-        _c("div", [
-          _c(
-            "select",
+        _c(
+          "select",
+          {
+            ref: "type",
+            staticClass: "col-md-5",
+            on: {
+              change: function($event) {
+                _vm.getPrice($event.target.value)
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { disabled: "", selected: "", value: "" } }),
+            _vm._v(" "),
             _vm._l(_vm.paint.price, function(item) {
               return _c(
                 "option",
-                {
-                  key: item.id,
-                  on: {
-                    change: function($event) {
-                      _vm.getPrice(item.id)
-                    }
-                  }
-                },
+                { key: item.id, domProps: { value: item.id } },
                 [
                   _vm._v(
-                    "\n                        " +
+                    "\n                    " +
                       _vm._s(item.size.width) +
                       " x " +
                       _vm._s(item.size.height) +
                       " mm => " +
                       _vm._s(item.plume.name) +
-                      "\n                    "
+                      "\n                "
                   )
                 ]
               )
             })
-          ),
-          _vm._v(" "),
-          _c("input", { ref: "price", attrs: { type: "number", disabled: "" } })
-        ]),
+          ],
+          2
+        ),
         _vm._v(" "),
-        _c("div", [_c("p", [_vm._v(_vm._s(_vm.paint.description))])]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.istList,
-                expression: "istList"
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.currentPrice,
+              expression: "currentPrice"
+            }
+          ],
+          ref: "price",
+          staticClass: "col-md-offset-1 col-md-2",
+          attrs: { type: "text", disabled: "" },
+          domProps: { value: _vm.currentPrice },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
-            ],
-            ref: "stock",
-            staticClass: "stock"
-          },
-          [
-            _vm._v(
-              "\n                " + _vm._s(_vm.HaveStock) + "\n            "
-            )
-          ]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.istList,
-            expression: "istList"
+              _vm.currentPrice = $event.target.value
+            }
           }
-        ]
-      },
-      [
-        _c("label", [_vm._v("Commande :")]),
+        }),
+        _vm._v(" €\n        ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("label", { staticClass: "col-md-3" }, [_vm._v("Description :")]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.paint.description))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("label", { staticClass: "col-md-3" }, [_vm._v("Stock :")]),
+        _vm._v(" "),
+        _c("div", { ref: "stock" }, [_vm._v(_vm._s(_vm.HaveStock))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row", staticStyle: { "margin-top": "20%" } }, [
+        _c("label", { staticClass: "col-md-3" }, [_vm._v("Commande :")]),
         _vm._v(" "),
         _c("input", {
           ref: "buy",
+          staticClass: "col-md-2",
           attrs: { type: "number", max: _vm.paint.stock, min: "0" },
           domProps: { value: 1 }
         })
-      ]
-    ),
+      ])
+    ]),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.istList,
-            expression: "istList"
-          }
-        ],
-        staticClass: "btn btn-primary",
-        on: { click: _vm.tocard }
-      },
-      [_vm._v("Ajouter au panier")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: !_vm.istList,
-            expression: "!istList"
-          }
-        ],
-        staticClass: "btn btn-primary",
-        on: { click: _vm.moreInfo }
-      },
-      [_vm._v("Plus d'information")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.isAdmin,
-            expression: "isAdmin"
-          }
-        ],
-        staticClass: "btn btn-primary",
-        on: { click: _vm.EditPaint }
-      },
-      [_vm._v("Modifier")]
-    )
+    _c("div", { staticClass: "command row" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary col-md-3 col-md-offset-7",
+          on: { click: _vm.tocard }
+        },
+        [_vm._v("Ajouter au panier")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
