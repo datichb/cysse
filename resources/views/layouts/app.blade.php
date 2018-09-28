@@ -8,6 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
+    <script src="{{ asset('js/ShaderBaseFunction.js') }}"></script>
 
     <title>{{ config('app.name', 'Cysse') }}</title>
 
@@ -23,9 +24,9 @@
 <body class="body">
     <div id="app">
         <div id="app-second">
+            <loader></loader>
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
-
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -138,7 +139,33 @@
     <script src="/js/app.js"></script>
 </body>
 
+<script type="text/javascript">
+//main();
+</script>
+
 <style>
+    #preloader {
+  position: absolute;
+  top: 0;
+  background: #e5e5e3;
+  width: 100%;
+  height: 100%;
+}
+#preloader .logo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto auto;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+}
+#preloader .logo polygon {
+  fill: #fff;
+}
+
     .body {
         height: 100vh;
     }
