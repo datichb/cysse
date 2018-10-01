@@ -126,7 +126,7 @@
                     </ul>
                 </div>
             </nav>
-            <cart></cart>
+            <!-- <cart></cart> -->
             @yield('content')
 
             <div class="footer footer-panel modal-footer">

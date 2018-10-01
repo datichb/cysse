@@ -65991,7 +65991,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66019,31 +66019,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        this.transitionIn();
+        var self = this;
+
+        var target = this.$refs.preload;
+
+        target.addEventListener("load", function () {
+            this.isCombined = true;
+
+            // get the inner DOM of alpha.svg
+            var svgDoc = target.contentDocument;
+            // get the inner element by id
+            var $middle = svgDoc.getElementById('middle-triangle');
+            var $right = svgDoc.getElementById('right-triangle');
+            var $left = svgDoc.getElementById('left-triangle');
+            var $top = svgDoc.getElementById('top-triangle');
+
+            $middle.style.fill = '#C0C0C0';
+
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($top, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, y: -25, ease: Quint.easeOut, delay: .6 });
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($middle, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, ease: Quint.easeOut, delay: .8 });
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($left, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: -25, y: -25, ease: Quint.easeOut, delay: 1 });
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($right, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: 25, y: 25, ease: Quint.easeOut, delay: 1.2, onComplete: $.proxy(self.onPulse, self) });
+        }, false);
     },
 
     methods: {
-        transitionIn: function transitionIn() {
-            var self = this;
-
-            var target = this.$refs.preload;
-
-            target.addEventListener("load", function () {
-
-                // get the inner DOM of alpha.svg
-                var svgDoc = target.contentDocument;
-                // get the inner element by id
-                var $middle = svgDoc.getElementById('middle-triangle');
-                var $right = svgDoc.getElementById('right-triangle');
-                var $left = svgDoc.getElementById('left-triangle');
-                var $top = svgDoc.getElementById('top-triangle');
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($top, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, y: -25, ease: Quint.easeOut, delay: .6 });
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($middle, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, ease: Quint.easeOut, delay: .8 });
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($left, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: -25, y: -25, ease: Quint.easeOut, delay: 1 });
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from($right, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: 25, y: 25, ease: Quint.easeOut, delay: 1.2, onComplete: self.onPulse() });
-            }, false);
-        },
         onPulse: function onPulse() {
+            console.log(this.isCombined);
             var target = this.$refs.preload;
             var self = this;
 
@@ -66054,26 +66056,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var $top = svgDoc.getElementsByClassName('top-triangle');
             var $middle = svgDoc.getElementsByClassName('middle-triangle');
 
-            if (self.isCombined) {
-                self.isCombined = false;
+            if (this.isCombined) {
+                this.isCombined = false;
                 __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($top, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, y: -25, ease: Quint.easeIn, delay: .4 });
                 __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($middle, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, ease: Quint.easeIn, delay: .5 });
                 __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($left, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: -25, y: -25, ease: Quint.easeIn, delay: .6 });
-                if (!self.isCompleted) __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($right, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: 25, y: 25, ease: Quint.easeIn, delay: .7, onComplete: self.onPulse() });else __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($right, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: 25, y: 25, ease: Quint.easeIn, delay: .7, onComplete: $.proxy(this.onTransitionOutComplete, this) });
+                if (!this.isCompleted) __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($right, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: 25, y: 25, ease: Quint.easeIn, delay: .7, onComplete: $.proxy(this.onPulse, this) });else __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($right, .6, { opacity: 0, transformOrigin: '50% 50%', rotationZ: Math.random() * 90 - 45, rotationY: Math.random() * 90 - 45, scale: .2, x: 25, y: 25, ease: Quint.easeIn, delay: .7, onComplete: $.proxy(this.onTransitionOutComplete, this) });
             } else {
-                self.isCombined = true;
+                this.isCombined = true;
                 __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($top, .8, { opacity: 1, transformOrigin: '50% 50%', rotationZ: 0, rotationY: 0, scale: 1, y: 0, ease: Quint.easeOut, delay: .4 });
                 __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($middle, .8, { opacity: 1, transformOrigin: '50% 50%', rotationZ: 0, rotationY: 0, scale: 1, ease: Quint.easeOut, delay: .6 });
                 __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($left, .8, { opacity: 1, transformOrigin: '50% 50%', rotationZ: 0, rotationY: 0, scale: 1, x: 0, y: 0, ease: Quint.easeOut, delay: .8 });
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($right, .8, { opacity: 1, transformOrigin: '50% 50%', rotationZ: 0, rotationY: 0, scale: 1, x: 0, y: 0, ease: Quint.easeOut, delay: 1, onComplete: self.onPulse() });
+                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($right, .8, { opacity: 1, transformOrigin: '50% 50%', rotationZ: 0, rotationY: 0, scale: 1, x: 0, y: 0, ease: Quint.easeOut, delay: 1, onComplete: $.proxy(this.onPulse, this) });
             }
         },
         transitionOut: function transitionOut() {
             this.isCompleted = true;
         },
         onTransitionOutComplete: function onTransitionOutComplete() {
-            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to('#preload', .8, { y: -$(window).height(), ease: Quint.easeInOut, onComplete: $.proxy(this.close, this) });
-            App.vent.trigger('preload:complete');
+            //TweenMax.to('#preload', .8, {y: -$(window).height(), ease: Quint.easeInOut, onComplete: this.close});
         }
     }
 });
