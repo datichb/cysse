@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="form-group">
-                                        <label for="name" class="col-md-4 control-label">Nom</label>
+                                        <label for="name" class="col-md-4 control-label">Nom : </label>
 
                                         <div class="col-md-6">
                                             <input v-model="collection.name" id="name" type="text" class="form-control" name="name"  autofocus>
@@ -30,12 +30,22 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="desc" class="col-md-4 control-label">Déscription</label>
+                                        <label for="desc" class="col-md-4 control-label">Déscription : </label>
 
                                         <div class="col-md-6">
                                             <textarea v-model="collection.description" id="desc" class="form-control" name="desc" maxlength="255" rows="4" style="resize: none;">
                                             </textarea>
                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="desc" class="col-md-4 control-label">Type de collection : </label>
+
+                                        <select class="col-md-offset-1 col-md-4" v-model="collection.coltype">
+                                              <option :key="item.id" v-for="item in types" :value="item.id">
+                                                {{ item.type }}
+                                              </option>
+                                          </select>
                                     </div>
 
                                     <div class="form-group">
@@ -68,7 +78,8 @@ export default {
         searchcomponent
     },
     props: {
-      paintings: Array
+      paintings: Array,
+      types: Array
     },
     data() {
         return {
@@ -76,6 +87,7 @@ export default {
           collection: {
                 name: '',
                 description: '',
+                coltype: '',
                 paints: new Array(),
                 file: ''
             }

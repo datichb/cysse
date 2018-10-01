@@ -17284,7 +17284,7 @@ window.Vue = __webpack_require__(46);
 var app = new Vue({
     el: '#app',
     components: {
-        examplecomponent: __WEBPACK_IMPORTED_MODULE_0__components_Home_vue___default.a,
+        home: __WEBPACK_IMPORTED_MODULE_0__components_Home_vue___default.a,
         createpainting: __WEBPACK_IMPORTED_MODULE_3__components_painting_CreatePainting_vue___default.a,
         createcollection: __WEBPACK_IMPORTED_MODULE_4__components_collection_CreateCollection_vue___default.a,
         showpainting: __WEBPACK_IMPORTED_MODULE_5__components_painting_ShowPainting_vue___default.a,
@@ -60582,10 +60582,14 @@ var staticRenderFns = [
       _c("div", { staticStyle: { height: "20%" } }),
       _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
-        _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
+        _c("h2", [
+          _c("span"),
+          _vm._v("\n          Cysse\n          "),
+          _c("span")
+        ]),
         _vm._v(" "),
         _c("p", { staticClass: "Subtitle" }, [
-          _vm._v("\n          Maison de plumasserie\n      ")
+          _vm._v("\n            Maison de plumasserie\n        ")
         ])
       ]),
       _vm._v(" "),
@@ -60624,13 +60628,13 @@ var staticRenderFns = [
       ),
       _vm._v(" "),
       _c("blockquote", [
-        _c("q", [_vm._v("\n        Créatrice\n    ")]),
+        _c("q", [_vm._v("\n          Créatrice\n      ")]),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
         _c("q", [
           _vm._v(
-            "\n        L'art de la plumasserie, Dans vos tableaux. Par amour de la plume, Unique, Authentique. \n    "
+            "\n          L'art de la plumasserie, Dans vos tableaux. Par amour de la plume, Unique, Authentique. \n      "
           )
         ])
       ])
@@ -62816,6 +62820,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -62826,7 +62840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         searchcomponent: __WEBPACK_IMPORTED_MODULE_1__SearchComponent_vue___default.a
     },
     props: {
-        paintings: Array
+        paintings: Array,
+        types: Array
     },
     data: function data() {
         return {
@@ -62834,6 +62849,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             collection: {
                 name: '',
                 description: '',
+                coltype: '',
                 paints: new Array(),
                 file: ''
             }
@@ -63223,7 +63239,7 @@ var render = function() {
                             staticClass: "col-md-4 control-label",
                             attrs: { for: "name" }
                           },
-                          [_vm._v("Nom")]
+                          [_vm._v("Nom : ")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-6" }, [
@@ -63267,7 +63283,7 @@ var render = function() {
                             staticClass: "col-md-4 control-label",
                             attrs: { for: "desc" }
                           },
-                          [_vm._v("Déscription")]
+                          [_vm._v("Déscription : ")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-6" }, [
@@ -63303,6 +63319,64 @@ var render = function() {
                             }
                           })
                         ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "col-md-4 control-label",
+                            attrs: { for: "desc" }
+                          },
+                          [_vm._v("Type de collection : ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.collection.coltype,
+                                expression: "collection.coltype"
+                              }
+                            ],
+                            staticClass: "col-md-offset-1 col-md-4",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.collection,
+                                  "coltype",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          _vm._l(_vm.types, function(item) {
+                            return _c(
+                              "option",
+                              { key: item.id, domProps: { value: item.id } },
+                              [
+                                _vm._v(
+                                  "\n                                            " +
+                                    _vm._s(item.type) +
+                                    "\n                                          "
+                                )
+                              ]
+                            )
+                          })
+                        )
                       ]),
                       _vm._v(" "),
                       _vm._m(0)
@@ -63393,7 +63467,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.paint[data-v-b894f236] {\n    margin-top: 5%;\n    height:70%;\n    width: 35%;\n    float: left;\n}\n.paint img[data-v-b894f236] {\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.Desc[data-v-b894f236] {\n    width: 50%;\n    height: 50%;\n    padding: 5%;\n    margin-top: 12.5%;\n    margin-left: 10%;\n    float: left;\n    -webkit-box-shadow: 0px 0px 10px #888888;\n            box-shadow: 0px 0px 10px #888888;\n    border-radius: 3%;\n}\n.command[data-v-b894f236] {\n    clear: both;\n    height: 10%;\n    padding: 2%;\n}\n", ""]);
+exports.push([module.i, "\n.paint[data-v-b894f236] {\n    margin-top: 5%;\n    height:70%;\n    width: 35%;\n    float: left;\n}\n.paint img[data-v-b894f236] {\n    /* object-fit: contain; */\n}\n.Desc[data-v-b894f236] {\n    width: 50%;\n    height: 50%;\n    padding: 5%;\n    margin-top: 12.5%;\n    margin-left: 10%;\n    float: left;\n    -webkit-box-shadow: 0px 0px 10px #888888;\n            box-shadow: 0px 0px 10px #888888;\n    border-radius: 3%;\n}\n.command[data-v-b894f236] {\n    clear: both;\n    height: 10%;\n    padding: 2%;\n}\n", ""]);
 
 // exports
 
@@ -63857,19 +63931,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(94)
+  __webpack_require__(147)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(96)
 /* template */
-var __vue_template__ = __webpack_require__(107)
+var __vue_template__ = __webpack_require__(149)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-545b9525"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -63902,46 +63976,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(95);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("39f634cf", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-545b9525\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowCollection.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-545b9525\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowCollection.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 94 */,
+/* 95 */,
 /* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63951,6 +63987,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListItem_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ListItem_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Modallist_vue__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Modallist_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Modallist_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -64018,6 +64064,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addToCol: function addToCol(painting) {
 
             this.collectionitems.paintings = this.collectionitems.paintings.concat(painting);
+        },
+        scrolling: function scrolling() {
+            document.querySelector('.paint').scrollIntoView({
+                behavior: 'smooth'
+            });
         }
     }
 });
@@ -64570,120 +64621,7 @@ if (false) {
 }
 
 /***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "content" },
-    [
-      _c(
-        "modal",
-        {
-          attrs: {
-            items: _vm.items.paintings,
-            collection: _vm.collectionitems.id
-          },
-          on: { newpaiting: _vm.addToCol }
-        },
-        [
-          _c("template", { slot: "title" }, [
-            _vm._v("\n            This is my new title !    \n        ")
-          ])
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "panel-body" }, [
-            _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-              _c("img", {
-                attrs: {
-                  src: _vm.collectionitems.img,
-                  width: "100%",
-                  height: "100%"
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row" },
-            [
-              _c("listitem", {
-                attrs: {
-                  auth: _vm.isAdmin,
-                  searchable: false,
-                  items: _vm.collectionitems.paintings
-                },
-                on: { deletepainting: _vm.addpainting }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.isAdmin,
-                  expression: "isAdmin"
-                }
-              ],
-              staticClass: "row"
-            },
-            [_vm._m(0)]
-          )
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 col-md-offset-4" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#exampleModalCenter"
-          }
-        },
-        [
-          _vm._v(
-            "\n                        Ajouter des tableaux à la collection\n                    "
-          )
-        ]
-      )
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-545b9525", module.exports)
-  }
-}
-
-/***/ }),
+/* 107 */,
 /* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65991,7 +65929,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.preload {\n    background-color: #FEFBFA;\n    z-index: 500000;\n    position: relative;\n    max-height: 100%;\n    transition: max-height 1.5s ease-out;\n    -webkit-transition: max-height 1.5s ease-out;\n    width: 100%;\n    height: 100%;\n}\n.preload object {\n    margin-top: 25%;\n    margin-left: 45%;\n}\n", ""]);
 
 // exports
 
@@ -66023,6 +65961,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var target = this.$refs.preload;
 
+        setTimeout(this.transitionOut, 5000);
+
         target.addEventListener("load", function () {
             this.isCombined = true;
 
@@ -66045,7 +65985,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onPulse: function onPulse() {
-            console.log(this.isCombined);
             var target = this.$refs.preload;
             var self = this;
 
@@ -66074,7 +66013,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isCompleted = true;
         },
         onTransitionOutComplete: function onTransitionOutComplete() {
-            //TweenMax.to('#preload', .8, {y: -$(window).height(), ease: Quint.easeInOut, onComplete: this.close});
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to('#preload', 1.5, { y: -$(window).height(), ease: Quint.easeInOut, onComplete: $.proxy(this.close, this) });
+            document.getElementById('preload').style.maxHeight = '0';
+            setTimeout(function () {
+                var children = document.getElementById('app-second').childNodes;
+                children.forEach(function (element) {
+                    if (element.id == "preload") element.remove();
+                });
+            }, 4000);
         }
     }
 });
@@ -71564,7 +71510,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "preload" } }, [
+  return _c("div", { staticClass: "preload", attrs: { id: "preload" } }, [
     _c("object", {
       ref: "preload",
       attrs: {
@@ -71591,6 +71537,222 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(148);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("2cc95e60", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-545b9525\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowCollection.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-545b9525\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowCollection.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.content {\n  -webkit-overflow-scrolling: touch;\n}\n#more-arrows {\n  width: 100%;\n  height: 10%;\n  margin-top: 5%;\n  padding-left: 45%;\n}\n#more-arrows:hover polygon {\n    fill: #C0C0C0;\n    -webkit-transition: all .2s ease-out;\n    transition: all .2s ease-out;\n}\n#more-arrows:hover polygon.arrow-bottom {\n      -webkit-transform: translateY(-18px);\n              transform: translateY(-18px);\n}\n#more-arrows:hover polygon.arrow-top {\n      -webkit-transform: translateY(18px);\n              transform: translateY(18px);\n}\npolygon {\n  fill: #DAA520;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\npolygon.arrow-middle {\n    opacity: 0.75;\n}\npolygon.arrow-top {\n    opacity: 0.5;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content" },
+    [
+      _c(
+        "modal",
+        {
+          attrs: {
+            items: _vm.items.paintings,
+            collection: _vm.collectionitems.id
+          },
+          on: { newpaiting: _vm.addToCol }
+        },
+        [
+          _c("template", { slot: "title" }, [
+            _vm._v("\n            This is my new title !    \n        ")
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "row col",
+          staticStyle: { height: "100%", "padding-top": "2.5%" },
+          attrs: { id: "col" }
+        },
+        [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", {}, [
+              _c("div", { staticClass: "col-md-10 col-md-offset-1" }, [
+                _c("img", {
+                  attrs: {
+                    src: _vm.collectionitems.img,
+                    width: "100%",
+                    height: "100%"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "h2",
+                  {
+                    staticStyle: {
+                      position: "absolute",
+                      top: "85%",
+                      right: "10%",
+                      color: "white",
+                      "font-family": "'Sorts Mill Goudy'"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.collectionitems.name))]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { on: { click: _vm.scrolling } }, [
+              _c("svg", { attrs: { id: "more-arrows" } }, [
+                _c("polygon", {
+                  staticClass: "arrow-top",
+                  attrs: {
+                    points: "37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "
+                  }
+                }),
+                _vm._v(" "),
+                _c("polygon", {
+                  staticClass: "arrow-middle",
+                  attrs: {
+                    points:
+                      "37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "
+                  }
+                }),
+                _vm._v(" "),
+                _c("polygon", {
+                  staticClass: "arrow-bottom",
+                  attrs: {
+                    points:
+                      "37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "
+                  }
+                })
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "row paint",
+          staticStyle: { height: "100%" },
+          attrs: { id: "paint" }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _c("listitem", {
+                attrs: {
+                  auth: _vm.isAdmin,
+                  searchable: false,
+                  items: _vm.collectionitems.paint
+                },
+                on: { deletepainting: _vm.addpainting }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.isAdmin,
+                  expression: "isAdmin"
+                }
+              ],
+              staticClass: "row"
+            },
+            [_vm._m(0)]
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 col-md-offset-4" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": "#exampleModalCenter"
+          }
+        },
+        [
+          _vm._v(
+            "\n                    Ajouter des tableaux à la collection\n                "
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-545b9525", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

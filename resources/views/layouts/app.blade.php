@@ -24,7 +24,6 @@
 <body class="body">
     <div id="app">
         <div id="app-second">
-            <loader></loader>
             <nav class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
@@ -46,7 +45,7 @@
                         </div>
                     </div>
                     <div class="navbar-brand" style="">
-                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                             Les tableaux
                         </a>
                             <getcollection></getcollection>
@@ -54,7 +53,7 @@
                     @auth
                         @if(Auth::user()->isAdmin())
                         <div class="navbar-brand" style="">
-                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                            <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                                 Création
                             </a>
                             <div class="dropdown-content">
@@ -68,7 +67,7 @@
                     @endauth
                                 
                     <div class="navbar-brand" style="">
-                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/painting') }}">
+                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                             Sur mesure
                         </a>
                         <div class="dropdown-content">
@@ -144,24 +143,6 @@
 </script>
 
 <style>
-    #preloader {
-  position: absolute;
-  top: 0;
-  background: #e5e5e3;
-  width: 100%;
-  height: 100%;
-}
-#preloader .logo {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto auto;
-  text-align: center;
-  width: 50px;
-  height: 50px;
-}
 #preloader .logo polygon {
   fill: #fff;
 }
@@ -245,6 +226,7 @@
         box-sizing: content-box;
         padding-left: 2%;
         padding-right: 2%;
+        position: relative;
     }
 
     .dropdown-content a {

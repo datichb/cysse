@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlumesTable extends Migration
+class CreateCollectionTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreatePlumesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plumes', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('collection_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->boolean('archive')->default(false);
+            $table->string('type');
             $table->timestamps();
-            
         });
     }
 
@@ -30,6 +27,6 @@ class CreatePlumesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plumes');
+        Schema::dropIfExists('collection_types');
     }
 }

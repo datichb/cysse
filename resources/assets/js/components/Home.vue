@@ -1,29 +1,29 @@
 <template>
   <div class="content">
-    <div style="height: 20%;"></div>
-    <div class="visit-card">
-        <h2>
-          <span></span>
-          Cysse
-          <span></span>
-        </h2>
-        <p class="Subtitle">
-            Maison de plumasserie
-        </p>
-    </div>
-    <div style="width: 100%;text-align: center;margin-top:5%;">
-      <a target="_blank" href=""><img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/></a>
-      <a target="_blank" href="https://www.instagram.com/cyssemaisondeplumasserie/"><img src="/icon/instagram.svg" width="50px"/></a>
-    </div>
-    <blockquote>
-      <q>
-          Créatrice
-      </q>
-      <br>
-      <q>
-          L'art de la plumasserie, Dans vos tableaux. Par amour de la plume, Unique, Authentique. 
-      </q>
-    </blockquote>
+      <div style="height: 20%;"></div>
+      <div class="visit-card">
+          <h2>
+            <span></span>
+            Cysse
+            <span></span>
+          </h2>
+          <p class="Subtitle">
+              Maison de plumasserie
+          </p>
+      </div>
+      <div style="width: 100%;text-align: center;margin-top:5%;">
+        <a target="_blank" href=""><img src="/icon/facebook-2.svg" width="50px" style="margin-right: 50px;"/></a>
+        <a target="_blank" href="https://www.instagram.com/cyssemaisondeplumasserie/"><img src="/icon/instagram.svg" width="50px"/></a>
+      </div>
+      <blockquote>
+        <q>
+            Créatrice
+        </q>
+        <br>
+        <q>
+            L'art de la plumasserie, Dans vos tableaux. Par amour de la plume, Unique, Authentique. 
+        </q>
+      </blockquote>
   </div>
 </template>
 
@@ -77,6 +77,7 @@ export default {
 </script>
 
 <style>
+
 h2 {
     margin-left:30%;
     display: flex;

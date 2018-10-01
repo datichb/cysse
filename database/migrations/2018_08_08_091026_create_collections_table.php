@@ -18,8 +18,9 @@ class CreateCollectionsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->string('type')->default('Vente');
-            $table->boolean('archive');
+            $table->unsignedInteger('id_type')->default(0);
+            $table->boolean('archive')->default(false);
+            $table->foreign('id_type')->references('id')->on('Collection_types');
             $table->timestamps();
         });
     }

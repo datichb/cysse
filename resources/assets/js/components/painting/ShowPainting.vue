@@ -130,7 +130,7 @@ export default {
 }
 
 .paint img {
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 
 .Desc {

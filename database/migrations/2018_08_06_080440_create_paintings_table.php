@@ -19,7 +19,7 @@ class CreatePaintingsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('stock')->default(0)->nullable(false);
-            $table->boolean('archive');
+            $table->boolean('archive')->default(false);
             $table->timestamps();
         });
     }

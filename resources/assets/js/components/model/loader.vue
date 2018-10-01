@@ -1,5 +1,5 @@
 <template>
-    <div id='preload' >
+    <div id='preload' class='preload'>
         <object id="svg-object" ref="preload" width="100px" data="icon/loader.svg" type="image/svg+xml"></object>
     </div>    
 </template>
@@ -17,6 +17,8 @@ export default {
         var self = this;
 
         var target = this.$refs.preload;
+
+        setTimeout(this.transitionOut, 5000);
 
         target.addEventListener("load",function(){
                 this.isCombined = true;
@@ -39,7 +41,6 @@ export default {
     },
     methods: {
         onPulse: function() {
-            console.log(this.isCombined);
             var target = this.$refs.preload;
             var self = this;
 
@@ -72,13 +73,35 @@ export default {
             this.isCompleted = true;
         },
         onTransitionOutComplete: function() {
-            //TweenMax.to('#preload', .8, {y: -$(window).height(), ease: Quint.easeInOut, onComplete: this.close});
+            TweenMax.to('#preload', 1.5, {y: -$(window).height(), ease: Quint.easeInOut, onComplete: $.proxy(this.close, this)});
+            document.getElementById('preload').style.maxHeight = '0';
+            setTimeout(function() {
+                var children = document.getElementById('app-second').childNodes;
+                children.forEach(element => {
+                    if(element.id == "preload")
+                        element.remove();
+                });
+            }, 4000);
         }
     }
 }
 </script>
 <style>
+.preload {
+    background-color: #FEFBFA;
+    z-index: 500000;
+    position: relative;
+    max-height: 100%;
+    transition: max-height 1.5s ease-out;
+    -webkit-transition: max-height 1.5s ease-out;
+    width: 100%;
+    height: 100%;
+}
 
+.preload object {
+    margin-top: 25%;
+    margin-left: 45%;
+}
 </style>
 
 

@@ -7,6 +7,8 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\painting;
 use App\collection;
+use App\collection_type;
+use App\Paint_on_col;
 
 class CollectionController extends Controller
 {
@@ -18,7 +20,7 @@ class CollectionController extends Controller
     }
 
     public function getAll() {
-        $collections = Collection::all()->values();
+        $collections = Collection::all();
         
         return compact('collections');
     }
@@ -32,19 +34,26 @@ class CollectionController extends Controller
         }
 
         $paintings = $paintings->values();
-        return view('collections.create', compact('paintings'));
+
+        $type = Collection_type::all();
+        return view('collections.create', compact('paintings', 'type'));
     }
 
     public function show(Collection $collection)
     {
-        $paintings = Painting::all()->where('id_col', '=', $collection->id);
+        $collection->paint_on_col()->with(['paint'])->get();
+        $paint = array();
+
+        foreach($collection->paint_on_col as $key => $value){
+            array_push($paint, $value->paint()->get()[0]);
+        }
+        $collection->paint = $paint;
         
-        foreach ($paintings as $key => $value) {
+        foreach ($collection->paint as $key => $value) {
             $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
         }
         
         $collection->img = Storage::disk('collection_img')->get($collection->name.'.txt');
-        $collection->paintings = $paintings->values();
         $collection->paints = array();
 
         return view('collections.show', compact('collection'));
@@ -61,16 +70,18 @@ class CollectionController extends Controller
 
         $var = Collection::create([
             'name' => request('name'),
-            'description' => request('description')
-         ]);
+            'description' => request('description'),
+            'type' => request('coltype')
+        ]);
 
-         foreach(request('paints') as $key => $value) {
-             if(Painting::select('id')->where('id', '=', $key) != null) {
-                 Painting::where('id', $value)->update(['id_col' => $var->id]);
-             }
-         }
+        foreach(request('paints') as $key => $value) {
+            Paint_on_col::create([
+                'id_paint' => $value,
+                'id_col' => $var->id
+            ]);
+        }
 
-         return $request->all();
+        return $request->all();
     }
 
     public function deletepainting(Request $request){

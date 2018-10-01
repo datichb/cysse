@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import examplecomponent from './components/Home.vue';
+import home from './components/Home.vue';
 import markcomponent from './components/Mark.vue';
 import artiste from './components/Artist.vue';
 import createpainting from './components/painting/CreatePainting.vue';
@@ -31,7 +31,7 @@ import loader from './components/model/loader.vue';
 const app = new Vue({
     el: '#app',
     components: {
-        examplecomponent,
+        home,
         createpainting,
         createcollection,
         showpainting,
