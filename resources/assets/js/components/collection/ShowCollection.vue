@@ -1,28 +1,24 @@
 <template>
-    <div class="content">
+    <div id="content" class="content">
         <modal :items="items.paintings" :collection="collectionitems.id" v-on:newpaiting="addToCol">
             <template slot="title">
                 This is my new title !    
             </template>
         </modal>
-        <div class="row col" id="col" style="height: 100%;padding-top:2.5%;">
-            <div class="col-md-12">
-                <div class="">
-                    <div class="col-md-10 col-md-offset-1">
-                        <img :src="collectionitems.img" width="100%" height="100%">
-                        <h2 style="position: absolute;top:85%;right: 10%;color: white;font-family: 'Sorts Mill Goudy';">{{ collectionitems.name }}</h2>
-                    </div>
-                </div>
-                <div v-on:click="scrolling">
-                    <svg id="more-arrows" >
-                        <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
-                        <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
-                        <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
-                    </svg>
-                </div>
+        <div ref="col" class="row col" id="col">
+            <!-- <bs class="navcol">
+
+            </bs> -->
+            <h2 style="position: absolute;top:80%;right: 10%;color: white;font-family: 'Sorts Mill Goudy';">{{ collectionitems.name }}</h2>
+            <div v-on:click=" scrolling" class="arrowclick">
+                <svg id="more-arrows">
+                    <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+                    <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+                    <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+                </svg>
             </div>
         </div>
-        <div class="row paint" id="paint" style="height: 100%;">
+        <div class="row paint" ref="paint" id="paint" style="height: 100%;">
             <div class="row">
                 <listitem :auth="isAdmin" v-on:deletepainting="addpainting" :searchable="false" :items="collectionitems.paint"></listitem>
             </div>
@@ -38,8 +34,8 @@
 </template>
 
 <script>
-import listitem from '../ListItem.vue'
-import modal from '../Modallist.vue'
+import listitem from '../model/ListItem.vue'
+import modal from '../model/Modallist.vue'
 
 export default {
     components: {
@@ -65,6 +61,12 @@ export default {
             .then(res => {
                 this.items = res.data;
             });
+
+        
+    },
+    mounted() {
+        this.$refs.col.style.backgroundImage = "url('"+this.collectionitems.img+"')";
+        this.$refs.col.style.backgroundSize = "100% 100%";
     },
     methods: {
         addpainting: function(painting) {
@@ -75,23 +77,43 @@ export default {
             this.collectionitems.paintings = this.collectionitems.paintings.concat(painting);
         },
         scrolling: function() {
-            document.querySelector('.paint').scrollIntoView({ 
+            /* document.querySelector('.paint').scrollIntoView({ 
                 behavior: 'smooth' 
-            });
+            }); */
+
+            $('#content').animate({
+                scrollTop: $('#paint').offset().top
+            }, 1000);
         }
     }
 }
 </script>
 <style lang="scss">
-.content {
-    -webkit-overflow-scrolling: touch;
+.col {
+    position: relative;
+    height: 100%;
+    display: block;
+    z-index: 1;
+}
+
+.navcol{
+    border:solid;
+    width: 20%;
+    height: 50%;
+    position: absolute;
+    right: 0;
+    margin: 10% 5% 0 0;
+}
+
+.arrowclick {
+    position: absolute;
+    height: 10%;
+    margin-left: 47%;
+    z-index: 5;
+    bottom: 0;
 }
 
 #more-arrows {
-	width: 100%;
-    height: 10%;
-    margin-top: 5%;
-    padding-left: 45%;
   
   &:hover {
     

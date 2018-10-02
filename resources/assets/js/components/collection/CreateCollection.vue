@@ -70,7 +70,7 @@
 
 <script>
 import PictureInput from 'vue-picture-input'
-import searchcomponent from '../SearchComponent.vue'
+import searchcomponent from '../model/SearchComponent.vue'
 
 export default {
     components: {

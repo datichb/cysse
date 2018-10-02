@@ -2,6 +2,6 @@
 
 @section('content')
     <loader></loader>
-    <home></home>
+    <welcome></welcome>
 
 @endsection

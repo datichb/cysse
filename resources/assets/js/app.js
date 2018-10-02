@@ -15,23 +15,24 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import home from './components/Home.vue';
-import markcomponent from './components/Mark.vue';
-import artiste from './components/Artist.vue';
+import welcome from './components/Desc/Welcome.vue';
+import markcomponent from './components/Desc/Mark.vue';
+import artiste from './components/Desc/Artist.vue';
 import createpainting from './components/painting/CreatePainting.vue';
 import createcollection from './components/collection/CreateCollection.vue';
 import showpainting from './components/painting/ShowPainting.vue';
 import paintinglist from './components/painting/ListPainting.vue';
 import showcollection from './components/collection/ShowCollection.vue';
 import modifypainting from './components/painting/ModifyPainting.vue';
-import getcollection from './components/GetCollectionLink.vue';
-import cart from './components/cart.vue';
+import getcollection from './components/model/GetCollectionLink.vue';
+import cart from './components/user/cart.vue';
+import home from './components/user/Home.vue';
 import loader from './components/model/loader.vue';
 
 const app = new Vue({
     el: '#app',
     components: {
-        home,
+        welcome,
         createpainting,
         createcollection,
         showpainting,
@@ -42,6 +43,7 @@ const app = new Vue({
         markcomponent,
         artiste,
         cart,
-        loader
+        loader,
+        home
     }
 });

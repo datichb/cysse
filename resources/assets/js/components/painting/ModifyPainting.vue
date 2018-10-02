@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import modal from '../ModalForm.vue'
+import modal from '../model/ModalForm.vue'
 
 export default {
     components: {
