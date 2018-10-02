@@ -6,9 +6,8 @@
             </template>
         </modal>
         <div ref="col" class="row col" id="col">
-            <!-- <bs class="navcol">
-
-            </bs> -->
+            <bs class="navcol">
+            </bs>
             <h2 style="position: absolute;top:80%;right: 10%;color: white;font-family: 'Sorts Mill Goudy';">{{ collectionitems.name }}</h2>
             <div v-on:click=" scrolling" class="arrowclick">
                 <svg id="more-arrows">
@@ -36,11 +35,13 @@
 <script>
 import listitem from '../model/ListItem.vue'
 import modal from '../model/Modallist.vue'
+import bs from '../model/ButtonStylish.vue'
 
 export default {
     components: {
         listitem,
-        modal
+        modal,
+        bs
     },
     props: {
         collection: Object,
@@ -94,15 +95,6 @@ export default {
     height: 100%;
     display: block;
     z-index: 1;
-}
-
-.navcol{
-    border:solid;
-    width: 20%;
-    height: 50%;
-    position: absolute;
-    right: 0;
-    margin: 10% 5% 0 0;
 }
 
 .arrowclick {
