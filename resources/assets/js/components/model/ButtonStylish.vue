@@ -1,59 +1,26 @@
 <template>
-    <ul id="district-buttons" ref="district">
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit;opacity: 1;">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/03.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/03_over.png&quot;); "></div>
-        </li>
-
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit; opacity: 1;">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/04.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/04_over.png&quot;); "></div>
-        </li>
-        
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit; opacity: 1;">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/06.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/06_over.png&quot;); "></div>
-        </li>
-        
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit; opacity: 1; ">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/07.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/07_over.png&quot;); "></div>
-        </li>
-        
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit; opacity: 1; ">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/09.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/09_over.png&quot;); "></div>  
-        </li>
-        
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit; opacity: 1;">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/10.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/10_over.png&quot;); "></div>
-        </li>
-        
-        <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" style="visibility: inherit; opacity: 1;">
-            <div class="button-image" style="background-image: url(&quot;/icon/collection/12.png&quot;); "></div>
-            <div class="button-over" style="background-image: url(&quot;/icon/collection/12_over.png&quot;); "></div>
-        </li>
-    </ul>
+    <div>
+        <ul id="district-buttons" ref="district" >
+            <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" @click="onClick(item.id)" :key="item.id" v-for="item in nbCollection" style="visibility: inherit;opacity: 1;">
+                <div class="button-image" :style="'background-image: url(&quot;/icon/collection/' + item.id + '.png&quot;)'"></div>
+                <div class="button-over" :style="'background-image: url(&quot;/icon/collection/' + item.id + '_over.png&quot;)'"></div>
+            </li>
+        </ul>
+    </div>
 </template>
 <script>
 import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
 
 export default {
+    props: {
+        nbc: Array
+    },
     data() {
         return {
-            tagName: 'li',
-            className: 'district-button',
-            movable: false,
-            isTweening: false,
-            tween: null,
-            ypos: 0,
-            momentum: 0,
-            curY: 0,
             delay: 0,
             isCombined: false,
-            isLoading: false,
-            direction: null
+            direction: null,
+            nbCollection: this.nbc
         }
     },
     mounted() {
@@ -61,8 +28,8 @@ export default {
         var $over = $('.button-over');
         var $image = $('.button-image');
 
-        TweenMax.set($('.button-load'), {y: -80});
-        TweenMax.set($over, {x: 80});
+        /* TweenMax.set($('.button-load'), {y: -80});
+        TweenMax.set($over, {x: 80}); */
         TweenMax.from(target, 1.2, {y: 150, autoAlpha: 0, ease: Quint.easeOut, delay: this.d});
     },
     methods: {
@@ -80,7 +47,7 @@ export default {
 
             /** calculate the x and y to get an angle to the center of the div from that x and y. **/
             /** gets the x value relative to the center of the DIV and "normalize" it **/
-            var x = (e.pageX - e.currentTarget.offsetLeft - (w/2)) * ( w > h ? (h/w) : 1 )- offsetLeft;
+            var x = (e.pageX - e.currentTarget.offsetLeft - (w/2)) * ( w > h ? (h/w) : 1 ) - offsetLeft;
             var y = (e.pageY - e.currentTarget.offsetTop  - (h/2)) * ( h > w ? (w/h) : 1 ) - offsetTop;
 
             if (x <= 0 && y <= 0) {
@@ -109,6 +76,7 @@ export default {
             var target = $(e.currentTarget);
             var $over = target.children('.button-over');
             var $image = target.children('.button-image');
+            
             /** the width and height of the current div **/
             var w = $(e.currentTarget).width();
             var h = $(e.currentTarget).height();
@@ -117,7 +85,7 @@ export default {
 
             /** calculate the x and y to get an angle to the center of the div from that x and y. **/
             /** gets the x value relative to the center of the DIV and "normalize" it **/
-            var x = (e.pageX - e.currentTarget.offsetLeft - (w/2)) * ( w > h ? (h/w) : 1 )- offsetLeft;
+            var x = (e.pageX - e.currentTarget.offsetLeft - (w/2)) * ( w > h ? (h/w) : 1 ) - offsetLeft;
             var y = (e.pageY - e.currentTarget.offsetTop  - (h/2)) * ( h > w ? (w/h) : 1 ) - offsetTop;
 
             if (x <= 0 && y <= 0) {
@@ -138,50 +106,11 @@ export default {
             }
             TweenMax.to($image, .6, {y:0, x: 0, ease: Quint.easeOut});
         },
-        onClick: function(e) {
-            if (App.subsection != this.model.get('district')) {
-                this.isCombined = true;
-
-                var target = this.$refs.district;
-
-                var w = $(e.currentTarget).width();
-                var h = $(e.currentTarget).height();
-                var offsetTop = $('#district-buttons').offset().top;
-                var offsetLeft = $('#district-buttons').offset().left;
-
-                TweenMax.killAll(false, false, true);
-                TweenMax.delayedCall(.1, this.onOut, [e]);
-                this.onOut(e);
-
-                /** calculate the x and y to get an angle to the center of the div from that x and y. **/
-                /** gets the x value relative to the center of the DIV and "normalize" it **/
-                var x = (e.pageX - e.currentTarget.offsetLeft - (w/2)) * ( w > h ? (h/w) : 1 )- offsetLeft;
-                var y = (e.pageY - e.currentTarget.offsetTop  - (h/2)) * ( h > w ? (w/h) : 1 ) - offsetTop;
-
-                if (x <= 0 && y <= 0) {
-                    // top left
-                    this.direction = 'tl';
-                    TweenMax.fromTo($load, .33, {y: 80, x: 0}, {y: 0, ease: Quint.easeOut, delay: .1});
-                }
-                else if (x <= 0 && y >= 0) {
-                    // bottom left
-                    this.direction = 'bl';
-                    TweenMax.fromTo($load, .33, {x: 80, y: 0}, {x: 0, ease: Quint.easeOut, delay: .1});
-                }
-                else if (x >= 0 && y <= 0) {
-                    //top right
-                    this.direction = 'tr';
-                    TweenMax.fromTo($load, .33, {x: -80, y: 0}, {x: 0, ease: Quint.easeOut, delay: .1});
-                }
-                else {
-                    //bottom right
-                    this.direction = 'br';
-                    TweenMax.fromTo($load, .33, {y: -80, x: 0}, {y: 0, ease: Quint.easeOut, delay: .1});
-                }
-
-                /* var link = 'districtheroes/' + this.model.get('district');
-                App.router.navigate('/'+link, {trigger: true}); */
-            }
+        onClick: function(id) {
+            axios.post('/collection/show', {id: id})
+                .then(res => {
+                    this.$emit('newCollection', res.data)
+                });
         }
     }
 }

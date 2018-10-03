@@ -1,36 +1,29 @@
 <template>
-    <div>
-        <button v-on:click="create()" class="btn btn-primary">
-            Ajouter un nouveau Tableau
-        </button>
-        <div :key='item' v-for='item in paintings'>
-            <showpainting :painting="item"></showpainting>
-        </div>
-    </div>
+    <showcollection :collection="CurrentCollection" :nbc="nbCollection"></showcollection>
 </template>
 
 <script>
-import showpainting from './ShowCollection.vue'
+import showcollection from './ShowCollection.vue'
+import bs from '../model/ButtonStylish.vue'
 
 export default {
     props: {
-        paintings: Array
+        nbc: Array,
+        cc: Object
+   },
+   data() {
+       return {
+           nbCollection: this.nbc,
+           CurrentCollection: this.cc
+       }
    },
    components: {
-       'showpainting': showpainting
+       showcollection
    },
    methods: {
-       create() {
-           window.location.href = '/painting/create';
-       }
    }
 }
 </script>
 <style>
-.btn {
-    margin-left:35%;
-    width: 30%;
-    margin-bottom: 2%;
-}
 </style>
 

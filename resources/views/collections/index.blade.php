@@ -2,12 +2,12 @@
 
 @section('content')
     @guest
-        <collectionlist :collection='{{ json_encode($collections) }}'></collectionlist>
+        <listcollection :cc='{{ json_encode($collection) }}' :nbc='{{ json_encode($nbCollection) }}'></listcollection>
     @else
         @if(Auth::user()->isAdmin())
-            <collectionlist :auth='true' :collection='{{ json_encode($collections) }}'></collectionlist>
+            <listcollection :auth='true' :cc='{{ json_encode($collection) }}' :nbc='{{ json_encode($nbCollection) }}'></listcollection>
         @else
-            <collectionlist :collection='{{ json_encode($collections) }}'></collectionlist>
+            <listcollection :cc='{{ json_encode($collection) }}' :nbc='{{ json_encode($nbCollection) }}'></listcollection>
         @endif
     @endguest
 

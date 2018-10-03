@@ -5,10 +5,10 @@
                 This is my new title !    
             </template>
         </modal>
-        <div ref="col" class="row col" id="col">
-            <bs class="navcol">
-            </bs>
-            <h2 style="position: absolute;top:80%;right: 10%;color: white;font-family: 'Sorts Mill Goudy';">{{ collectionitems.name }}</h2>
+        
+        <div ref="col" class="row col" id="col" :style="'background-image: url(&quot;' + collectionitems.img + '&quot;);background-size: 100% 100%;'">
+            <bs v-on:newCollection="changeCollection" :nbc="nbcollection"></bs>
+            <h2>{{ collectionitems.name }}</h2>
             <div v-on:click=" scrolling" class="arrowclick">
                 <svg id="more-arrows">
                     <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
@@ -45,6 +45,7 @@ export default {
     },
     props: {
         collection: Object,
+        nbc: Array,
         auth: {
             type: Boolean,
             default: false
@@ -54,7 +55,8 @@ export default {
        return {
             items: [],
             collectionitems: this.collection,
-            isAdmin: this.auth
+            isAdmin: this.auth,
+            nbcollection: this.nbc
        }
    },
    created() {
@@ -65,11 +67,10 @@ export default {
 
         
     },
-    mounted() {
-        this.$refs.col.style.backgroundImage = "url('"+this.collectionitems.img+"')";
-        this.$refs.col.style.backgroundSize = "100% 100%";
-    },
     methods: {
+        changeCollection: function(collection) {
+            this.collectionitems = collection.collection;
+        },
         addpainting: function(painting) {
             this.items.paintings.push(painting[0]);
         },
@@ -90,11 +91,20 @@ export default {
 }
 </script>
 <style lang="scss">
+h2 {position: absolute;
+    top:80%;
+    right: 10%;
+    color: white;
+    font-family: 'Sorts Mill Goudy';
+}
+
 .col {
     position: relative;
     height: 100%;
     display: block;
     z-index: 1;
+    -webkit-transition: background-image 1s ease-in-out;
+    transition: background-image 1s ease-in-out;
 }
 
 .arrowclick {

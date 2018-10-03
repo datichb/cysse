@@ -14,9 +14,26 @@ class CollectionController extends Controller
 {
     public function index()
     {
-        $collections = Collection::all();
+        $collection = Collection::all()->first();
 
-        return view('collections.index', compact('collections'));
+        $collection->paint_on_col()->with(['paint'])->get();
+        $paint = array();
+
+        foreach($collection->paint_on_col as $key => $value){
+            array_push($paint, $value->paint()->get()[0]);
+        }
+        $collection->paint = $paint;
+        
+        foreach ($collection->paint as $key => $value) {
+            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
+        }
+        
+        $collection->img = Storage::disk('collection_img')->get($collection->name.'.txt');
+        $collection->paints = array();
+        
+        $nbCollection = Collection::select('id')->get()->values();
+
+        return view('collections.index', compact('collection', 'nbCollection'));
     }
 
     public function getAll() {
@@ -39,8 +56,10 @@ class CollectionController extends Controller
         return view('collections.create', compact('paintings', 'type'));
     }
 
-    public function show(Collection $collection)
+    public function show(Request $request)
     {
+        $collection = Collection::all()->where('id', request('id'))->first();
+        
         $collection->paint_on_col()->with(['paint'])->get();
         $paint = array();
 
@@ -56,7 +75,7 @@ class CollectionController extends Controller
         $collection->img = Storage::disk('collection_img')->get($collection->name.'.txt');
         $collection->paints = array();
 
-        return view('collections.show', compact('collection'));
+        return compact('collection');
     }
 
     public function store(Request $request)

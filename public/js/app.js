@@ -17800,6 +17800,7 @@ if (false) {(function () {
     },
     props: {
         collection: Object,
+        nbc: Array,
         auth: {
             type: Boolean,
             default: false
@@ -17809,7 +17810,8 @@ if (false) {(function () {
         return {
             items: [],
             collectionitems: this.collection,
-            isAdmin: this.auth
+            isAdmin: this.auth,
+            nbcollection: this.nbc
         };
     },
     created: function created() {
@@ -17819,12 +17821,11 @@ if (false) {(function () {
             _this.items = res.data;
         });
     },
-    mounted: function mounted() {
-        this.$refs.col.style.backgroundImage = "url('" + this.collectionitems.img + "')";
-        this.$refs.col.style.backgroundSize = "100% 100%";
-    },
 
     methods: {
+        changeCollection: function changeCollection(collection) {
+            this.collectionitems = collection.collection;
+        },
         addpainting: function addpainting(painting) {
             this.items.paintings.push(painting[0]);
         },
@@ -19180,7 +19181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_collection_CreateCollection_vue__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_painting_ShowPainting_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_painting_ListPainting_vue__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_collection_ShowCollection_vue__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_collection_ListCollection_vue__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_painting_ModifyPainting_vue__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_model_GetCollectionLink_vue__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_user_cart_vue__ = __webpack_require__(126);
@@ -19225,7 +19226,7 @@ var app = new Vue({
         createcollection: __WEBPACK_IMPORTED_MODULE_4__components_collection_CreateCollection_vue__["a" /* default */],
         showpainting: __WEBPACK_IMPORTED_MODULE_5__components_painting_ShowPainting_vue__["a" /* default */],
         paintinglist: __WEBPACK_IMPORTED_MODULE_6__components_painting_ListPainting_vue__["a" /* default */],
-        showcollection: __WEBPACK_IMPORTED_MODULE_7__components_collection_ShowCollection_vue__["a" /* default */],
+        listcollection: __WEBPACK_IMPORTED_MODULE_7__components_collection_ListCollection_vue__["a" /* default */],
         modifypainting: __WEBPACK_IMPORTED_MODULE_8__components_painting_ModifyPainting_vue__["a" /* default */],
         getcollection: __WEBPACK_IMPORTED_MODULE_9__components_model_GetCollectionLink_vue__["a" /* default */],
         markcomponent: __WEBPACK_IMPORTED_MODULE_1__components_Desc_Mark_vue__["a" /* default */],
@@ -64718,7 +64719,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.col {\n  position: relative;\n  height: 100%;\n  display: block;\n  z-index: 1;\n}\n.arrowclick {\n  position: absolute;\n  height: 10%;\n  margin-left: 47%;\n  z-index: 5;\n  bottom: 0;\n}\n#more-arrows:hover polygon {\n  fill: #C0C0C0;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\n#more-arrows:hover polygon.arrow-bottom {\n    -webkit-transform: translateY(-18px);\n            transform: translateY(-18px);\n}\n#more-arrows:hover polygon.arrow-top {\n    -webkit-transform: translateY(18px);\n            transform: translateY(18px);\n}\npolygon {\n  fill: #DAA520;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\npolygon.arrow-middle {\n    opacity: 0.75;\n}\npolygon.arrow-top {\n    opacity: 0.5;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n  position: absolute;\n  top: 80%;\n  right: 10%;\n  color: white;\n  font-family: 'Sorts Mill Goudy';\n}\n.col {\n  position: relative;\n  height: 100%;\n  display: block;\n  z-index: 1;\n  -webkit-transition: background-image 1s ease-in-out;\n  transition: background-image 1s ease-in-out;\n}\n.arrowclick {\n  position: absolute;\n  height: 10%;\n  margin-left: 47%;\n  z-index: 5;\n  bottom: 0;\n}\n#more-arrows:hover polygon {\n  fill: #C0C0C0;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\n#more-arrows:hover polygon.arrow-bottom {\n    -webkit-transform: translateY(-18px);\n            transform: translateY(-18px);\n}\n#more-arrows:hover polygon.arrow-top {\n    -webkit-transform: translateY(18px);\n            transform: translateY(18px);\n}\npolygon {\n  fill: #DAA520;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\npolygon.arrow-middle {\n    opacity: 0.75;\n}\npolygon.arrow-top {\n    opacity: 0.5;\n}\n", ""]);
 
 // exports
 
@@ -65190,23 +65191,22 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { ref: "col", staticClass: "row col", attrs: { id: "col" } },
+        {
+          ref: "col",
+          staticClass: "row col",
+          style:
+            'background-image: url("' +
+            _vm.collectionitems.img +
+            '");background-size: 100% 100%;',
+          attrs: { id: "col" }
+        },
         [
-          _c("bs", { staticClass: "navcol" }),
+          _c("bs", {
+            attrs: { nbc: _vm.nbcollection },
+            on: { newCollection: _vm.changeCollection }
+          }),
           _vm._v(" "),
-          _c(
-            "h2",
-            {
-              staticStyle: {
-                position: "absolute",
-                top: "80%",
-                right: "10%",
-                color: "white",
-                "font-family": "'Sorts Mill Goudy'"
-              }
-            },
-            [_vm._v(_vm._s(_vm.collectionitems.name))]
-          ),
+          _c("h2", [_vm._v(_vm._s(_vm.collectionitems.name))]),
           _vm._v(" "),
           _c(
             "div",
@@ -72067,52 +72067,19 @@ if (false) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+    props: {
+        nbc: Array
+    },
     data: function data() {
         return {
-            tagName: 'li',
-            className: 'district-button',
-            movable: false,
-            isTweening: false,
-            tween: null,
-            ypos: 0,
-            momentum: 0,
-            curY: 0,
             delay: 0,
             isCombined: false,
-            isLoading: false,
-            direction: null
+            direction: null,
+            nbCollection: this.nbc
         };
     },
     mounted: function mounted() {
@@ -72120,8 +72087,8 @@ if (false) {
         var $over = $('.button-over');
         var $image = $('.button-image');
 
-        __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].set($('.button-load'), { y: -80 });
-        __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].set($over, { x: 80 });
+        /* TweenMax.set($('.button-load'), {y: -80});
+        TweenMax.set($over, {x: 80}); */
         __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from(target, 1.2, { y: 150, autoAlpha: 0, ease: Quint.easeOut, delay: this.d });
     },
 
@@ -72166,6 +72133,7 @@ if (false) {
             var target = $(e.currentTarget);
             var $over = target.children('.button-over');
             var $image = target.children('.button-image');
+
             /** the width and height of the current div **/
             var w = $(e.currentTarget).width();
             var h = $(e.currentTarget).height();
@@ -72192,47 +72160,12 @@ if (false) {
             }
             __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].to($image, .6, { y: 0, x: 0, ease: Quint.easeOut });
         },
-        onClick: function onClick(e) {
-            if (App.subsection != this.model.get('district')) {
-                this.isCombined = true;
+        onClick: function onClick(id) {
+            var _this = this;
 
-                var target = this.$refs.district;
-
-                var w = $(e.currentTarget).width();
-                var h = $(e.currentTarget).height();
-                var offsetTop = $('#district-buttons').offset().top;
-                var offsetLeft = $('#district-buttons').offset().left;
-
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].killAll(false, false, true);
-                __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].delayedCall(.1, this.onOut, [e]);
-                this.onOut(e);
-
-                /** calculate the x and y to get an angle to the center of the div from that x and y. **/
-                /** gets the x value relative to the center of the DIV and "normalize" it **/
-                var x = (e.pageX - e.currentTarget.offsetLeft - w / 2) * (w > h ? h / w : 1) - offsetLeft;
-                var y = (e.pageY - e.currentTarget.offsetTop - h / 2) * (h > w ? w / h : 1) - offsetTop;
-
-                if (x <= 0 && y <= 0) {
-                    // top left
-                    this.direction = 'tl';
-                    __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].fromTo($load, .33, { y: 80, x: 0 }, { y: 0, ease: Quint.easeOut, delay: .1 });
-                } else if (x <= 0 && y >= 0) {
-                    // bottom left
-                    this.direction = 'bl';
-                    __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].fromTo($load, .33, { x: 80, y: 0 }, { x: 0, ease: Quint.easeOut, delay: .1 });
-                } else if (x >= 0 && y <= 0) {
-                    //top right
-                    this.direction = 'tr';
-                    __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].fromTo($load, .33, { x: -80, y: 0 }, { x: 0, ease: Quint.easeOut, delay: .1 });
-                } else {
-                    //bottom right
-                    this.direction = 'br';
-                    __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].fromTo($load, .33, { y: -80, x: 0 }, { y: 0, ease: Quint.easeOut, delay: .1 });
-                }
-
-                /* var link = 'districtheroes/' + this.model.get('district');
-                App.router.navigate('/'+link, {trigger: true}); */
-            }
+            axios.post('/collection/show', { id: id }).then(function (res) {
+                _this.$emit('newCollection', res.data);
+            });
         }
     }
 });
@@ -72347,159 +72280,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("ul", { ref: "district", attrs: { id: "district-buttons" } }, [
+  return _c("div", [
     _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/03.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/03_over.png")'
-          }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/04.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/04_over.png")'
-          }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/06.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/06_over.png")'
-          }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/07.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/07_over.png")'
-          }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/09.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/09_over.png")'
-          }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/10.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/10_over.png")'
-          }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "li",
-      {
-        staticClass: "district-button",
-        staticStyle: { visibility: "inherit", opacity: "1" },
-        on: { mouseover: _vm.onOver, mouseout: _vm.onOut }
-      },
-      [
-        _c("div", {
-          staticClass: "button-image",
-          staticStyle: { "background-image": 'url("/icon/collection/12.png")' }
-        }),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "button-over",
-          staticStyle: {
-            "background-image": 'url("/icon/collection/12_over.png")'
-          }
-        })
-      ]
+      "ul",
+      { ref: "district", attrs: { id: "district-buttons" } },
+      _vm._l(_vm.nbCollection, function(item) {
+        return _c(
+          "li",
+          {
+            key: item.id,
+            staticClass: "district-button",
+            staticStyle: { visibility: "inherit", opacity: "1" },
+            on: {
+              mouseover: _vm.onOver,
+              mouseout: _vm.onOut,
+              click: function($event) {
+                _vm.onClick(item.id)
+              }
+            }
+          },
+          [
+            _c("div", {
+              staticClass: "button-image",
+              style:
+                'background-image: url("/icon/collection/' + item.id + '.png")'
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "button-over",
+              style:
+                'background-image: url("/icon/collection/' +
+                item.id +
+                '_over.png")'
+            })
+          ]
+        )
+      })
     )
   ])
 }
@@ -72510,6 +72326,163 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-46df3c6b", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 157 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ShowCollection_vue__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_ButtonStylish_vue__ = __webpack_require__(153);
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: {
+        nbc: Array,
+        cc: Object
+    },
+    data: function data() {
+        return {
+            nbCollection: this.nbc,
+            CurrentCollection: this.cc
+        };
+    },
+
+    components: {
+        showcollection: __WEBPACK_IMPORTED_MODULE_0__ShowCollection_vue__["a" /* default */]
+    },
+    methods: {}
+});
+
+/***/ }),
+/* 158 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_ListCollection_vue__ = __webpack_require__(157);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_848505f4_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ListCollection_vue__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(2);
+var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(159)
+}
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_ListCollection_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_848505f4_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ListCollection_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_848505f4_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ListCollection_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/collection/ListCollection.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-848505f4", Component.options)
+  } else {
+    hotAPI.reload("data-v-848505f4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(160);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(1).default
+var update = add("76c3730c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ListCollection.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ListCollection.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 161 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("showcollection", {
+    attrs: { collection: _vm.CurrentCollection, nbc: _vm.nbCollection }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-848505f4", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

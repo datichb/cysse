@@ -45,10 +45,10 @@
                         </div>
                     </div>
                     <div class="navbar-brand" style="">
-                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
-                            Les tableaux
+                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/collection') }}">
+                            Les collections
                         </a>
-                            <getcollection></getcollection>
+                            <!-- <getcollection></getcollection> -->
                     </div>
                     @auth
                         @if(Auth::user()->isAdmin())

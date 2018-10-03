@@ -22,7 +22,7 @@ import createpainting from './components/painting/CreatePainting.vue';
 import createcollection from './components/collection/CreateCollection.vue';
 import showpainting from './components/painting/ShowPainting.vue';
 import paintinglist from './components/painting/ListPainting.vue';
-import showcollection from './components/collection/ShowCollection.vue';
+import listcollection from './components/collection/ListCollection.vue';
 import modifypainting from './components/painting/ModifyPainting.vue';
 import getcollection from './components/model/GetCollectionLink.vue';
 import cart from './components/user/cart.vue';
@@ -37,7 +37,7 @@ const app = new Vue({
         createcollection,
         showpainting,
         paintinglist,
-        showcollection,
+        listcollection,
         modifypainting,
         getcollection,
         markcomponent,
