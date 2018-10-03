@@ -2,8 +2,8 @@
     <div>
         <ul id="district-buttons" ref="district" >
             <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" @click="onClick(item.id)" :key="item.id" v-for="item in nbCollection" style="visibility: inherit;opacity: 1;">
-                <div class="button-image" :style="'background-image: url(&quot;/icon/collection/' + item.id + '.png&quot;)'"></div>
-                <div class="button-over" :style="'background-image: url(&quot;/icon/collection/' + item.id + '_over.png&quot;)'"></div>
+                <div class="button-image" :style="'background-image: url(&quot;' + item.icon + '&quot;);background-size: 100% 100%;'"></div>
+                <div class="button-over" :style="'background-image: url(&quot;' + item.iconOver + '&quot;);background-size: 100% 100%;'"></div>
             </li>
         </ul>
     </div>
@@ -24,12 +24,20 @@ export default {
         }
     },
     mounted() {
+        var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+            
         var target = this.$refs.district;
         var $over = $('.button-over');
         var $image = $('.button-image');
 
-        /* TweenMax.set($('.button-load'), {y: -80});
-        TweenMax.set($over, {x: 80}); */
+        if(isSafari) {
+            TweenMax.set($('.button-load'), {"-webkit-perspective-origin": -80});
+            TweenMax.set($over, {"-webkit-perspective-origin": 80});
+        }else{
+            TweenMax.set($('.button-load'), {y: -80});
+            TweenMax.set($over, {x: 80});
+        }
+        
         TweenMax.from(target, 1.2, {y: 150, autoAlpha: 0, ease: Quint.easeOut, delay: this.d});
     },
     methods: {
@@ -127,7 +135,7 @@ export default {
 #district-buttons li {
   cursor: pointer;
   float: left;
-  border: 1px solid rgba(239, 239, 239, 0.4);
+  border: 1px solid #DAA520;
   width: 80px;
   height: 80px;
   margin-right: 46px;

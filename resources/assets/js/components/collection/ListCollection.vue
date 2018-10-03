@@ -1,5 +1,5 @@
 <template>
-    <showcollection :collection="CurrentCollection" :nbc="nbCollection"></showcollection>
+    <showcollection :auth="auth" :collection="CurrentCollection" :nbc="nbCollection"></showcollection>
 </template>
 
 <script>
@@ -9,7 +9,11 @@ import bs from '../model/ButtonStylish.vue'
 export default {
     props: {
         nbc: Array,
-        cc: Object
+        cc: Object,
+        auth: {
+            type: Boolean,
+            default: false
+        }
    },
    data() {
        return {

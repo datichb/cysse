@@ -33,6 +33,11 @@ class CollectionController extends Controller
         
         $nbCollection = Collection::select('id')->get()->values();
 
+        foreach ($nbCollection as $key => $value) {
+            $value->icon = Storage::disk('collection_icon')->get($value->id.'.txt');
+            $value->iconOver = Storage::disk('collection_icon')->get($value->id.'_over.txt');
+        }
+
         return view('collections.index', compact('collection', 'nbCollection'));
     }
 
@@ -93,6 +98,9 @@ class CollectionController extends Controller
             'type' => request('coltype')
         ]);
 
+        Storage::disk('collection_icon')->put($var->id.'.txt', request('iconfile'));
+        Storage::disk('collection_icon')->put($var->id.'_over.txt', request('iconOverfile'));
+
         foreach(request('paints') as $key => $value) {
             Paint_on_col::create([
                 'id_paint' => $value,
@@ -116,6 +124,16 @@ class CollectionController extends Controller
         }
 
         return;
+    }
+
+    public function delete(Request $request)
+    {
+        Paint_on_col::where('id_col', request('id'))->delete();
+
+        $name = Collection::select('name')->where('id', request('id'))->get();
+
+        Storage::disk('painting_img')->delete($name[0]->name.'.txt');
+        Collection::where('id', request('id'))->delete();
     }
 
     public function edit($id)

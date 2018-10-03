@@ -17364,6 +17364,39 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -17391,8 +17424,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     },
 
     methods: {
+        onChangeIcon: function onChangeIcon(image) {
+            if (image) {
+                this.collection.iconfile = this.$refs.icon.image;
+            } else {
+                console.log('FileReader API not supported: use the <form>, Luke!');
+            }
+        },
+        onChangeIconOver: function onChangeIconOver(image) {
+            if (image) {
+                this.collection.iconOverfile = this.$refs.iconOver.image;
+            } else {
+                console.log('FileReader API not supported: use the <form>, Luke!');
+            }
+        },
         onChange: function onChange(image) {
-            console.log('New picture selected!');
             if (image) {
                 this.image = image;
                 this.collection.file = this.$refs.pictureInput.image;
@@ -17418,7 +17464,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     },
     mounted: function mounted() {
         //this.csrf = window.laravel.csrfToken;
-        console.log(this.paintings);
     }
 });
 
@@ -17787,6 +17832,11 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -17823,6 +17873,11 @@ if (false) {(function () {
     },
 
     methods: {
+        deleteCollection: function deleteCollection() {
+            axios.post('/collection/delete', { id: this.collectionitems.id }).then(function (res) {
+                location.reload();
+            });
+        },
         changeCollection: function changeCollection(collection) {
             this.collectionitems = collection.collection;
         },
@@ -64072,14 +64127,13 @@ var render = function() {
                   _c("div", { staticClass: "row" }, [
                     _c(
                       "div",
-                      { staticClass: " col-md-3" },
+                      { staticClass: "col-md-3" },
                       [
                         _c("picture-input", {
                           ref: "pictureInput",
                           attrs: {
                             id: "pictureInput",
                             accept: "image/jpg,image/jpeg,image/png",
-                            size: "10",
                             buttonClass: "btn",
                             customStrings: {
                               upload: "<h1>Bummer!</h1>"
@@ -64091,7 +64145,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-md-7" }, [
+                    _c("div", { staticClass: "col-md-5" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c(
                           "label",
@@ -64240,6 +64294,73 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _vm._m(0)
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "div",
+                        { staticClass: "row" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-md-6 control-label",
+                              attrs: { for: "desc" }
+                            },
+                            [_vm._v("Icon de la collection : ")]
+                          ),
+                          _vm._v(" "),
+                          _c("picture-input", {
+                            ref: "icon",
+                            attrs: {
+                              height: "100",
+                              width: "100",
+                              id: "pictureInput",
+                              accept: "image/png",
+                              buttonClass: "btn",
+                              customStrings: {
+                                upload: "<h1>Bummer!</h1>"
+                              }
+                            },
+                            on: { change: _vm.onChangeIcon }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row",
+                          staticStyle: { "margin-top": "5%" }
+                        },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "col-md-6 control-label",
+                              attrs: { for: "desc" }
+                            },
+                            [_vm._v("Icon over de la collection : ")]
+                          ),
+                          _vm._v(" "),
+                          _c("picture-input", {
+                            ref: "iconOver",
+                            attrs: {
+                              height: "100",
+                              width: "100",
+                              id: "pictureInput",
+                              accept: "image/png",
+                              buttonClass: "btn",
+                              customStrings: {
+                                upload: "<h1>Bummer!</h1>"
+                              }
+                            },
+                            on: { change: _vm.onChangeIconOver }
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -64719,7 +64840,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nh2 {\n  position: absolute;\n  top: 80%;\n  right: 10%;\n  color: white;\n  font-family: 'Sorts Mill Goudy';\n}\n.col {\n  position: relative;\n  height: 100%;\n  display: block;\n  z-index: 1;\n  -webkit-transition: background-image 1s ease-in-out;\n  transition: background-image 1s ease-in-out;\n}\n.arrowclick {\n  position: absolute;\n  height: 10%;\n  margin-left: 47%;\n  z-index: 5;\n  bottom: 0;\n}\n#more-arrows:hover polygon {\n  fill: #C0C0C0;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\n#more-arrows:hover polygon.arrow-bottom {\n    -webkit-transform: translateY(-18px);\n            transform: translateY(-18px);\n}\n#more-arrows:hover polygon.arrow-top {\n    -webkit-transform: translateY(18px);\n            transform: translateY(18px);\n}\npolygon {\n  fill: #DAA520;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\npolygon.arrow-middle {\n    opacity: 0.75;\n}\npolygon.arrow-top {\n    opacity: 0.5;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n  position: absolute;\n  top: 80%;\n  right: 10%;\n  color: black;\n  font-family: 'Sorts Mill Goudy';\n}\n.col {\n  position: relative;\n  height: 100%;\n  display: block;\n  z-index: 1;\n  -webkit-transition: background-image 1s ease-in-out;\n  transition: background-image 1s ease-in-out;\n}\n.arrowclick {\n  position: absolute;\n  height: 10%;\n  margin-left: 47%;\n  z-index: 5;\n  bottom: 0;\n}\n#more-arrows {\n  height: 100%;\n}\n#more-arrows:hover polygon {\n    fill: #C0C0C0;\n    -webkit-transition: all .2s ease-out;\n    transition: all .2s ease-out;\n}\n#more-arrows:hover polygon.arrow-bottom {\n      -webkit-transform: translateY(-18px);\n              transform: translateY(-18px);\n}\n#more-arrows:hover polygon.arrow-top {\n      -webkit-transform: translateY(18px);\n              transform: translateY(18px);\n}\npolygon {\n  fill: #DAA520;\n  -webkit-transition: all .2s ease-out;\n  transition: all .2s ease-out;\n}\npolygon.arrow-middle {\n    opacity: 0.75;\n}\npolygon.arrow-top {\n    opacity: 0.5;\n}\n", ""]);
 
 // exports
 
@@ -65208,11 +65329,11 @@ var render = function() {
           _vm._v(" "),
           _c("h2", [_vm._v(_vm._s(_vm.collectionitems.name))]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "arrowclick", on: { click: _vm.scrolling } },
-            [
-              _c("svg", { attrs: { id: "more-arrows" } }, [
+          _c("div", { staticClass: "arrowclick" }, [
+            _c(
+              "svg",
+              { attrs: { id: "more-arrows" }, on: { click: _vm.scrolling } },
+              [
                 _c("polygon", {
                   staticClass: "arrow-top",
                   attrs: {
@@ -65235,9 +65356,9 @@ var render = function() {
                       "37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "
                   }
                 })
-              ])
-            ]
-          )
+              ]
+            )
+          ])
         ],
         1
       ),
@@ -65280,7 +65401,25 @@ var render = function() {
               ],
               staticClass: "row"
             },
-            [_vm._m(0)]
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 col-md-offset-1" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.deleteCollection }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Supprimer la collection\n                "
+                    )
+                  ]
+                )
+              ])
+            ]
           )
         ]
       )
@@ -65293,7 +65432,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 col-md-offset-4" }, [
+    return _c("div", { staticClass: "col-md-2 col-md-offset-3" }, [
       _c(
         "button",
         {
@@ -72083,12 +72222,22 @@ if (false) {
         };
     },
     mounted: function mounted() {
+        var isSafari = /constructor/i.test(window.HTMLElement) || function (p) {
+            return p.toString() === "[object SafariRemoteNotification]";
+        }(!window['safari'] || typeof safari !== 'undefined' && safari.pushNotification);
+
         var target = this.$refs.district;
         var $over = $('.button-over');
         var $image = $('.button-image');
 
-        /* TweenMax.set($('.button-load'), {y: -80});
-        TweenMax.set($over, {x: 80}); */
+        if (isSafari) {
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].set($('.button-load'), { "-webkit-perspective-origin": -80 });
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].set($over, { "-webkit-perspective-origin": 80 });
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].set($('.button-load'), { y: -80 });
+            __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].set($over, { x: 80 });
+        }
+
         __WEBPACK_IMPORTED_MODULE_0_gsap_TweenMax__["a" /* TweenMax */].from(target, 1.2, { y: 150, autoAlpha: 0, ease: Quint.easeOut, delay: this.d });
     },
 
@@ -72264,7 +72413,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#district-buttons {\n  position: absolute;\n  right: 80px;\n  top: 200px;\n  width: 22%;\n}\n#district-buttons li {\n  cursor: pointer;\n  float: left;\n  border: 1px solid rgba(239, 239, 239, 0.4);\n  width: 80px;\n  height: 80px;\n  margin-right: 46px;\n  /*50*/\n  margin-bottom: -18px;\n  /*15*/\n  overflow: hidden;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n#district-buttons li:nth-child(3n + 1) {\n  margin-left: 62px;\n  /*65*/\n}\n#district-buttons li .button-image {\n  background-image: url(\"/icon/collection/12.png\");\n  background-size: cover;\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n#district-buttons li .button-over {\n  background-image: url(\"/icon/collection/04_over.png\");\n  background-size: cover;\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  top: -1px;\n  left: -1px;\n  overflow: hidden;\n  pointer-events: none;\n}\n#district-buttons li .button-load {\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  background: #efefef;\n  top: -1px;\n  left: -1px;\n  overflow: hidden;\n  pointer-events: none;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n#district-buttons li .button-load .loader-icon {\n  width: 50px;\n  height: 50px;\n  margin: 12px 19px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n", ""]);
+exports.push([module.i, "\n#district-buttons {\n  position: absolute;\n  right: 80px;\n  top: 200px;\n  width: 22%;\n}\n#district-buttons li {\n  cursor: pointer;\n  float: left;\n  border: 1px solid #DAA520;\n  width: 80px;\n  height: 80px;\n  margin-right: 46px;\n  /*50*/\n  margin-bottom: -18px;\n  /*15*/\n  overflow: hidden;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  -webkit-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n#district-buttons li:nth-child(3n + 1) {\n  margin-left: 62px;\n  /*65*/\n}\n#district-buttons li .button-image {\n  background-image: url(\"/icon/collection/12.png\");\n  background-size: cover;\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n  pointer-events: none;\n}\n#district-buttons li .button-over {\n  background-image: url(\"/icon/collection/04_over.png\");\n  background-size: cover;\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  top: -1px;\n  left: -1px;\n  overflow: hidden;\n  pointer-events: none;\n}\n#district-buttons li .button-load {\n  width: 80px;\n  height: 80px;\n  position: absolute;\n  background: #efefef;\n  top: -1px;\n  left: -1px;\n  overflow: hidden;\n  pointer-events: none;\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n#district-buttons li .button-load .loader-icon {\n  width: 50px;\n  height: 50px;\n  margin: 12px 19px;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg);\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n}\n", ""]);
 
 // exports
 
@@ -72303,15 +72452,17 @@ var render = function() {
             _c("div", {
               staticClass: "button-image",
               style:
-                'background-image: url("/icon/collection/' + item.id + '.png")'
+                'background-image: url("' +
+                item.icon +
+                '");background-size: 100% 100%;'
             }),
             _vm._v(" "),
             _c("div", {
               staticClass: "button-over",
               style:
-                'background-image: url("/icon/collection/' +
-                item.id +
-                '_over.png")'
+                'background-image: url("' +
+                item.iconOver +
+                '");background-size: 100% 100%;'
             })
           ]
         )
@@ -72347,7 +72498,11 @@ if (false) {
 /* harmony default export */ __webpack_exports__["a"] = ({
     props: {
         nbc: Array,
-        cc: Object
+        cc: Object,
+        auth: {
+            type: Boolean,
+            default: false
+        }
     },
     data: function data() {
         return {
@@ -72456,7 +72611,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -72473,7 +72628,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("showcollection", {
-    attrs: { collection: _vm.CurrentCollection, nbc: _vm.nbCollection }
+    attrs: {
+      auth: _vm.auth,
+      collection: _vm.CurrentCollection,
+      nbc: _vm.nbCollection
+    }
   })
 }
 var staticRenderFns = []

@@ -9,8 +9,8 @@
         <div ref="col" class="row col" id="col" :style="'background-image: url(&quot;' + collectionitems.img + '&quot;);background-size: 100% 100%;'">
             <bs v-on:newCollection="changeCollection" :nbc="nbcollection"></bs>
             <h2>{{ collectionitems.name }}</h2>
-            <div v-on:click=" scrolling" class="arrowclick">
-                <svg id="more-arrows">
+            <div  class="arrowclick">
+                <svg id="more-arrows" v-on:click="scrolling">
                     <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
                     <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
                     <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
@@ -22,9 +22,14 @@
                 <listitem :auth="isAdmin" v-on:deletepainting="addpainting" :searchable="false" :items="collectionitems.paint"></listitem>
             </div>
             <div v-show="isAdmin" class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-2 col-md-offset-3">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                         Ajouter des tableaux à la collection
+                    </button>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <button type="button" class="btn btn-primary" @click="deleteCollection">
+                        Supprimer la collection
                     </button>
                 </div>
             </div>
@@ -68,6 +73,12 @@ export default {
         
     },
     methods: {
+        deleteCollection: function() {
+            axios.post('/collection/delete', {id: this.collectionitems.id})
+                .then(res => {
+                    location.reload();
+                });
+        },
         changeCollection: function(collection) {
             this.collectionitems = collection.collection;
         },
@@ -94,7 +105,7 @@ export default {
 h2 {position: absolute;
     top:80%;
     right: 10%;
-    color: white;
+    color: black;
     font-family: 'Sorts Mill Goudy';
 }
 
@@ -116,6 +127,7 @@ h2 {position: absolute;
 }
 
 #more-arrows {
+    height: 100%;
   
   &:hover {
     

@@ -66,6 +66,12 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
+        'collection_icon' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/icon/collection',
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

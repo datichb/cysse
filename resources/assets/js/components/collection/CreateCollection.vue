@@ -7,20 +7,19 @@
                     <div class="panel-body">
                         <form class="form-horizontal" action="#" @submit.prevent="createTask()">
                             <div class="row">
-                              <div class=" col-md-3">
+                              <div class="col-md-3">
                                     <picture-input
                                     id="pictureInput"
-                                    ref="pictureInput" 
+                                    ref="pictureInput"
                                     @change="onChange"
                                     accept="image/jpg,image/jpeg,image/png" 
-                                    size="10" 
                                     buttonClass="btn"
                                     :customStrings="{
                                         upload: '<h1>Bummer!</h1>',
                                     }">
                                     </picture-input>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="name" class="col-md-4 control-label">Nom : </label>
 
@@ -55,6 +54,40 @@
                                             </button>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <label for="desc" class="col-md-6 control-label">Icon de la collection : </label>
+
+                                        <picture-input 
+                                        height="100"
+                                        width="100"
+                                        id="pictureInput"
+                                        ref="icon"
+                                        @change="onChangeIcon"
+                                        accept="image/png" 
+                                        buttonClass="btn"
+                                        :customStrings="{
+                                            upload: '<h1>Bummer!</h1>',
+                                        }">
+                                        </picture-input>
+                                  </div>
+                                  <div class="row" style="margin-top: 5%;">
+                                        <label for="desc" class="col-md-6 control-label">Icon over de la collection : </label>
+
+                                        <picture-input
+                                        height="100"
+                                        width="100"
+                                        id="pictureInput"
+                                        ref="iconOver"
+                                        @change="onChangeIconOver"
+                                        accept="image/png" 
+                                        buttonClass="btn"
+                                        :customStrings="{
+                                            upload: '<h1>Bummer!</h1>',
+                                        }">
+                                        </picture-input>
+                                  </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -94,8 +127,21 @@ export default {
         };
     },
     methods: {
+      onChangeIcon (image) {
+          if (image) {
+                this.collection.iconfile = this.$refs.icon.image;
+            } else {
+                console.log('FileReader API not supported: use the <form>, Luke!')
+            }
+      },
+      onChangeIconOver (image) {
+            if (image) {
+                this.collection.iconOverfile = this.$refs.iconOver.image;
+            } else {
+                console.log('FileReader API not supported: use the <form>, Luke!')
+            }
+      },
       onChange (image) {
-            console.log('New picture selected!')
             if (image) {
                 this.image = image
                 this.collection.file = this.$refs.pictureInput.image;
@@ -122,7 +168,6 @@ export default {
     },
         mounted() {
             //this.csrf = window.laravel.csrfToken;
-            console.log(this.paintings);
         },
 }
 </script>

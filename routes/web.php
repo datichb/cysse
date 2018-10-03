@@ -38,6 +38,7 @@ Route::get('/painting/modify', 'PaintingController@modify')
 Route::get('/collection/getall', 'CollectionController@getAll');
 Route::get('/collection', 'CollectionController@index');
 Route::post('/collection/show', 'CollectionController@show');
+Route::post('/collection/delete', 'CollectionController@delete');
 Route::get('/collection/create', 'CollectionController@create')
     ->middleware('is_admin')
     ->name('admin');
