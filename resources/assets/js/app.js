@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 import welcome from './components/Desc/Welcome.vue';
+import contact from './components/Desc/Contact.vue';
 import markcomponent from './components/Desc/Mark.vue';
 import artiste from './components/Desc/Artist.vue';
 import createpainting from './components/painting/CreatePainting.vue';
@@ -44,6 +45,7 @@ const app = new Vue({
         artiste,
         cart,
         loader,
-        home
+        home,
+        contact
     }
 });

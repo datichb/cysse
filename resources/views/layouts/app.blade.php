@@ -74,6 +74,12 @@
                         <a href="#">Demandes particulières</a>
                         </div>
                     </div>
+
+                    <div class="navbar-brand" style="">
+                        <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/contact') }}">
+                            Contact
+                        </a>
+                    </div>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -97,7 +103,7 @@
                             @else
                                 <li>
                                     <a href="{{ url('/home') }}">
-                                        home
+                                        Votre espace
                                     </a>
                                 </li>
                             @endif
@@ -168,9 +174,8 @@
     }
 
     .footer {
-        border: 1px;
+        border: solid 1px #e7e7e7;
         background-color: #f8f8f8;
-        border-color: #e7e7e7;
         position:relative;
         bottom:0;
         width: 100%;
@@ -192,6 +197,7 @@
     }
 
     .navbar-right{
+        visibility: hidden;
         width: 25%;
     } 
 
@@ -216,11 +222,12 @@
         position: absolute;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border-color: solid 1px #e7e7e7;
         z-index: 1;
     }
     
     .content {
-        height: 92%;
+        height: 91%;
         margin: 0;
         overflow-y: scroll;
         box-sizing: content-box;
@@ -233,7 +240,8 @@
         padding: 12px 16px;
         text-decoration: none;
         display: block;
-        background-color: white;
+        background-color: #f8f8f8;
+        color: rgba(0, 0, 0, 0.498039);
     }
 
     .dropdown-content a:hover {background-color: #ddd;}

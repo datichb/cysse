@@ -74,7 +74,7 @@ export default {
         },
         onTransitionOutComplete: function() {
             TweenMax.to('#preload', 1.5, {y: -$(window).height(), ease: Quint.easeInOut, onComplete: $.proxy(this.close, this)});
-            document.getElementById('preload').style.maxHeight = '0';
+            document.getElementById('preload').style.opacity = '0';
             setTimeout(function() {
                 var children = document.getElementById('app-second').childNodes;
                 children.forEach(element => {
@@ -89,18 +89,19 @@ export default {
 <style>
 .preload {
     background-color: #FEFBFA;
-    z-index: 500000;
-    position: relative;
-    max-height: 100%;
-    transition: max-height 1.5s ease-out;
-    -webkit-transition: max-height 1.5s ease-out;
+    z-index: 50000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1.5s ease-out;
+    -webkit-transition: opacity 1.5s ease-out;
     width: 100%;
     height: 100%;
 }
 
 .preload object {
     margin-top: 25%;
-    margin-left: 45%;
+    margin-left: 47%;
 }
 </style>
 

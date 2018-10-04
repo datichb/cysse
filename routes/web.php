@@ -23,6 +23,10 @@ Route::get('/artiste', function () {
     return view('artiste');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+
 Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/freepainting', 'PaintingController@getFree');
