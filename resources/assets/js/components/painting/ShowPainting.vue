@@ -127,6 +127,8 @@ export default {
     height:70%;
     width: 35%;
     float: left;
+    box-shadow: 0px 0px 25px #363636;
+    border: #DAA520 2px solid;
 }
 
 .paint img {
@@ -140,6 +142,7 @@ export default {
     margin-top: 12.5%;
     margin-left: 10%;
     float: left;
+    border: #c0c0c0 5px solid;
     box-shadow: 0px 0px 10px #888888;
     border-radius: 3%;
 }

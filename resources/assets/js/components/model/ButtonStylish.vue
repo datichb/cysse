@@ -3,7 +3,7 @@
         <ul id="district-buttons" ref="district" >
             <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" @click="onClick(item.id)" :key="item.id" v-for="item in nbCollection" style="visibility: inherit;opacity: 1;">
                 <div class="button-image" :style="'background-image: url(&quot;' + item.icon + '&quot;);background-size: 100% 100%;'"></div>
-                <div class="button-over" :style="'background-image: url(&quot;' + item.iconOver + '&quot;);background-size: 100% 100%;'"></div>
+                <div class="button-over" :style="'background-image: url(&quot;' + item.icon + '&quot;);background-size: 100% 100%;'"></div>
             </li>
         </ul>
     </div>
@@ -31,10 +31,10 @@ export default {
         var $image = $('.button-image');
 
         if(isSafari) {
-            TweenMax.set($('.button-load'), {"-webkit-perspective-origin": -80});
-            TweenMax.set($over, {"-webkit-perspective-origin": 80});
+            TweenMax.set($('.button-load'), {y: -80, ease:Sine.easeInOut});
+            TweenMax.set($over, {x: 80});
         }else{
-            TweenMax.set($('.button-load'), {y: -80});
+            TweenMax.set($('.button-load'), {y: -80, ease:Sine.easeInOut});
             TweenMax.set($over, {x: 80});
         }
         
@@ -127,7 +127,7 @@ export default {
 <style lang="scss">
 #district-buttons {
   position: absolute;
-  right: 80px;
+  right: 0px;
   top: 200px;
   width: 22%;
 }
@@ -135,6 +135,7 @@ export default {
 #district-buttons li {
   cursor: pointer;
   float: left;
+  position: relative;
   border: 1px solid #DAA520;
   width: 80px;
   height: 80px;
@@ -159,26 +160,36 @@ export default {
   /*65*/
 }
 #district-buttons li .button-image {
-  background-image: url('/icon/collection/12.png');
-  background-size: cover;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  pointer-events: none;
+    background-size: cover;
+    background-color: rgba($color: #DAA520, $alpha: 0.2);
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 #district-buttons li .button-over {
-  background-image: url('/icon/collection/04_over.png');
-  background-size: cover;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  overflow: hidden;
-  pointer-events: none;
+    background-size: cover;
+    background-color: rgba($color: #DAA520, $alpha: 1);
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 #district-buttons li .button-load {
   width: 80px;

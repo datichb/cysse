@@ -9,6 +9,7 @@
         <div ref="col" class="row col" id="col" :style="'background-image: url(&quot;' + collectionitems.img + '&quot;);background-size: 100% 100%;'">
             <bs v-on:newCollection="changeCollection" :nbc="nbcollection"></bs>
             <h2>{{ collectionitems.name }}</h2>
+            <p>{{ collectionitems.description }}</p>
             <div  class="arrowclick">
                 <svg id="more-arrows" v-on:click="scrolling">
                     <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
@@ -69,8 +70,6 @@ export default {
             .then(res => {
                 this.items = res.data;
             });
-
-        
     },
     methods: {
         deleteCollection: function() {
@@ -103,9 +102,19 @@ export default {
 </script>
 <style lang="scss">
 h2 {position: absolute;
-    top:80%;
+    top:77%;
     right: 10%;
     color: black;
+    font-size: 35pt;
+    font-family: 'Dancing Script';
+}
+
+p {
+    position: absolute;
+    top:85%;
+    right: 10%;
+    color: black;
+    font-size: 15px;
     font-family: 'Sorts Mill Goudy';
 }
 
@@ -114,8 +123,8 @@ h2 {position: absolute;
     height: 100%;
     display: block;
     z-index: 1;
-    -webkit-transition: background-image 1s ease-in-out;
-    transition: background-image 1s ease-in-out;
+    -webkit-transition: background-image 1s ease-out;
+    transition: background-image 1s ease-out;
 }
 
 .arrowclick {

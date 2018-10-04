@@ -10,8 +10,24 @@ use App\collection;
 use App\collection_type;
 use App\Paint_on_col;
 
+
+/**
+ * @resource Collection
+ *
+ * Class use to define Collection object and information.
+ */
 class CollectionController extends Controller
 {
+    /**
+	 * The index method.
+	 *
+	 * This method is use to generate the collection view information.
+     * 
+     * <aside class="notice">
+     *  You must replace `meowmeowmeow` with your personal API key.
+     * </aside>
+	 *
+	 */
     public function index()
     {
         $collection = Collection::all()->first();
@@ -41,6 +57,14 @@ class CollectionController extends Controller
         return view('collections.index', compact('collection', 'nbCollection'));
     }
 
+    /**
+	 * The getAll method.
+	 *
+	 * This method is use to get all of the painting information from all of the painting in the DB.
+     * 
+     * @routes paiting/getAll
+	 *
+	 */
     public function getAll() {
         $collections = Collection::all();
         
@@ -83,6 +107,14 @@ class CollectionController extends Controller
         return compact('collection');
     }
 
+    /**
+	 * The store method.
+	 *
+	 * This method is use to store a collection with all its related painting in DB.
+     * 
+     * @routes paiting/getAll
+	 *
+	 */
     public function store(Request $request)
     {
         Storage::disk('collection_img')->put(request('name').'.txt', request('file'));

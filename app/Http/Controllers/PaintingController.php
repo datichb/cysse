@@ -11,8 +11,19 @@ use App\plume;
 use App\size;
 use App\paint_price;
 
+/**
+ * @resource Painting
+ *
+ * Class use to define Painting object and information.
+ */
 class PaintingController extends Controller
 {
+    /**
+	 * The index method.
+	 *
+	 * This method is use to generate all of the paiting view information.
+	 *
+	 */
     public function index()
     {
         $paintings = Painting::all();
