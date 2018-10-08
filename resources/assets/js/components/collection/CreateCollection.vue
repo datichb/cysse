@@ -72,22 +72,6 @@
                                         }">
                                         </picture-input>
                                   </div>
-                                  <div class="row" style="margin-top: 5%;">
-                                        <label for="desc" class="col-md-6 control-label">Icon over de la collection : </label>
-
-                                        <picture-input
-                                        height="100"
-                                        width="100"
-                                        id="pictureInput"
-                                        ref="iconOver"
-                                        @change="onChangeIconOver"
-                                        accept="image/png" 
-                                        buttonClass="btn"
-                                        :customStrings="{
-                                            upload: '<h1>Bummer!</h1>',
-                                        }">
-                                        </picture-input>
-                                  </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -130,13 +114,6 @@ export default {
       onChangeIcon (image) {
           if (image) {
                 this.collection.iconfile = this.$refs.icon.image;
-            } else {
-                console.log('FileReader API not supported: use the <form>, Luke!')
-            }
-      },
-      onChangeIconOver (image) {
-            if (image) {
-                this.collection.iconOverfile = this.$refs.iconOver.image;
             } else {
                 console.log('FileReader API not supported: use the <form>, Luke!')
             }

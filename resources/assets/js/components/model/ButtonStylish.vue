@@ -2,7 +2,7 @@
     <div>
         <ul id="district-buttons" ref="district" >
             <li class="district-button" v-on:mouseover="onOver" v-on:mouseout="onOut" @click="onClick(item.id)" :key="item.id" v-for="item in nbCollection" style="visibility: inherit;opacity: 1;">
-                <div class="button-image" :style="'background-image: url(&quot;' + item.icon + '&quot;);background-size: 100% 100%;'"></div>
+                <div class="button-image" :style="'background-image: url(&quot;' + item.icon + '&quot;);background-size: 70%;background-repeat: no-repeat;background-position: center;'"></div>
                 <div class="button-over" :style="'background-image: url(&quot;' + item.icon + '&quot;);background-size: 100% 100%;'"></div>
             </li>
         </ul>
@@ -129,7 +129,7 @@ export default {
   position: absolute;
   right: 0px;
   top: 200px;
-  width: 22%;
+  width: 25%;
 }
 
 #district-buttons li {

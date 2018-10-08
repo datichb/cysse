@@ -57,10 +57,8 @@
                                 Création
                             </a>
                             <div class="dropdown-content">
-                                <li>
-                                    <a href="{{ url('/painting/create') }}">Créer un tableau</a>
-                                    <a href="{{ url('/collection/create') }}">Créer une collection</a>
-                                </li>
+                                <a href="{{ url('/painting/create') }}">Créer un tableau</a>
+                                <a href="{{ url('/collection/create') }}">Créer une collection</a>
                             </div>
                         </div>
                         @endif
@@ -139,8 +137,8 @@
             </div>
         </div>
     </div>
-    
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
     <script src="/js/app.js"></script>
 </body>
 
