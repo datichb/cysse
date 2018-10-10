@@ -10,7 +10,9 @@
 
 <body>
 
-    <h1>Vous avez une nouvelle demande d'information</h1>
+    <h1>Vous avez une nouvelle demande d'information de {{ $name }}</h1>
+    <p>{{ $message }}</p>
+
 
 </body>
 </html>

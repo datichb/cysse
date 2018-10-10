@@ -16525,9 +16525,9 @@ module.exports = Cancel;
     data: function data() {
         return {
             form: {
-                fullname: null,
-                email: null,
-                message: null
+                fullname: '',
+                email: '',
+                message: ''
             }
         };
     },
@@ -16550,8 +16550,10 @@ module.exports = Cancel;
                 scrollTop: $('#form').offset().top
             }, 1000);
         },
-        email: function email() {
-            axios.post('contact/email', this.form).then(function (res) {});
+        email: function email(event) {
+            event.preventDefault();
+
+            axios.post('/contact/email', this.form).then(function (res) {});
         }
     }
 });
@@ -63281,7 +63283,20 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(1)
+              _c("div", { staticClass: "container-contact100-form-btn" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "contact100-form-btn",
+                    on: {
+                      click: function($event) {
+                        _vm.email($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                  Send Email\n                ")]
+                )
+              ])
             ])
           ])
         ])
@@ -63324,16 +63339,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-contact100-form-btn" }, [
-      _c("button", { staticClass: "contact100-form-btn" }, [
-        _vm._v("\n                  Send Email\n                ")
-      ])
-    ])
   }
 ]
 render._withStripped = true

@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="container-contact100-form-btn">
-                  <button class="contact100-form-btn">
+                  <button @click="email($event)" class="contact100-form-btn">
                     Send Email
                   </button>
                 </div>
@@ -58,9 +58,9 @@ export default {
     data() {
         return {
           form: {
-              fullname: null,
-              email: null,
-              message: null
+              fullname: '',
+              email: '',
+              message: ''
           }
         }
     },
@@ -82,8 +82,10 @@ export default {
                 scrollTop: $('#form').offset().top
             }, 1000);
         },
-        email: function() {
-            axios.post('contact/email', this.form)
+        email: function(event) {
+            event.preventDefault();
+
+            axios.post('/contact/email', this.form)
                 .then(res => {
 
                 })

@@ -27,6 +27,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::post('/contact/email', 'HomeController@email');
+
 Route::get('/painting', 'PaintingController@index');
 Route::get('/painting/show/{painting}', 'PaintingController@show');
 Route::get('/painting/freepainting', 'PaintingController@getFree');

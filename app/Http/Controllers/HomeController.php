@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\Contact;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,8 @@ class HomeController extends Controller
 
     public function email(Request $request)
     {
-        
+        \Mail::to(request('email'))->send(new Contact(request('fullname'), request('message')));
+
+        return true;
     }
 }
