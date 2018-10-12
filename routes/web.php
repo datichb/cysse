@@ -11,21 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
-Route::get('/mark', function () {
-    return view('mark');
-});
+Route::get('/mark', 'HomeController@mark');
 
-Route::get('/artiste', function () {
-    return view('artiste');
-});
+Route::get('/artiste', 'HomeController@artiste');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', 'HomeController@contact');
 
 Route::post('/contact/email', 'HomeController@email');
 

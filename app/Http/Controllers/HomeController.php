@@ -27,6 +27,26 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function welcome()
+    {
+        return view('welcome');
+    }
+
+    public function artiste()
+    {
+        return view('artiste');
+    }
+
+    public function mark()
+    {
+        return view('mark');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
     public function email(Request $request)
     {
         \Mail::to(request('email'))->send(new Contact(request('fullname'), request('message')));
