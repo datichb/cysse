@@ -1,4 +1,4 @@
-@servers(['web' => 'git@15.196.88.187'])
+@servers(['web' => 'git@5.196.88.187 -p 1222'])
 
 @setup
     $repository = 'git@gitlab.com:datiche_b/cysse.git';
@@ -23,7 +23,14 @@
 @task('run_composer')
     echo "Starting deployment ({{ $release }})"
     cd {{ $new_release_dir }}
+    echo "ok"
     composer install --prefer-dist --no-scripts -q -o
+    echo 'end composer'
+    @error
+        echo $PATH;
+        echo "$task failed";
+        exit(1);
+    @enderror
 @endtask
 
 @task('update_symlinks')
@@ -37,3 +44,4 @@
     echo 'Linking current release'
     ln -nfs {{ $new_release_dir }} {{ $app_dir }}/current
 @endtask
+
