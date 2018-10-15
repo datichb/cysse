@@ -20,9 +20,6 @@ class CreatePaintPricesTable extends Migration
             $table->unsignedInteger('id_size');
             $table->unsignedInteger('id_paint');
             $table->integer('price');
-            $table->foreign('id_plume')->references('id')->on('plumes');
-            $table->foreign('id_size')->references('id')->on('sizes');
-            $table->foreign('id_paint')->references('id')->on('paintings');
             $table->timestamps();
         });
     }

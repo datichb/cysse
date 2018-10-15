@@ -19,7 +19,6 @@ class CreatePlumesTable extends Migration
             $table->string('name');
             $table->boolean('archive')->default(false);
             $table->timestamps();
-            
         });
     }
 
