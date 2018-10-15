@@ -2,8 +2,8 @@
 
 @setup
     $repository = 'git@gitlab.com:datiche_b/cysse.git';
-    $releases_dir = '/var/www/app/releases';
-    $app_dir = '/var/www/cysse';
+    $releases_dir = '/var/www/cysse/releases';
+    $app_dir = '/var/www/';
     $release = date('YmdHis');
     $new_release_dir = $releases_dir .'/'. $release;
 @endsetup
