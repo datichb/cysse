@@ -1,9 +1,10 @@
-@servers(['web' => 'git@5.196.88.187 -p 1222'])
+@servers(['web' => 'gituser@5.196.88.187 -p 36392'])
 
 @setup
     $repository = 'git@gitlab.com:datiche_b/cysse.git';
-    $releases_dir = '/var/www/cysse/releases';
-    $app_dir = '/var/www/';
+    $releases_dir = '/var/www/cysse/html/releases';
+
+    $app_dir = '/var/www/cysse/html';
     $release = date('YmdHis');
     $new_release_dir = $releases_dir .'/'. $release;
 @endsetup
@@ -27,7 +28,6 @@
     composer install --prefer-dist --no-scripts -q -o
     echo 'end composer'
     @error
-        echo $PATH;
         echo "$task failed";
         exit(1);
     @enderror
