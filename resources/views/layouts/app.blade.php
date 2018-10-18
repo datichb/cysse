@@ -52,7 +52,7 @@
                     </div>
                     @auth
                         @if(Auth::user()->isAdmin())
-                        <div class="navbar-brand" style="display: none;">
+                        <div class="navbar-brand" style="">
                             <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                                 Création
                             </a>
