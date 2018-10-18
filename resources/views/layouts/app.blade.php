@@ -52,7 +52,7 @@
                     </div>
                     @auth
                         @if(Auth::user()->isAdmin())
-                        <div class="navbar-brand" style="">
+                        <div class="navbar-brand" style="display: none;">
                             <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                                 Création
                             </a>
@@ -64,7 +64,7 @@
                         @endif
                     @endauth
                                 
-                    <!-- <div class="navbar-brand" style="">
+                    <div class="navbar-brand" style="display: none;">
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                             Sur mesure
                         </a>
@@ -73,11 +73,11 @@
                         </div>
                     </div>
 
-                    <div class="navbar-brand" style="">
+                    <div class="navbar-brand" style="display: none;">
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/contact') }}">
                             Contact
                         </a>
-                    </div> -->
+                    </div>
                </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
