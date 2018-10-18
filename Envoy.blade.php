@@ -1,4 +1,4 @@
-@servers(['web' => 'gituser@5.196.88.187 -p 36392'])
+@servers(['web' => 'gituser@5.196.88.187'])
 
 @setup
     $repository = 'git@gitlab.com:datiche_b/cysse.git';

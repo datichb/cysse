@@ -64,7 +64,7 @@
                         @endif
                     @endauth
                                 
-                    {{-- <div class="navbar-brand" style="">
+                    <!-- <div class="navbar-brand" style="">
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="#">
                             Sur mesure
                         </a>
@@ -77,8 +77,8 @@
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/contact') }}">
                             Contact
                         </a>
-                    </div> --}}
-                </div>
+                    </div> -->
+               </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
