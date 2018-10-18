@@ -144,7 +144,7 @@ export default {
         }
     },
         mounted() {
-            //this.csrf = window.laravel.csrfToken;
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
 }
 </script>
