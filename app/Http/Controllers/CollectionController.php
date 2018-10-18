@@ -32,6 +32,11 @@ class CollectionController extends Controller
     {
         $collection = Collection::all()->first();
 
+        if(null == $collection)
+        {
+            return view('NonDispo');
+        }
+
         $collection->paint_on_col()->with(['paint'])->get();
         $paint = array();
 
