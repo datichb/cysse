@@ -16792,7 +16792,7 @@ module.exports = Cancel;
             this.painting.Painttype.pop();
         },
         mounted: function mounted() {
-            this.csrf = window.laravel.csrfToken;
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         }
     }
 
@@ -17540,7 +17540,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
         }
     },
     mounted: function mounted() {
-        //this.csrf = window.laravel.csrfToken;
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     }
 });
 
@@ -17751,6 +17751,7 @@ if (false) {(function () {
     },
     data: function data() {
         return {
+            show: false,
             paint: this.painting,
             isMounted: false,
             currentPrice: ''
@@ -64212,7 +64213,10 @@ var render = function() {
                             "li",
                             {
                               key: item.id,
-                              staticStyle: { "margin-bottom": "2%" }
+                              staticStyle: {
+                                "margin-bottom": "2%",
+                                "list-style-type": "none"
+                              }
                             },
                             [
                               _c("div", { staticClass: "form-group" }, [
@@ -65291,34 +65295,77 @@ var render = function() {
         _c("p", [_vm._v(_vm._s(_vm.paint.description))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("label", { staticClass: "col-md-3" }, [_vm._v("Stock :")]),
-        _vm._v(" "),
-        _c("div", { ref: "stock" }, [_vm._v(_vm._s(_vm.HaveStock))])
-      ]),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.show,
+              expression: "show"
+            }
+          ],
+          staticClass: "row"
+        },
+        [
+          _c("label", { staticClass: "col-md-3" }, [_vm._v("Stock :")]),
+          _vm._v(" "),
+          _c("div", { ref: "stock" }, [_vm._v(_vm._s(_vm.HaveStock))])
+        ]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "row", staticStyle: { "margin-top": "20%" } }, [
-        _c("label", { staticClass: "col-md-3" }, [_vm._v("Commande :")]),
-        _vm._v(" "),
-        _c("input", {
-          ref: "buy",
-          staticClass: "col-md-2",
-          attrs: { type: "number", max: _vm.paint.stock, min: "0" },
-          domProps: { value: 1 }
-        })
-      ])
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.show,
+              expression: "show"
+            }
+          ],
+          staticClass: "row",
+          staticStyle: { "margin-top": "20%" }
+        },
+        [
+          _c("label", { staticClass: "col-md-3" }, [_vm._v("Commande :")]),
+          _vm._v(" "),
+          _c("input", {
+            ref: "buy",
+            staticClass: "col-md-2",
+            attrs: { type: "number", max: _vm.paint.stock, min: "0" },
+            domProps: { value: 1 }
+          })
+        ]
+      )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "command row" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary col-md-3 col-md-offset-7",
-          on: { click: _vm.tocard }
-        },
-        [_vm._v("Ajouter au panier")]
-      )
-    ])
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.show,
+            expression: "show"
+          }
+        ],
+        staticClass: "command row"
+      },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary col-md-3 col-md-offset-7",
+            on: { click: _vm.tocard }
+          },
+          [_vm._v("Ajouter au panier")]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []

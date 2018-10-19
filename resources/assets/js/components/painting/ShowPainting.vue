@@ -22,17 +22,17 @@
                 <label class="col-md-3">Description :</label>
                 <p>{{ paint.description }}</p>
             </div>
-            <div class="row">
+            <div class="row" v-show="show">
                 <label class="col-md-3">Stock :</label>
                 <div ref="stock">{{ HaveStock }}</div>
             </div>
-            <div class="row" style="margin-top: 20%;">
+            <div class="row" style="margin-top: 20%;" v-show="show">
                 <label class="col-md-3">Commande :</label>
                 <input class="col-md-2" type="number" ref="buy" :value="1" :max="paint.stock" min="0">
             </div>
         </div>
-        <div class="command row">
-            <button @click="tocard" class="btn btn-primary col-md-3 col-md-offset-7">Ajouter au panier</button>
+        <div class="command row" v-show="show">
+            <button @click="tocard" class="btn btn-primary col-md-3 col-md-offset-7" >Ajouter au panier</button>
         </div>
     </div>
 </template>
@@ -48,6 +48,7 @@ export default {
    },
    data() {
        return {
+           show: false,
            paint: this.painting,
            isMounted: false,
            currentPrice: ''
