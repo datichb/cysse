@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                     
-                                    <li :key="item.id" style="margin-bottom: 2%;" v-for="item in painting.Painttype">
+                                    <li :key="item.id" style="margin-bottom: 2%;list-style-type: none;" v-for="item in painting.Painttype">
                                         <div class="form-group">
                                             <label style="text-align: left;" for="size" class="col-md-2 col-md-offset-1 control-label">Taille : </label>
 
@@ -145,7 +145,7 @@ export default {
             this.painting.Painttype.pop();
         },
         mounted() {
-            this.csrf = window.laravel.csrfToken;
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
     },
     

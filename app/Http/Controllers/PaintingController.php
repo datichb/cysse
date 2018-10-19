@@ -54,14 +54,14 @@ class PaintingController extends Controller
             unset($value->id_plume);
         }
 
-        $painting->image = Storage::disk('painting_img')->get($painting->name.'.txt');
+        $painting->image = Storage::disk('local')->get('painting/'.$painting->name.'/'.$painting->name.'.txt');
 
         return view('paintings.show', compact('painting'));
     }
 
     public function store(Request $request)
     {
-        Storage::disk('painting_img')->put(request('name').'.txt', request('file'));
+        Storage::disk('local')->put('painting/'.request('name').'/'.request('name').'.txt', request('file'));
         
 
         $this->validate($request, [
@@ -89,7 +89,7 @@ class PaintingController extends Controller
         $paintings = Painting::all()->where('id_col', NULL);
 
         foreach ($paintings as $key => $value) {
-            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
+            $value->image = Storage::disk('local')->get('painting/'.$painting->name.'/'.$painting->name.'.txt');
         }
 
         $paintings = $paintings->values();
@@ -122,7 +122,7 @@ class PaintingController extends Controller
         $paintings = Painting::all();
 
         foreach ($paintings as $key => $value) {
-            $value->image = Storage::disk('painting_img')->get($value->name.'.txt');
+            $value->image = Storage::disk('local')->get('painting/'.$painting->name.'/'.$painting->name.'.txt');
         }
 
         return view('paintings.modify', compact('paintings'));
