@@ -16726,7 +16726,7 @@ module.exports = Cancel;
       $(".fade").each(function () {
 
         /* Check the location of each desired element */
-        var objectBottom = $(this).offset().top + $(this).outerHeight();
+        var objectBottom = $(this).offset().top + $(this).outerHeight() / 2;
         console.log(objectBottom);
         /* If the element is completely within bounds of the window, fade it in */
         if (objectBottom < windowBottom) {
