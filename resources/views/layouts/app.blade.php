@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="navbar-brand" style="display: none;">
+                    <div class="navbar-brand">
                         <a class="dropbtn" style="text-decoration: none;color:rgba(0, 0, 0, 0.5);" href="{{ url('/contact') }}">
                             Contact
                         </a>

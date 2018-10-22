@@ -2,8 +2,40 @@
   <div id="content" class="content">
     <div class="visit-card">
         <h2>Rejoignez-nous sur les réseaux sociaux !</h2>
-        <div class="row" style="margin-top: 5%;width: 100%;">
-          <div id="instafeed" class="insta col-md-4 col-md-offset-1">
+        <div class="row" style="margin-top: 2.5%;width: 100%;">
+          <div class="insta col-md-4 col-md-offset-1">
+            <div id="instafeed" class="instagram-media">
+              <div class="instafeed-gallery">
+                <div class="header">
+                  
+                  <ul class="meta">
+                    <li>
+                      <span class="count post-count"></span>
+                      <span class="title">posts</span>
+                    </li>
+                    <li>
+                      <span class="count follower-count"></span>
+                      <span class="title">followers</span>
+                    </li>
+                    <li>
+                      <span class="count following-count"></span>
+                      <span class="title">following</span>
+                    </li>
+                  </ul>
+                  
+                  
+                </div>
+                <div id="instafeed-gallery-feed" class="row no-gutter">
+                  <!-- instagram feed loads here -->
+                </div>
+              </div>
+
+              <div class="post-modal-container">
+                <!-- <div class="arrow-left">left</div>
+              <div class="arrow-right">right</div> -->
+              </div>
+              <div class="post-modal-backdrop"></div>
+            </div>
           </div>
           <div class="fb col-md-4 col-md-offset-2">
             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCyssemaisondeplumasserie%2F&tabs=timeline&width=400&height=650&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=255095238530504" 
@@ -53,6 +85,8 @@
 <script>
 /* eslint-disable */
 import 'web-animations-js'
+import Toaster from 'v-toaster'
+import 'v-toaster/dist/v-toaster.css'
 
 export default {
     data() {
@@ -61,20 +95,109 @@ export default {
               fullname: '',
               email: '',
               message: ''
-          }
+          },
+          username: ''
         }
     },
     mounted() {
+      Vue.use(Toaster, {timeout: 5000});
+
+      var feedHTML = 
+      // header
+              '<div class="header-container">'+
+                '<img src="{{model.user.profile_picture}}" class="avatar">'+
+                '<div class="user-container">'+
+                  '<p class="name">{{model.user.full_name}}</p>'+
+                  '<p class="username"><a href="http://instagram.com/{{model.user.username}}" target="_blank">@{{model.user.username}}</a></p>'+
+                '</div>'+
+              '</div>'+
+                  
+              // posts
+              '<div class="img-featured-container col-xs-4">'+
+                '<div class="img-backdrop"></div>'+
+                '<div class="description-container">'+
+                  '<span class="likes"><i class="icon ion-heart"></i> {{likes}}</span>'+
+                  '<span class="comments"><i class="icon ion-chatbubble"></i> {{comments}}</span>'+
+                '</div>'+
+                '<img src="{{image}}" class="img-responsive">'+
+              '</div>'+
+    
+    // modal
+              '<div class="post-modal">'+
+                '<div class="btn-close">'+
+                  '<div class="close-icon">&times;</div>'+
+                '</div>'+
+                '<img src="{{image}}">'+
+    
+                // video
+                // '<video controls autoplay>' +
+                //   '<source src="{{model.videos.standard_resolution.url}}" type="video/mp4">' +
+                //   'Your browser does not support the video tag.' +
+                // '</video>' +
+    
+                '<div class="post-modal-body">'+
+                  '<div class="post-modal-meta-container">'+
+                    '<p class="likes"><i class="icon ion-heart"></i> {{likes}}</p>'+
+                    '<p class="comments"><i class="icon ion-chatbubble"></i> {{comments}}</p>'+
+                  '</div>'+
+                  '<div class="post-modal-caption-container">'+
+                    '<p class="caption">{{caption}}</p>'+
+                  '</div>'+
+                 '</div>'+
+              '</div>';
+            
         var feed = new Instafeed({
             get: 'user',
-            userId: '3307495581',
-            clientId: 'dad124355e0a406aba07efbe6d4e2644',
+            userId: '7487153442',
+            clientId: '8c403bbcf3754c47b20e7e4b1db45cfd',
             resolution: 'standard_resolution',
-            template: '<blockquote data-instgrm-captioned data-instgrm-version="6" id="instagram-media"><div id="user"><img id="userimg" src="{{model.user.profile_picture}}">{{model.user.full_name}}</div><div style="padding:8px;"><div id="imgBack"><img id="img" src="{{image}}"></div><div id="likes"><div id="heart"><img src="/icon/heart.svg"></div><p>{{model.likes.count}}</p></div></blockquote>',
-            accessToken: '3307495581.dad1243.97de551a4a14415d97d6eef864e96ef3',
-            limit: 1,
-        });
-        feed.run();
+            template: feedHTML,
+            accessToken: '7487153442.8c403bb.d07e3d517a834e89b06de491b44eb051',
+            limit: 9,
+            before: function(){
+      
+              // get user data
+              var url = 'https://api.instagram.com/v1/users/' + this.options.userId + '/?access_token=' + this.options.accessToken;
+
+              $.ajax({
+                method: 'GET',
+                url: url,
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                success: function (response) {
+                  // currently being replaced on each 'load more' button click
+                  $('.post-count').html(response.data.counts.media);
+                  $('.follower-count').html(response.data.counts.follows);
+                  $('.following-count').html(response.data.counts.followed_by);
+                }
+              });
+            },
+            after: function() {
+              console.log('after');
+
+              var $headerContainer = $('.header-container'), 
+                  $imagePost = $('.img-featured-container'),
+                  totalImages = $imagePost.length,
+                  $postModalContainer = $('.post-modal-container'),
+                  $postModal = $('.post-modal'),
+                  $postModalBackdrop = $('.post-modal-backdrop'),
+                  counter = 0;
+              
+              console.log('totalImages', totalImages);
+              for (var i = 1; i < totalImages; i++) {
+                console.log('remove', i)
+                $headerContainer.eq(i).remove();
+                $('.header').prepend($headerContainer.eq(0));
+                $postModalContainer.prepend($postModal);
+              }
+              
+              
+              TweenMax.staggerTo($imagePost, 0.5, {autoAlpha:1}, 0.02);
+              
+            }
+          });
+          
+      feed.run(this.firstLoad());
     },
     methods: {
       scrolling: function() {
@@ -87,9 +210,18 @@ export default {
 
             axios.post('/contact/email', this.form)
                 .then(res => {
-
+                    this.$toaster.success('Votre email a bien été envoyé !')
                 })
-        }
+        },
+        firstLoad: function () {
+        console.log('first load');
+        
+        var tl = new TimelineMax();
+        tl.to('body', 0.3, {autoAlpha:1}, 1);
+        tl.to('.instafeed-gallery', 0.3, {autoAlpha:1}, 0.2);
+        tl.staggerFrom('span', 0.5, {autoAlpha:0, y:10}, 0.05);
+        tl.from('.btn', 0.5, {autoAlpha:0, y:20, ease:Power2.easeOut}, 1.5);
+      },
     }
 }
 </script>
@@ -100,12 +232,12 @@ export default {
   -moz-background: -moz-linear-gradient(top, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
   -webkit-background: -webkit-linear-gradient(top, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
   background: linear-gradient(210deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-  height: 65vh;
+  height: 75vh;
 }
 
 .fb {
   background-color: #3B5998;
-  height: 65vh;
+  height: 75vh;
   padding: 0.5%;
 }
 
@@ -134,23 +266,23 @@ h2 {
   float: left;
 }
 
-#instagram-media {
+.instagram-media {
   background:#FFF;
   border:0;
-  border-radius:3px;
   height: 99.5%;
   box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
   margin: 1px;
-  padding:0;
 }
 
-#imgback {
+#imgBack {
+  margin-top: 10px;
   background:#F8F8F8;
   line-height:0;
-  margin-top:40px;
-  padding:50.0% 0;
+  margin-left: 0;
+  margin-right: 0;
+  float: left;
   text-align:center;
-  width:100%;
+  width:33%;
 }
 
 #img {
@@ -561,5 +693,274 @@ button {
 
 button:hover {
 	cursor: pointer;
+}
+
+
+
+
+</style>
+
+
+
+
+
+<style lang="scss">
+
+
+$postPadding: 0px;
+$minWidth: 280px;
+$maxWidth: 420px;
+
+// general
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
+
+// helper
+.hide {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.show {
+  display: block !important;
+  opacity: 1 !important;
+}
+
+/* remove bootstrap gutter*/
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+// the good stuff 
+.instafeed-gallery {
+  background: #fff;
+  min-width: $minWidth;
+  max-width: $maxWidth;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  transition: all 0.2 ease;
+  opacity: 0;
+}
+
+.header {
+  width: 100%;
+  height: 10%;
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: #aaa;
+      text-decoration: none;
+    }
+  }
+
+  .header-container {
+    text-align: center;
+    padding: 15px 15px 0;
+
+    .avatar {
+      width: 20%;
+      border-radius: 100%;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .user-container {
+      margin-top: 10px;
+    }
+
+    .name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .username {
+      color: #bbb;
+      font-size: 16px;
+    }
+  }
+
+  .meta {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    display: table;
+
+    li {
+      text-align: center;
+      width: 33%;
+      display: table-cell;
+    }
+
+    span {
+      display: block;  
+    }
+
+    .count {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .title {
+      color: #bbb;
+      font-size: 12px;
+    }
+  }
+}
+
+.post-modal-container {
+  .post-modal {
+    background: #fff;
+    min-width: $minWidth;
+    max-width: $maxWidth;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    position: fixed;
+    display: none;
+    opacity: 0;
+  }
+
+  .btn-close {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  .close-icon {
+    font-size: 22px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .post-modal-body {
+    padding: 15px;
+  }
+  
+  .post-modal-meta-container {
+    margin-bottom: 10px;
+
+    p {
+      color: #bbb;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .icon {
+      margin-right: 2px;
+    }
+  }
+
+  .post-modal-caption-container {
+  }
+
+}
+
+.post-modal-backdrop {
+  background: rgba(0,0,0,0.7);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 999;
+  display: none;
+  cursor: pointer;
+}
+
+
+// post
+.img-featured-container {
+  overflow: hidden;
+  position: relative;
+  padding: $postPadding;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.img-featured-container img {
+  width: 100%;
+}
+
+.img-featured-container .img-backdrop {
+  background: linear-gradient(135deg, rgba(38, 163, 255, 0.85), rgba(83, 201, 179, 0.85));
+  margin: 0;
+  padding: $postPadding;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.img-featured-container:hover > .img-backdrop {
+  opacity: 1;
+}
+
+// center text horizontally and vertically on image hover
+.img-featured-container .description-container {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+  line-height: 20px;
+  width: 100%;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all .2s ease;
+  z-index: 2;
+  opacity: 0;
+}
+
+.img-featured-container .description-container .fa-instagram {
+  font-size: 40px;
+}
+
+.img-featured-container .description-container p {
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.img-featured-container:hover .description-container {
+  opacity: 1;
+}
+
+.img-featured-container .description-container .likes,
+.img-featured-container .description-container .comments {
+  margin: 0 5px;
 }
 </style>
