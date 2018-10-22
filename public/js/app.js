@@ -16594,11 +16594,65 @@ module.exports = Cancel;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* eslint-disable */
 
 
-/* harmony default export */ __webpack_exports__["a"] = ({});
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mounted: function mounted() {
+
+    $('.text').scroll(function () {
+
+      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
+      console.log('widow bot' + windowBottom);
+
+      $(".fade").each(function () {
+
+        /* Check the location of each desired element */
+        var objectBottom = $(this).offset().top + $(this).outerHeight();
+        console.log(objectBottom);
+        /* If the element is completely within bounds of the window, fade it in */
+        if (objectBottom < windowBottom) {
+          //object comes into view (scrolling down)
+          if ($(this).css("opacity") == 0) {
+            $(this).fadeTo(500, 1);
+          }
+        } else {
+          //object goes out of view (scrolling up)
+          if ($(this).css("opacity") == 1) {
+            $(this).fadeTo(500, 0);
+          }
+        }
+      });
+    }).scroll();
+  }
+});
 
 /***/ }),
 /* 20 */
@@ -16634,11 +16688,62 @@ module.exports = Cancel;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* eslint-disable */
 
 
-/* harmony default export */ __webpack_exports__["a"] = ({});
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mounted: function mounted() {
+
+    $('.text').scroll(function () {
+
+      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
+      console.log('widow bot' + windowBottom);
+
+      $(".fade").each(function () {
+
+        /* Check the location of each desired element */
+        var objectBottom = $(this).offset().top + $(this).outerHeight();
+        console.log(objectBottom);
+        /* If the element is completely within bounds of the window, fade it in */
+        if (objectBottom < windowBottom) {
+          //object comes into view (scrolling down)
+          if ($(this).css("opacity") == 0) {
+            $(this).fadeTo(500, 1);
+          }
+        } else {
+          //object goes out of view (scrolling up)
+          if ($(this).css("opacity") == 1) {
+            $(this).fadeTo(500, 0);
+          }
+        }
+      });
+    }).scroll();
+  }
+});
 
 /***/ }),
 /* 21 */
@@ -63363,7 +63468,7 @@ if (false) {
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(83)
+  __webpack_require__(180)
 }
 /* script */
 
@@ -63410,47 +63515,8 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(84);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__(1).default
-var update = add("c3253d0e", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nh2 {\n  margin-left:30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content:\"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  margin-left: 15%;\n  width: 70%;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 83 */,
+/* 84 */,
 /* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63469,8 +63535,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content" }, [
-      _c("div", { staticStyle: { height: "10%" } }),
-      _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
         _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
         _vm._v(" "),
@@ -63479,50 +63543,59 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "text" }, [
-        _c("span", [_vm._v("Cysse est une Maison de Plumasserie.")]),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes."
-          )
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver\n            les merveilles de la nature."
-          )
-        ]),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Pour parler de la marques, Cysse s'implante dans le design, la\n      décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a\n      sa manière et est de très haute qualité."
-          )
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [_vm._v("c'est un savoir faire très rare.")]),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques."
-          )
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [_vm._v("Sur mesure rien que pour vous.")]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [_vm._v("Fabrication Artisanales Française.")]),
-        _c("br")
-      ])
+      _c("div", { staticClass: "fader" }, [
+        _c("div", { staticClass: "text" }, [
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [_vm._v("Cysse est une Maison de Plumasserie.")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver\n                les merveilles de la nature."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Pour parler de la marques, Cysse s'implante dans le design, la\n          décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a\n          sa manière et est de très haute qualité."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [_vm._v("c'est un savoir faire très rare.")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [_vm._v("Sur mesure rien que pour vous.")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [_vm._v("Fabrication Artisanales Française.")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "section10" }, [_c("span")])
     ])
   }
 ]
@@ -63547,7 +63620,7 @@ if (false) {
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(87)
+  __webpack_require__(184)
 }
 /* script */
 
@@ -63594,47 +63667,8 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(88);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__(1).default
-var update = add("1e0dd139", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nh2 {\n  margin-left:30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content:\"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  margin-left: 15%;\n  width: 70%;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 87 */,
+/* 88 */,
 /* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63653,8 +63687,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content" }, [
-      _c("div", { staticStyle: { height: "10%" } }),
-      _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
         _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
         _vm._v(" "),
@@ -63663,55 +63695,63 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "text" }, [
-        _c("span", [
-          _vm._v(
-            "Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris."
-          )
-        ]),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Mais pour en arrver la elle a dans un premier temps fait des études d'Art dans différentes écoles de Paris tel que Auguste Renoir, Lisaa ou encore l'ENSAAMA Olivier de serres, ou elle a pu\n            apprendre et développer sa créativité."
-          )
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Au fil des années et ayant la volonté de se perfectionner dans un\n            savoir faire unique . Elle se dirigera vers le lycée Octave Feuillet, seul établissement apportant la formations de plumasserie."
-          )
-        ]),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "De la, ne cessera de se développer son amour pour la plumes, les oiseaux et leur couleurs."
-          )
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Ayant finit ses études elle découvrit l'entreprise Lemarié qui lui permit de perfectionner son savoir faire et de travailler grâce a eux sur de grand projets pour de grands Noms tel que Chanel, Valentino, Dior, St Laurent."
-          )
-        ]),
-        _c("br"),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _vm._v(
-            "Fière de cette passion et tout en continuant ses collaborations, elle nous propose aujourd'hui sa marque, Cysse pour embellir notre quotidien."
-          )
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [_vm._v("Une Touche unique pour intérieur.")]),
-        _c("br")
-      ])
+      _c("div", { staticClass: "fader" }, [
+        _c("div", { staticClass: "text" }, [
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Mais pour en arrver la elle a dans un premier temps fait des études d'Art dans différentes écoles de Paris tel que Auguste Renoir, Lisaa ou encore l'ENSAAMA Olivier de serres, ou elle a pu\n            apprendre et développer sa créativité."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Au fil des années et ayant la volonté de se perfectionner dans un\n            savoir faire unique . Elle se dirigera vers le lycée Octave Feuillet, seul établissement apportant la formations de plumasserie."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "De la, ne cessera de se développer son amour pour la plumes, les oiseaux et leur couleurs."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Ayant finit ses études elle découvrit l'entreprise Lemarié qui lui permit de perfectionner son savoir faire et de travailler grâce a eux sur de grand projets pour de grands Noms tel que Chanel, Valentino, Dior, St Laurent."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [
+              _vm._v(
+                "Fière de cette passion et tout en continuant ses collaborations, elle nous propose aujourd'hui sa marque, Cysse pour embellir notre quotidien."
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "fade" }, [
+            _c("span", [_vm._v("Une Touche unique pour intérieur.")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "section10" }, [_c("span")])
     ])
   }
 ]
@@ -73358,6 +73398,101 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(181);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(1).default
+var update = add("c4c8a25a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade {\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 182 */,
+/* 183 */,
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(185);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(1).default
+var update = add("1841e193", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade {\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

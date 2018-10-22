@@ -1,6 +1,5 @@
 <template>
   <div class="content">
-    <div style="height: 10%;"></div>
     <div class="visit-card">
         <h2>
           <span></span>
@@ -11,19 +10,46 @@
             La marque
         </p>
     </div>
-    <div class="text">
-        <span>Cysse est une Maison de Plumasserie.</span><br><br>
-        <span>Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes.</span><br>
-        <span>Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver
-              les merveilles de la nature.</span><br><br>
-        <span>Pour parler de la marques, Cysse s'implante dans le design, la
-        décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a
-        sa manière et est de très haute qualité.</span><br>
-        <span>c'est un savoir faire très rare.</span><br><br>
-        <span>Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques.</span><br>
-        <span>Sur mesure rien que pour vous.</span><br>
-        <span>Fabrication Artisanales Française.</span><br>
+    <div class="fader">
+        <div class="text">
+          <div class="fade">
+            <span>Cysse est une Maison de Plumasserie.</span>
+          </div>
+
+          <div class="fade">
+            <span>Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes.</span>
+          </div>
+
+          <div class="fade">
+            <span>Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver
+                  les merveilles de la nature.</span>
+          </div>
+
+          <div class="fade">
+            <span>Pour parler de la marques, Cysse s'implante dans le design, la
+            décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a
+            sa manière et est de très haute qualité.</span>
+          </div>
+
+          <div class="fade">
+            <span>c'est un savoir faire très rare.</span>
+          </div>
+
+          <div class="fade">
+            <span>Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques.</span>
+          </div>
+
+          <div class="fade">
+            <span>Sur mesure rien que pour vous.</span>
+          </div>
+
+          <div class="fade">
+            <span>Fabrication Artisanales Française.</span>
+          </div>
+
+        </div>
     </div>
+    <a class="section10"><span></span></a>
   </div>
 </template>
 
@@ -32,16 +58,116 @@
 import 'web-animations-js'
 
 export default {
-  
+  mounted() {
+    
+
+    $('.text').scroll(function() {
+      
+      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
+      console.log('widow bot' + windowBottom);
+
+      $(".fade").each(function() {
+        
+        /* Check the location of each desired element */
+        var objectBottom = $(this).offset().top + $(this).outerHeight();
+        console.log(objectBottom);
+        /* If the element is completely within bounds of the window, fade it in */
+        if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+          if ($(this).css("opacity")==0) {$(this).fadeTo(500,1);}
+        } else { //object goes out of view (scrolling up)
+          if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
+        }
+      });
+    }).scroll();
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
+.fade {
+  margin: 50px 0 50px 0;
+  padding: 50px 0 50px 0;
+  width: 100%;
+  height: 80%;
+  opacity: 1;
+}
+
+.fade span {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.section10 {
+  margin-top: 120px;
+  padding-top: 60px;
+}
+.section10 span {
+  position: absolute;
+  left: 50%;
+  width: 30px;
+  height: 50px;
+  margin-left: -15px;
+  border: 2px solid #000;
+  border-radius: 50px;
+  box-sizing: border-box;
+}
+.section10 span::before {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  background-color: #000;
+  border-radius: 100%;
+  -webkit-animation: sdb10 2s infinite;
+  animation: sdb10 2s infinite;
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes sdb10 {
+  0% {
+    -webkit-transform: translate(0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: translate(0, 20px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sdb10 {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    transform: translate(0, 20px);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 h2 {
   margin-left:30%;
   display: flex;
   align-items: center;
   width: 40%;
+  height: 40%;
   font-size: 60pt;
   font-family: "Dancing Script";
 }
@@ -54,8 +180,19 @@ h2 span {
 }
 
 .text {
-  margin-left: 15%;
-  width: 70%;
+  display: block;
+  text-align: center;
+  height: 100%;
+  overflow: scroll;
+}
+
+.fader {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  width: 90%;
+  height: 40%;
+  display: block;
   text-align: center;
 }
 
@@ -66,48 +203,18 @@ h2 span {
 
 .visit-card{
     width: 100%;
-    height: 20%;
+    height: 30%;
+    overflow: hidden;
 }
 
 .Subtitle{
+  position: relative;
   margin-top: 1%;
   text-align: center;
   width: 100%;
+  height: 50%;
   color: black;
   font-size: 30pt;
   font-family: "Sorts Mill Goudy";
-}
-
-blockquote{
-  text-align: center;
-  border-left: none;
-  margin-top: 150px;
-  font-size: 18pt;
-  -webkit-transform-style: preserve-3d;
-}
-q{
-  color: black;
-}
-cite{
-  display: block;
-  text-align: right;
-  margin-top: 1rem;
-  font-size: 18pt;
-  color: black;
-  font-style: normal;
-}
-blockquote q{
-  font-family: "Sorts Mill Goudy";
-  font-style: italic;
-  letter-spacing: 1pt;
-}
-blockquote q span{
-  will-change: opacity, filter;
-  opacity: 0;
-  filter: blur(0px);
-  -webkit-filter: blur(0px);
-}
-q:before{
-    display: none;
 }
 </style>
