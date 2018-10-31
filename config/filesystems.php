@@ -73,6 +73,15 @@ return [
             'visibility' => 'public',
         ],
 
+        'wasabi' => [
+            'driver' => 's3',
+            'key' => env('WASABI_KEY'),
+            'endpoint' => 'http://s3.wasabisys.com',
+            'secret' => env('WASABI_SECRET'),
+            'region' => env('WASABI_REGION'),
+            'bucket' => env('WASABI_BUCKET'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

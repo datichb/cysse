@@ -59,32 +59,18 @@ import 'web-animations-js'
 
 export default {
   mounted() {
-    
-
-    $('.text').scroll(function() {
-      
-      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
-      console.log('widow bot' + windowBottom);
-
-      $(".fade").each(function() {
-        
-        /* Check the location of each desired element */
-        var objectBottom = $(this).offset().top + $(this).outerHeight();
-        console.log(objectBottom);
-        /* If the element is completely within bounds of the window, fade it in */
-        if (objectBottom < windowBottom) { //object comes into view (scrolling down)
-          if ($(this).css("opacity")==0) {$(this).fadeTo(500,1);}
-        } else { //object goes out of view (scrolling up)
-          if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
-        }
-      });
-    }).scroll();
+    setInterval(function() {
+      $('.text').animate({
+              scrollTop: $('.text').offset().top + 100
+          }, 'slow');
+    }, 1000);
   }
 }
 </script>
 
 <style lang="scss">
 .fade {
+  border: solid;
   margin: 50px 0 50px 0;
   padding: 50px 0 50px 0;
   width: 100%;
@@ -184,6 +170,7 @@ h2 span {
   text-align: center;
   height: 100%;
   overflow: scroll;
+  border: solid;
 }
 
 .fader {

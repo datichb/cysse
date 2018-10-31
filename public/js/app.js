@@ -16626,31 +16626,11 @@ module.exports = Cancel;
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   mounted: function mounted() {
-
-    $('.text').scroll(function () {
-
-      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
-      console.log('widow bot' + windowBottom);
-
-      $(".fade").each(function () {
-
-        /* Check the location of each desired element */
-        var objectBottom = $(this).offset().top + $(this).outerHeight();
-        console.log(objectBottom);
-        /* If the element is completely within bounds of the window, fade it in */
-        if (objectBottom < windowBottom) {
-          //object comes into view (scrolling down)
-          if ($(this).css("opacity") == 0) {
-            $(this).fadeTo(500, 1);
-          }
-        } else {
-          //object goes out of view (scrolling up)
-          if ($(this).css("opacity") == 1) {
-            $(this).fadeTo(500, 0);
-          }
-        }
-      });
-    }).scroll();
+    setInterval(function () {
+      $('.text').animate({
+        scrollTop: $('.text').offset().top + 100
+      }, 'slow');
+    }, 1000);
   }
 });
 
@@ -16716,6 +16696,11 @@ module.exports = Cancel;
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+  data: function data() {
+    return {
+      current: ''
+    };
+  },
   mounted: function mounted() {
 
     $('.text').scroll(function () {
@@ -63468,7 +63453,7 @@ if (false) {
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(180)
+  __webpack_require__(83)
 }
 /* script */
 
@@ -63515,8 +63500,47 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 83 */,
-/* 84 */,
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(84);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(1).default
+var update = add("c4c8a25a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade {\n  border: solid;\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n  border: solid;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63620,7 +63644,7 @@ if (false) {
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(184)
+  __webpack_require__(87)
 }
 /* script */
 
@@ -63667,8 +63691,47 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 87 */,
-/* 88 */,
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(88);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(1).default
+var update = add("1841e193", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade {\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73398,101 +73461,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(181);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__(1).default
-var update = add("c4c8a25a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Mark.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.fade {\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 182 */,
-/* 183 */,
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(185);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__(1).default
-var update = add("1841e193", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/sass-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Artist.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.fade {\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

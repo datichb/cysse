@@ -53,6 +53,11 @@
 import 'web-animations-js'
 
 export default {
+  data() {
+    return {
+      current :'',
+    }
+  },
   mounted() {
     
 
