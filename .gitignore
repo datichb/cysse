@@ -12,3 +12,10 @@ yarn-error.log
 *.dockerfile
 docker-compose*
 /.vscode
+.dockerignore
+.DS_Store
+.editorconfig
+/.git
+.gitattributes
+Envoy.blade.php
+vhost.conf
