@@ -46,16 +46,16 @@ class CollectionController extends Controller
         $collection->paint = $paint;
         
         foreach ($collection->paint as $key => $value) {
-            $value->image = Storage::disk('local')->get('painting/'.$value->name.'/'.$value->name.'.txt');
+            $value->image = Storage::disk('local')->get('painting/'.$value->name.'/'.$value->name.'.jpeg');
         }
         
-        $collection->img = Storage::disk('local')->get('collection/'.$collection->name.'/'.$collection->name.'.txt');
+        $collection->img = Storage::disk('local')->get('collection/'.$collection->name.'/'.$collection->name.'.jpeg');
         $collection->paints = array();
         
         $nbCollection = Collection::select('id', 'name')->get()->values();
 
         foreach ($nbCollection as $key => $value) {
-            $value->icon = Storage::disk('local')->get('collection_icon/'.$value->name.'/'.$value->name.'.txt');
+            $value->icon = Storage::disk('local')->get('collection_icon/'.$value->name.'/'.$value->name.'.png');
         }
 
         return view('collections.index', compact('collection', 'nbCollection'));
@@ -80,7 +80,7 @@ class CollectionController extends Controller
         $paintings = Painting::all()->where('id_col', '=', NULL);
 
         foreach ($paintings as $key => $value) {
-            $value->image = Storage::disk('local')->get('painting/'.$value->name.'/'.$value->name.'.txt');
+            $value->image = Storage::disk('local')->get('painting/'.$value->name.'/'.$value->name.'.jpeg');
         }
 
         $paintings = $paintings->values();
@@ -102,10 +102,10 @@ class CollectionController extends Controller
         $collection->paint = $paint;
         
         foreach ($collection->paint as $key => $value) {
-            $value->image = Storage::disk('local')->get('painting/'.$value->name.'/'.$value->name.'.txt');
+            $value->image = Storage::disk('local')->get('painting/'.$value->name.'/'.$value->name.'.jpeg');
         }
         
-        $collection->img = Storage::disk('local')->get('collection/'.$collection->name.'/'.$collection->name.'.txt');
+        $collection->img = Storage::disk('local')->get('collection/'.$collection->name.'/'.$collection->name.'.jpeg');
         $collection->paints = array();
 
         return compact('collection');
@@ -121,7 +121,7 @@ class CollectionController extends Controller
 	 */
     public function store(Request $request)
     {
-        Storage::disk('local')->put('collection/'.request('name').'/'.request('name').'.txt', request('file'));
+        Storage::disk('local')->put('collection/'.request('name').'/'.request('name').'.jpeg', request('file'));
 
         $this->validate($request, [
             'name' => 'required|max:50',
@@ -134,7 +134,7 @@ class CollectionController extends Controller
             'id_type' => request('coltype')
         ]);
 
-        Storage::disk('local')->put('collection_icon/'.request('name').'/'.request('name').'.txt', request('iconfile'));
+        Storage::disk('local')->put('collection_icon/'.request('name').'/'.request('name').'.png', request('iconfile'));
 
         foreach(request('paints') as $key => $value) {
             Paint_on_col::create([
@@ -167,7 +167,7 @@ class CollectionController extends Controller
 
         $name = Collection::select('name')->where('id', request('id'))->get();
 
-        Storage::disk('local')->delete('painting/'.$name[0]->name.'/'.$name[0]->name.'.txt');
+        Storage::disk('local')->delete('painting/'.$name[0]->name.'/'.$name[0]->name.'.jpeg');
         Collection::where('id', request('id'))->delete();
     }
 

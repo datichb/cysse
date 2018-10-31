@@ -12,7 +12,7 @@
                                     id="pictureInput"
                                     ref="pictureInput"
                                     @change="onChange"
-                                    accept="image/jpg,image/jpeg,image/png" 
+                                    accept="image/jpeg" 
                                     buttonClass="btn"
                                     :customStrings="{
                                         upload: '<h1>Bummer!</h1>',
