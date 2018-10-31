@@ -12,7 +12,7 @@
                                     id="pictureInput"
                                     ref="pictureInput" 
                                     @change="onChange"
-                                    accept="image/jpg,image/jpeg,image/png" 
+                                    accept="image/jpeg" 
                                     size="10" 
                                     buttonClass="btn"
                                     :customStrings="{
