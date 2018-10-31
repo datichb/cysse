@@ -49,8 +49,6 @@ class HomeController extends Controller
 
     public function email(Request $request)
     {
-        \Mail::to(request('email'))->send(new Contact(request('fullname'), request('message')));
-
-        return true;
+        return \Mail::to(request('email'))->send(new Contact(request('fullname'), request('email'), request('message')));
     }
 }
