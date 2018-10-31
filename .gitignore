@@ -10,5 +10,5 @@ yarn-error.log
 /public/images
 /storage
 *.dockerfile
-docker-composer*
+docker-compose*
 /.vscode
