@@ -3,7 +3,7 @@
     <div class="visit-card">
         <h2>Rejoignez-nous sur les réseaux sociaux !</h2>
         <div class="row" style="margin-top: 2.5%;width: 100%;">
-          <div class="insta col-md-4 col-md-offset-1">
+          <div class="insta">
             <div id="instafeed" class="instagram-media">
               <div class="instafeed-gallery">
                 <div class="header">
@@ -37,8 +37,8 @@
               <div class="post-modal-backdrop"></div>
             </div>
           </div>
-          <div class="fb col-md-4 col-md-offset-2">
-            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCyssemaisondeplumasserie%2F&tabs=timeline&width=400&height=650&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=255095238530504" 
+          <div class="fb">
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCyssemaisondeplumasserie%2F&tabs=timeline&width=325&height=650&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=255095238530504" 
                 width="100%" height="100%" style="border:none;overflow:hidden" adapt_container_width="true" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
           </div>
         </div>
@@ -228,17 +228,23 @@ export default {
 
 <style lang="css">
 .insta {
+  margin-left: 2%;
   padding: 0.5%;
   -moz-background: -moz-linear-gradient(top, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
   -webkit-background: -webkit-linear-gradient(top, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
   background: linear-gradient(210deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-  height: 75vh;
+  height: 65vh;
+  width: 42%;
+  float: left;
 }
 
 .fb {
   background-color: #3B5998;
-  height: 75vh;
+  height: 65vh;
+  width: 42%;
   padding: 0.5%;
+  float: left;
+  margin-left: 14%;
 }
 
 h2 {

@@ -133,7 +133,7 @@
             @yield('content')
 
             <div class="footer footer-panel modal-footer">
-                <p>®All rights reserved to Cysse.com. Made by Benjamin Datiche</p>
+                <p>®All rights reserved to cyssemaisondeplumasserie.com.</p>
             </div>
         </div>
     </div>
