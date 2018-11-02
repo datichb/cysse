@@ -63168,11 +63168,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "visit-card" }, [
         _c("h2", [
           _c("span"),
-          _vm._v("\n          Cysse "),
-          _c("h3", { staticStyle: { "margin-left": "5%" } }, [
-            _vm._v("Version Bêta")
-          ]),
-          _vm._v(" "),
+          _vm._v("\n          Cysse\n          "),
           _c("span")
         ]),
         _vm._v(" "),

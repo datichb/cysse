@@ -4,7 +4,7 @@
       <div class="visit-card">
           <h2>
             <span></span>
-            Cysse <h3 style="margin-left: 5%;">Version Bêta</h3>
+            Cysse
             <span></span>
           </h2>
           <p class="Subtitle">
