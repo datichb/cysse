@@ -79,7 +79,7 @@ export default {
 <style>
 
 h2 {
-    margin-left:30%;
+    margin-left:26%;
     display: flex;
     align-items: center;
     width: 50%;
