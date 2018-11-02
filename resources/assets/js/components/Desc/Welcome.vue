@@ -82,7 +82,7 @@ h2 {
     margin-left:30%;
     display: flex;
     align-items: center;
-    width: 40%;
+    width: 50%;
     font-size: 60pt;
     font-family: "Dancing Script";
 }
