@@ -36,3 +36,8 @@ COPY . /var/www
 
 RUN chown -R www-data:www-data /var/www/storage
 RUN chown -R www-data:www-data /var/www/bootstrap/cache
+
+RUN php artisan cache:clear
+RUN php artisan config:clear
+RUN php artisan config:cache
+RUN php artisan route:cache
