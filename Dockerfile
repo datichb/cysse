@@ -33,3 +33,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && rm composer.phar
 
 COPY . /var/www
+
+RUN chown -R www-data:www-data /var/www/storage
+RUN chown -R www-data:www-data /var/www/bootstrap/cache
