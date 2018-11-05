@@ -1,3 +1,4 @@
+FROM datichb/nginx-web:latest
 FROM php:7.2-fpm
 
 COPY composer.lock composer.json /var/www/
