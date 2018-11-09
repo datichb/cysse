@@ -16411,51 +16411,12 @@ module.exports = Cancel;
 //
 //
 //
-//
 
 /* eslint-disable */
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  methods: {
-    splitWords: function splitWords() {
-      document.querySelector('blockquote').find('q').each(function () {
-        quote[i].innerText.replace(/(<([^>]+)>)/ig, '');
-        var quotewords = quote[i].innerText.split(' '),
-            wordCount = quotewords.length;
-        quote[i].innerHTML = '';
-        for (var _i = 0; _i < wordCount; _i++) {
-          quote[_i].innerHTML += '<span>' + quotewords[_i] + '</span>';
-          if (_i < quotewords.length - 1) {
-            quote[_i].innerHTML += ' ';
-          }
-        }
-        quotewords = document.querySelectorAll('blockquote q span');
-        this.fadeWords(this, quotewords);
-      });
-    },
-    getRandom: function getRandom(min, max) {
-      return Math.random() * (max - min) + min;
-    },
-    fadeWords: function fadeWords(comp, quotewords) {
-      Array.prototype.forEach.call(quotewords, function (word) {
-        var animate = word.animate([{
-          opacity: 0,
-          filter: 'blur(' + comp.getRandom(2, 5) + 'px)'
-        }, {
-          opacity: 1,
-          filter: 'blur(0px)'
-        }], {
-          duration: 1000,
-          delay: comp.getRandom(500, 3300),
-          fill: 'forwards'
-        });
-      });
-    }
-  },
-  mounted: function mounted() {
-    this.splitWords();
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -16738,11 +16699,32 @@ module.exports = Cancel;
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   mounted: function mounted() {
-    setInterval(function () {
-      $('.text').animate({
-        scrollTop: $('.text').offset().top + 100
-      }, 'slow');
-    }, 1000);
+    var v = this;
+    var current = $('.fade').first();
+    var $scrolling = false;
+
+    $(v.$refs.text).on('mousewheel', function () {
+      if (!$scrolling) {
+        $scrolling = true;
+        console.log($(v.$refs.text).scrollTop());
+        $(v.$refs.text).animate({
+          scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
+        }, { done: function done() {
+            $scrolling = false;
+          } }, 10000);
+
+        if (current.next().length > 0) {
+          current = current.next('.fade');
+        } else {
+          current = $('.fade').first();
+          $(v.$refs.text).animate({
+            scrollTop: 0
+          }, { done: function done() {
+              $scrolling = false;
+            } }, 'slow');
+        }
+      }
+    });
   }
 });
 
@@ -16808,37 +16790,33 @@ module.exports = Cancel;
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  data: function data() {
-    return {
-      current: ''
-    };
-  },
   mounted: function mounted() {
+    var v = this;
+    var current = $('.fade').first();
+    var $scrolling = false;
 
-    $('.text').scroll(function () {
+    $(v.$refs.text).on('mousewheel', function () {
+      if (!$scrolling) {
+        $scrolling = true;
+        console.log($(v.$refs.text).scrollTop());
+        $(v.$refs.text).animate({
+          scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
+        }, { done: function done() {
+            $scrolling = false;
+          } }, 10000);
 
-      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
-      console.log('widow bot' + windowBottom);
-
-      $(".fade").each(function () {
-
-        /* Check the location of each desired element */
-        var objectBottom = $(this).offset().top + $(this).outerHeight() / 2;
-        console.log(objectBottom);
-        /* If the element is completely within bounds of the window, fade it in */
-        if (objectBottom < windowBottom) {
-          //object comes into view (scrolling down)
-          if ($(this).css("opacity") == 0) {
-            $(this).fadeTo(500, 1);
-          }
+        if (current.next().length > 0) {
+          current = current.next('.fade');
         } else {
-          //object goes out of view (scrolling up)
-          if ($(this).css("opacity") == 1) {
-            $(this).fadeTo(500, 0);
-          }
+          current = $('.fade').first();
+          $(v.$refs.text).animate({
+            scrollTop: 0
+          }, { done: function done() {
+              $scrolling = false;
+            } }, 'slow');
         }
-      });
-    }).scroll();
+      }
+    });
   }
 });
 
@@ -63104,7 +63082,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nh2 {\n    margin-left:26%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 50%;\n    font-size: 60pt;\n    font-family: \"Dancing Script\";\n}\nh2 span {\n    content:\"\";\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n    border-top: 1px solid #000;\n    margin: 20px;\n}\n.visit-card{\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
+exports.push([module.i, "\nh2 {\n    margin-left:26%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    width: 50%;\n    font-size: 60pt;\n    font-family: \"Dancing Script\";\n}\nh2 span {\n    content:\"\";\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n    border-top: 1px solid #000;\n    margin: 20px;\n}\n.visit-card{\n    margin-top: 7%;\n    width: 100%;\n    height: 20%;\n}\n.Subtitle{\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\nblockquote{\n  text-align: center;\n  border-left: none;\n  margin-top: 150px;\n  font-size: 18pt;\n  -webkit-transform-style: preserve-3d;\n}\nq{\n  color: black;\n}\ncite{\n  display: block;\n  text-align: right;\n  margin-top: 1rem;\n  font-size: 18pt;\n  color: black;\n  font-style: normal;\n}\nblockquote q{\n  font-family: \"Sorts Mill Goudy\";\n  font-style: italic;\n  letter-spacing: 1pt;\n}\nblockquote q span{\n  will-change: opacity, filter;\n  opacity: 0;\n  filter: blur(0px);\n  -webkit-filter: blur(0px);\n}\nq:before{\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -63163,8 +63141,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "content" }, [
-      _c("div", { staticStyle: { height: "20%" } }),
-      _vm._v(" "),
       _c("div", { staticClass: "visit-card" }, [
         _c("h2", [
           _c("span"),
@@ -63183,7 +63159,7 @@ var staticRenderFns = [
           staticStyle: {
             width: "100%",
             "text-align": "center",
-            "margin-top": "5%"
+            "margin-top": "12%"
           }
         },
         [
@@ -63338,7 +63314,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.insta {\n  margin-left: 2%;\n  padding: 0.5%;\n  background: linear-gradient(210deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);\n  height: 65vh;\n  width: 42%;\n  float: left;\n}\n.fb {\n  background-color: #3B5998;\n  height: 65vh;\n  width: 42%;\n  padding: 0.5%;\n  float: left;\n  margin-left: 14%;\n}\nh2 {\n  margin-left:10%;\n  text-align: center;\n  width: 80%;\n  font-size: 30pt;\n  font-family: \"Dancing Script\";\n}\n.visit-card{\n    width: 100%;\n    height: 100%;\n    overflow: hidden;\n}\n#likes {\n    height: 60px;\n}\n#heart {\n  width: 25px;\n  height: 30px;\n  margin-right: 10px;\n  float: left;\n}\n.instagram-media {\n  background:#FFF;\n  border:0;\n  height: 99.5%;\n  -webkit-box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);\n          box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);\n  margin: 1px;\n}\n#imgBack {\n  margin-top: 10px;\n  background:#F8F8F8;\n  line-height:0;\n  margin-left: 0;\n  margin-right: 0;\n  float: left;\n  text-align:center;\n  width:33%;\n}\n#img {\n  display:block;\n  position:relative;\n  width: 100%;\n}\n#user {\n  padding: 4%;\n  height: 60px;\n}\n#userimg {\n  width: 35px;\n  border-radius: 50%;\n  margin-right: 2.5%;\n}\n.arrow,\n.arrow:before{\n  position: absolute;\n  bottom: 7%;\n  left: 49%;\n}\n.arrow{\n  cursor: pointer;\n  width: 40px;\n  height: 40px;\n  margin: -20px 0 0 -20px;\n  -webkit-transform: rotate(45deg);\n  border-left: none;\n  border-top: none;\n  border-right: 2px black solid;\n  border-bottom: 2px black solid;\n}\n.arrow:before{\n  content: '';\n  width: 20px;\n  height: 20px;\n  top: 50%;\n  margin: -10px 0 0 -10px;\n  border-left: none;\n  border-top: none;\n  border-right: 1px black solid;\n  border-bottom: 1px black solid;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-name: arrow;\n          animation-name: arrow;\n}\n.form {\n  background: linear-gradient(210deg, #C0C0C0 0%,#DAA560 100%);\n  height: 80%;\n  margin-top: 2%;\n  padding: 0.5%;\n}\n@-webkit-keyframes arrow{\n0%\n    {opacity: 1;\n}\n100%\n    {opacity: 0;\n    -webkit-transform: translate(-10px, -10px);\n            transform: translate(-10px, -10px);\n}\n}\n@keyframes arrow{\n0%\n    {opacity: 1;\n}\n100%\n    {opacity: 0;\n    -webkit-transform: translate(-10px, -10px);\n            transform: translate(-10px, -10px);\n}\n}\n\n/* Form */\n.container-contact100 {\n  width: 100%;  \n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: relative;\n  z-index: 1;\n}\n.container-contact100::before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  z-index: -1;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  pointer-events: none;\n}\n.wrap-contact100 {\n  width: 98%;\n  height: 98%;\n  background: #fff;\n  border-radius: 5px;\n  overflow: hidden;\n  padding: 5%;\n\n  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n}\n\n\n/*==================================================================\n[ Form ]*/\n.contact100-form {\n  width: 100%;\n  height: 100%;\n}\n.contact100-form-title {\n  display: block;\n  font-family: SourceSansPro-Bold;\n  font-size: 30px;\n  color: #333333;\n  line-height: 1.2;\n  text-align: left;\n  margin-bottom: 2%;\n}\n\n/*------------------------------------------------------------------\n[ Input ]*/\n.wrap-input100 {\n  width: 100%;\n  position: relative;\n  background-color: #fff;\n  border-radius: 20px;\n  margin-bottom: 30px;\n}\n.input100 {\n  display: block;\n  width: 100%;\n  background: transparent;\n  font-family: SourceSansPro-Bold;\n  font-size: 16px;\n  color: #4b2354;\n  line-height: 1.2;\n}\n\n\n/*---------------------------------------------*/\ninput.input100 {\n  height: 62px;\n  padding: 0 20px 0 23px;\n}\ntextarea.input100 {\n  min-height: 199px;\n  padding: 19px 20px 0 23px;\n}\n\n/*------------------------------------------------------------------\n[ Focus Input ]*/\n.focus-input100 {\n  display: block;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  pointer-events: none;\n  border-radius: 20px;\n  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n}\n.input100:focus + .focus-input100 {\n  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n}\n\n/*------------------------------------------------------------------\n[ Button ]*/\n.container-contact100-form-btn {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.contact100-form-btn {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 0 20px;\n  min-width: 160px;\n  height: 42px;\n  background-color: #bd59d4;\n  border-radius: 21px;\n\n  font-family: JosefinSans-Bold;\n  font-size: 14px;\n  color: #fff;\n  line-height: 1.2;\n  text-transform: uppercase;\n  padding-top: 5px;\n\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n\n  box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n}\n.contact100-form-btn:hover {\n  background-color: #4b2354;\n  box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n}\n\n/*------------------------------------------------------------------\n[ Responsive ]*/\n@media (max-width: 768px) {\n.wrap-contact100 {\n    padding: 72px 50px 25px 50px;\n}\n}\n@media (max-width: 576px) {\n.wrap-contact100 {\n    padding: 72px 15px 25px 15px;\n}\n}\n\n\n/*------------------------------------------------------------------\n[ Alert validate ]*/\n.validate-input {\n  position: relative;\n}\n.alert-validate .focus-input100 {\n  box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -moz-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -webkit-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -o-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -ms-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n}\n.alert-validate::before {\n  content: attr(data-validate);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  width: 100%;\n  min-height: 62px;\n  background-color: #fff;\n  border-radius: 20px;\n  top: 0px;\n  left: 0px;\n  padding: 0 45px 0 22px;\n  pointer-events: none;\n\n  font-family: SourceSansPro-Bold;\n  font-size: 16px;\n  color: #fa4251;\n  line-height: 1.2;\n}\n.btn-hide-validate {\n  font-family: Material-Design-Iconic-Font;\n  font-size: 15px;\n  color: #fa4251;\n  cursor: pointer;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: absolute;\n  height: 62px;\n  top: 0px;\n  right: 28px;\n}\n.rs1-alert-validate.alert-validate::before {\n  background-color: #fff;\n}\n.true-validate::after {\n  content: \"\\F269\";\n  font-family: Material-Design-Iconic-Font;\n  font-size: 15px;\n  color: #57b846;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: absolute;\n  height: 62px;\n  top: 0px;\n  right: 28px;\n}\n\n/*---------------------------------------------*/\n@media (max-width: 576px) {\n.alert-validate::before {\n    padding: 0 30px 0 10px;\n}\n.true-validate::after,\n  .btn-hide-validate {\n    right: 10px;\n}\n}\n\n\n/*==================================================================\n[ Contact more ]*/\n.contact100-more {\n  font-family: SourceSansPro-Regular;\n  font-size: 16px;\n  color: #999999;\n  line-height: 1.5;\n  text-align: center;\n}\n.contact100-more-highlight {\n  color: #bd59d4;\n}\ninput {\n\toutline: none;\n\tborder: none;\n}\ntextarea {\n  outline: none;\n  border: none;\n}\ntextarea:focus, input:focus {\n  border-color: transparent !important;\n}\ninput::-webkit-input-placeholder { color: #999999;\n}\ninput:-moz-placeholder { color: #999999;\n}\ninput::-moz-placeholder { color: #999999;\n}\ninput:-ms-input-placeholder { color: #999999;\n}\ntextarea::-webkit-input-placeholder { color: #999999;\n}\ntextarea:-moz-placeholder { color: #999999;\n}\ntextarea::-moz-placeholder { color: #999999;\n}\ntextarea:-ms-input-placeholder { color: #999999;\n}\n\n/*---------------------------------------------*/\nbutton {\n\toutline: none !important;\n\tborder: none;\n\tbackground: transparent;\n}\nbutton:hover {\n\tcursor: pointer;\n}\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.insta {\n  margin-left: 15%;\n  padding: 0.5%;\n  background: linear-gradient(210deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);\n  height: 520px;\n  width: 325px;\n  float: left;\n}\n.fb {\n  background-color: #3B5998;\n  height: 520px;\n  width: 325px;\n  padding: 0.5%;\n  float: right;\n  margin-right: 15%;\n}\nh2 {\n  margin-left:10%;\n  text-align: center;\n  width: 80%;\n  font-size: 30pt;\n  font-family: \"Dancing Script\";\n}\n.visit-card{\n    width: 100%;\n    height: 100%;\n    overflow: hidden;\n}\n#likes {\n    height: 60px;\n}\n#heart {\n  width: 25px;\n  height: 30px;\n  margin-right: 10px;\n  float: left;\n}\n.instagram-media {\n  background:#FFF;\n  border:0;\n  height: 99.5%;\n  -webkit-box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);\n          box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);\n  margin: 1px;\n}\n#imgBack {\n  margin-top: 10px;\n  background:#F8F8F8;\n  line-height:0;\n  margin-left: 0;\n  margin-right: 0;\n  float: left;\n  text-align:center;\n  width:33%;\n}\n#img {\n  display:block;\n  position:relative;\n  width: 100%;\n}\n#user {\n  padding: 4%;\n  height: 60px;\n}\n#userimg {\n  width: 35px;\n  border-radius: 50%;\n  margin-right: 2.5%;\n}\n.arrow,\n.arrow:before{\n  position: absolute;\n  bottom: 7%;\n  left: 49%;\n}\n.arrow{\n  cursor: pointer;\n  width: 40px;\n  height: 40px;\n  margin: -20px 0 0 -20px;\n  -webkit-transform: rotate(45deg);\n  border-left: none;\n  border-top: none;\n  border-right: 2px black solid;\n  border-bottom: 2px black solid;\n}\n.arrow:before{\n  content: '';\n  width: 20px;\n  height: 20px;\n  top: 50%;\n  margin: -10px 0 0 -10px;\n  border-left: none;\n  border-top: none;\n  border-right: 1px black solid;\n  border-bottom: 1px black solid;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n  -webkit-animation-iteration-count: infinite;\n          animation-iteration-count: infinite;\n  -webkit-animation-name: arrow;\n          animation-name: arrow;\n}\n.form {\n  background: linear-gradient(210deg, #C0C0C0 0%,#DAA560 100%);\n  height: 80%;\n  margin-top: 2%;\n  padding: 0.5%;\n}\n@-webkit-keyframes arrow{\n0%\n    {opacity: 1;\n}\n100%\n    {opacity: 0;\n    -webkit-transform: translate(-10px, -10px);\n            transform: translate(-10px, -10px);\n}\n}\n@keyframes arrow{\n0%\n    {opacity: 1;\n}\n100%\n    {opacity: 0;\n    -webkit-transform: translate(-10px, -10px);\n            transform: translate(-10px, -10px);\n}\n}\n\n/* Form */\n.container-contact100 {\n  width: 100%;  \n  height: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: relative;\n  z-index: 1;\n}\n.container-contact100::before {\n  content: \"\";\n  display: block;\n  position: absolute;\n  z-index: -1;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  pointer-events: none;\n}\n.wrap-contact100 {\n  width: 98%;\n  height: 98%;\n  background: #fff;\n  border-radius: 5px;\n  overflow: hidden;\n  padding: 5%;\n\n  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n  -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);\n}\n\n\n/*==================================================================\n[ Form ]*/\n.contact100-form {\n  width: 100%;\n  height: 100%;\n}\n.contact100-form-title {\n  display: block;\n  font-family: SourceSansPro-Bold;\n  font-size: 30px;\n  color: #333333;\n  line-height: 1.2;\n  text-align: left;\n  margin-bottom: 2%;\n}\n\n/*------------------------------------------------------------------\n[ Input ]*/\n.wrap-input100 {\n  width: 100%;\n  position: relative;\n  background-color: #fff;\n  border-radius: 20px;\n  margin-bottom: 30px;\n}\n.input100 {\n  display: block;\n  width: 100%;\n  background: transparent;\n  font-family: SourceSansPro-Bold;\n  font-size: 16px;\n  color: #4b2354;\n  line-height: 1.2;\n}\n\n\n/*---------------------------------------------*/\ninput.input100 {\n  height: 62px;\n  padding: 0 20px 0 23px;\n}\ntextarea.input100 {\n  min-height: 199px;\n  padding: 19px 20px 0 23px;\n}\n\n/*------------------------------------------------------------------\n[ Focus Input ]*/\n.focus-input100 {\n  display: block;\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  pointer-events: none;\n  border-radius: 20px;\n  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n  -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);\n\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n}\n.input100:focus + .focus-input100 {\n  box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n  -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);\n}\n\n/*------------------------------------------------------------------\n[ Button ]*/\n.container-contact100-form-btn {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.contact100-form-btn {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 0 20px;\n  min-width: 160px;\n  height: 42px;\n  background-color: #bd59d4;\n  border-radius: 21px;\n\n  font-family: JosefinSans-Bold;\n  font-size: 14px;\n  color: #fff;\n  line-height: 1.2;\n  text-transform: uppercase;\n  padding-top: 5px;\n\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n\n  box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n  -ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);\n}\n.contact100-form-btn:hover {\n  background-color: #4b2354;\n  box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n  -ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);\n}\n\n/*------------------------------------------------------------------\n[ Responsive ]*/\n@media (max-width: 768px) {\n.wrap-contact100 {\n    padding: 72px 50px 25px 50px;\n}\n}\n@media (max-width: 576px) {\n.wrap-contact100 {\n    padding: 72px 15px 25px 15px;\n}\n}\n\n\n/*------------------------------------------------------------------\n[ Alert validate ]*/\n.validate-input {\n  position: relative;\n}\n.alert-validate .focus-input100 {\n  box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -moz-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -webkit-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -o-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n  -ms-box-shadow: 0 5px 20px 0px rgba(250, 66, 81, 0.1);\n}\n.alert-validate::before {\n  content: attr(data-validate);\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: absolute;\n  width: 100%;\n  min-height: 62px;\n  background-color: #fff;\n  border-radius: 20px;\n  top: 0px;\n  left: 0px;\n  padding: 0 45px 0 22px;\n  pointer-events: none;\n\n  font-family: SourceSansPro-Bold;\n  font-size: 16px;\n  color: #fa4251;\n  line-height: 1.2;\n}\n.btn-hide-validate {\n  font-family: Material-Design-Iconic-Font;\n  font-size: 15px;\n  color: #fa4251;\n  cursor: pointer;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: absolute;\n  height: 62px;\n  top: 0px;\n  right: 28px;\n}\n.rs1-alert-validate.alert-validate::before {\n  background-color: #fff;\n}\n.true-validate::after {\n  content: \"\\F269\";\n  font-family: Material-Design-Iconic-Font;\n  font-size: 15px;\n  color: #57b846;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  position: absolute;\n  height: 62px;\n  top: 0px;\n  right: 28px;\n}\n\n/*---------------------------------------------*/\n@media (max-width: 576px) {\n.alert-validate::before {\n    padding: 0 30px 0 10px;\n}\n.true-validate::after,\n  .btn-hide-validate {\n    right: 10px;\n}\n}\n\n\n/*==================================================================\n[ Contact more ]*/\n.contact100-more {\n  font-family: SourceSansPro-Regular;\n  font-size: 16px;\n  color: #999999;\n  line-height: 1.5;\n  text-align: center;\n}\n.contact100-more-highlight {\n  color: #bd59d4;\n}\ninput {\n\toutline: none;\n\tborder: none;\n}\ntextarea {\n  outline: none;\n  border: none;\n}\ntextarea:focus, input:focus {\n  border-color: transparent !important;\n}\ninput::-webkit-input-placeholder { color: #999999;\n}\ninput:-moz-placeholder { color: #999999;\n}\ninput::-moz-placeholder { color: #999999;\n}\ninput:-ms-input-placeholder { color: #999999;\n}\ntextarea::-webkit-input-placeholder { color: #999999;\n}\ntextarea:-moz-placeholder { color: #999999;\n}\ntextarea::-moz-placeholder { color: #999999;\n}\ntextarea:-ms-input-placeholder { color: #999999;\n}\n\n/*---------------------------------------------*/\nbutton {\n\toutline: none !important;\n\tborder: none;\n\tbackground: transparent;\n}\nbutton:hover {\n\tcursor: pointer;\n}\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64234,7 +64210,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.fade {\n  border: solid;\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n  border: solid;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
+exports.push([module.i, "\n.fade {\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 100%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
 
 // exports
 
@@ -64250,76 +64226,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "content" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "fader" }, [
+      _c("div", { ref: "text", staticClass: "text" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _vm._m(6),
+        _vm._v(" "),
+        _vm._m(7),
+        _vm._v(" "),
+        _vm._m(8)
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(9)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "visit-card" }, [
-        _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "Subtitle" }, [
-          _vm._v("\n          La marque\n      ")
-        ])
-      ]),
+    return _c("div", { staticClass: "visit-card" }, [
+      _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
       _vm._v(" "),
-      _c("div", { staticClass: "fader" }, [
-        _c("div", { staticClass: "text" }, [
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [_vm._v("Cysse est une Maison de Plumasserie.")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver\n                les merveilles de la nature."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Pour parler de la marques, Cysse s'implante dans le design, la\n          décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a\n          sa manière et est de très haute qualité."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [_vm._v("c'est un savoir faire très rare.")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [_vm._v("Sur mesure rien que pour vous.")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [_vm._v("Fabrication Artisanales Française.")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "section10" }, [_c("span")])
+      _c("p", { staticClass: "Subtitle" }, [
+        _vm._v("\n          La marque\n      ")
+      ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [_vm._v("Cysse est une Maison de Plumasserie.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Pour être plus précis, nous parlons ici du travail de la plume sous toutes ses formes."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Cela vous est présenté dans le respect de la Convention de Washington qui certifie l'utilisation d'oiseaux d'élevages. Cysse s'engage donc a respecter les espèces protégées afin de conserver\n                les merveilles de la nature."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Pour parler de la marques, Cysse s'implante dans le design, la\n          décoration principalement dans les Tableaux pour embellir le quotidien et y apporter une touche unique au sens exceptionnel. Délicat, raffiné et d'une minutie visible chaque œuvre est unique a\n          sa manière et est de très haute qualité."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [_vm._v("c'est un savoir faire très rare.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Cysse reste un esprit totalement ouvert et c'est pour cela que nous restons a l'écoute de vos demandes pour collaborer avec vous sur des projets uniques."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [_vm._v("Sur mesure rien que pour vous.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [_vm._v("Fabrication Artisanales Française.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "section10" }, [_c("span")])
   }
 ]
 render._withStripped = true
@@ -64425,7 +64455,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.fade {\n  margin: 50px 0 50px 0;\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 80%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow: scroll;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
+exports.push([module.i, "\n.fade {\n  padding: 50px 0 50px 0;\n  width: 100%;\n  height: 100%;\n  opacity: 1;\n}\n.fade span {\n  position: relative;\n  float: left;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n.section10 {\n  margin-top: 120px;\n  padding-top: 60px;\n}\n.section10 span {\n  position: absolute;\n  left: 50%;\n  width: 30px;\n  height: 50px;\n  margin-left: -15px;\n  border: 2px solid #000;\n  border-radius: 50px;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.section10 span::before {\n  position: absolute;\n  top: 10px;\n  left: 50%;\n  content: '';\n  width: 6px;\n  height: 6px;\n  margin-left: -3px;\n  background-color: #000;\n  border-radius: 100%;\n  -webkit-animation: sdb10 2s infinite;\n  animation: sdb10 2s infinite;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n@-webkit-keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes sdb10 {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n    opacity: 0;\n}\n40% {\n    opacity: 1;\n}\n80% {\n    -webkit-transform: translate(0, 20px);\n            transform: translate(0, 20px);\n    opacity: 0;\n}\n100% {\n    opacity: 0;\n}\n}\nh2 {\n  margin-left: 30%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  width: 40%;\n  height: 40%;\n  font-size: 60pt;\n  font-family: \"Dancing Script\";\n}\nh2 span {\n  content: \"\";\n  -webkit-box-flex: 1;\n      -ms-flex: 1 1 auto;\n          flex: 1 1 auto;\n  border-top: 1px solid #000;\n  margin: 20px;\n}\n.text {\n  display: block;\n  text-align: center;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.fader {\n  margin-top: 5%;\n  margin-left: 5%;\n  margin-bottom: 5%;\n  width: 90%;\n  height: 40%;\n  display: block;\n  text-align: center;\n}\n.text span {\n  font-size: 14pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n.visit-card {\n  width: 100%;\n  height: 30%;\n  overflow: hidden;\n}\n.Subtitle {\n  position: relative;\n  margin-top: 1%;\n  text-align: center;\n  width: 100%;\n  height: 50%;\n  color: black;\n  font-size: 30pt;\n  font-family: \"Sorts Mill Goudy\";\n}\n", ""]);
 
 // exports
 
@@ -64441,80 +64471,128 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "content" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "fader" }, [
+      _c("div", { ref: "text", staticClass: "text" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _vm._m(6),
+        _vm._v(" "),
+        _vm._m(7)
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(8)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "visit-card" }, [
-        _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
-        _vm._v(" "),
-        _c("p", { staticClass: "Subtitle" }, [
-          _vm._v("\n          L'artiste\n      ")
-        ])
-      ]),
+    return _c("div", { staticClass: "visit-card" }, [
+      _c("h2", [_c("span"), _vm._v("\n        Cysse\n        "), _c("span")]),
       _vm._v(" "),
-      _c("div", { staticClass: "fader" }, [
-        _c("div", { staticClass: "text" }, [
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Mais pour en arrver la elle a dans un premier temps fait des études d'Art dans différentes écoles de Paris tel que Auguste Renoir, Lisaa ou encore l'ENSAAMA Olivier de serres, ou elle a pu\n            apprendre et développer sa créativité."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Au fil des années et ayant la volonté de se perfectionner dans un\n            savoir faire unique . Elle se dirigera vers le lycée Octave Feuillet, seul établissement apportant la formations de plumasserie."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "De la, ne cessera de se développer son amour pour la plumes, les oiseaux et leur couleurs."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Ayant finit ses études elle découvrit l'entreprise Lemarié qui lui permit de perfectionner son savoir faire et de travailler grâce a eux sur de grand projets pour de grands Noms tel que Chanel, Valentino, Dior, St Laurent."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [
-              _vm._v(
-                "Fière de cette passion et tout en continuant ses collaborations, elle nous propose aujourd'hui sa marque, Cysse pour embellir notre quotidien."
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "fade" }, [
-            _c("span", [_vm._v("Une Touche unique pour intérieur.")])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "section10" }, [_c("span")])
+      _c("p", { staticClass: "Subtitle" }, [
+        _vm._v("\n          L'artiste\n      ")
+      ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Mais pour en arrver la elle a dans un premier temps fait des études d'Art dans différentes écoles de Paris tel que Auguste Renoir, Lisaa ou encore l'ENSAAMA Olivier de serres, ou elle a pu\n            apprendre et développer sa créativité."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Au fil des années et ayant la volonté de se perfectionner dans un\n            savoir faire unique . Elle se dirigera vers le lycée Octave Feuillet, seul établissement apportant la formations de plumasserie."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "De la, ne cessera de se développer son amour pour la plumes, les oiseaux et leur couleurs."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Ayant finit ses études elle découvrit l'entreprise Lemarié qui lui permit de perfectionner son savoir faire et de travailler grâce a eux sur de grand projets pour de grands Noms tel que Chanel, Valentino, Dior, St Laurent."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [
+        _vm._v(
+          "Fière de cette passion et tout en continuant ses collaborations, elle nous propose aujourd'hui sa marque, Cysse pour embellir notre quotidien."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "fade" }, [
+      _c("span", [_vm._v("Une Touche unique pour intérieur.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "section10" }, [_c("span")])
   }
 ]
 render._withStripped = true
@@ -74117,7 +74195,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.preload {\n    background-color: #FEFBFA;\n    z-index: 50000;\n    position: absolute;\n    top: 0;\n    left: 0;\n    transition: opacity 1.5s ease-out;\n    -webkit-transition: opacity 1.5s ease-out;\n    width: 100%;\n    height: 100%;\n}\n.preload object {\n    margin-top: 25%;\n    margin-left: 47%;\n}\n", ""]);
+exports.push([module.i, "\n.preload {\n    background-color: #FEFBFA;\n    z-index: 50000;\n    position: absolute;\n    top: 0;\n    left: 0;\n    transition: opacity 1.5s ease-out;\n    -webkit-transition: opacity 1.5s ease-out;\n    width: 100%;\n    height: 100%;\n}\n.preload object {\n    position: absolute;\n    top: 40%;\n    left: 45%;\n    width: 10%;\n    height: 10%;\n}\n", ""]);
 
 // exports
 

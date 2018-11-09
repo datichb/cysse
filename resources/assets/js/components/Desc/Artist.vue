@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="fader">
-        <div class="text">
+        <div ref="text" class="text">
           <div class="fade">
             <span>Cyrielle, plumassière et créatrice de la marque Cysse exerce son métier d'artisan dans son atelier proche de Paris.</span>
           </div>
@@ -53,42 +53,38 @@
 import 'web-animations-js'
 
 export default {
-  data() {
-    return {
-      current :'',
-    }
-  },
   mounted() {
-    
+    var v = this;
+    var current = $('.fade').first();
+    var $scrolling = false;
 
-    $('.text').scroll(function() {
-      
-      var windowBottom = $('.fader').offset().top + $('.fader').outerHeight();
-      console.log('widow bot' + windowBottom);
-
-      $(".fade").each(function() {
+    $(v.$refs.text).on('mousewheel', function() {
+      if(!$scrolling){  
+        $scrolling = true;
+        console.log($(v.$refs.text).scrollTop())
+        $(v.$refs.text).animate({
+          scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
+        }, {done: function(){ $scrolling = false; } }, 10000);
         
-        /* Check the location of each desired element */
-        var objectBottom = $(this).offset().top + ($(this).outerHeight() / 2);
-        console.log(objectBottom);
-        /* If the element is completely within bounds of the window, fade it in */
-        if (objectBottom < windowBottom) { //object comes into view (scrolling down)
-          if ($(this).css("opacity")==0) {$(this).fadeTo(500,1);}
-        } else { //object goes out of view (scrolling up)
-          if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
+        if(current.next().length > 0){
+          current = current.next('.fade');
+        }else {
+          current = $('.fade').first();
+          $(v.$refs.text).animate({
+            scrollTop: 0
+          }, {done: function(){ $scrolling = false; } }, 'slow');
         }
-      });
-    }).scroll();
+      }
+    })
   }
 }
 </script>
 
 <style lang="scss">
 .fade {
-  margin: 50px 0 50px 0;
   padding: 50px 0 50px 0;
   width: 100%;
-  height: 80%;
+  height: 100%;
   opacity: 1;
 }
 
@@ -183,7 +179,8 @@ h2 span {
   display: block;
   text-align: center;
   height: 100%;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .fader {

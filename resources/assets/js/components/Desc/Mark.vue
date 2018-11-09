@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="fader">
-        <div class="text">
+        <div ref="text" class="text">
           <div class="fade">
             <span>Cysse est une Maison de Plumasserie.</span>
           </div>
@@ -59,22 +59,37 @@ import 'web-animations-js'
 
 export default {
   mounted() {
-    setInterval(function() {
-      $('.text').animate({
-              scrollTop: $('.text').offset().top + 100
-          }, 'slow');
-    }, 1000);
+    var v = this;
+    var current = $('.fade').first();
+    var $scrolling = false;
+
+    $(v.$refs.text).on('mousewheel', function() {
+      if(!$scrolling){  
+        $scrolling = true;
+        console.log($(v.$refs.text).scrollTop())
+        $(v.$refs.text).animate({
+          scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
+        }, {done: function(){ $scrolling = false; } }, 10000);
+        
+        if(current.next().length > 0){
+          current = current.next('.fade');
+        }else {
+          current = $('.fade').first();
+          $(v.$refs.text).animate({
+            scrollTop: 0
+          }, {done: function(){ $scrolling = false; } }, 'slow');
+        }
+      }
+    })
   }
 }
 </script>
 
 <style lang="scss">
 .fade {
-  border: solid;
-  margin: 50px 0 50px 0;
   padding: 50px 0 50px 0;
   width: 100%;
-  height: 80%;
+  height: 100%;
   opacity: 1;
 }
 
@@ -169,8 +184,8 @@ h2 span {
   display: block;
   text-align: center;
   height: 100%;
-  overflow: scroll;
-  border: solid;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .fader {

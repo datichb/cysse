@@ -100,8 +100,11 @@ export default {
 }
 
 .preload object {
-    margin-top: 25%;
-    margin-left: 47%;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    width: 10%;
+    height: 10%;
 }
 </style>
 

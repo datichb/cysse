@@ -228,23 +228,23 @@ export default {
 
 <style lang="css">
 .insta {
-  margin-left: 2%;
+  margin-left: 15%;
   padding: 0.5%;
   -moz-background: -moz-linear-gradient(top, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
   -webkit-background: -webkit-linear-gradient(top, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
   background: linear-gradient(210deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-  height: 65vh;
-  width: 42%;
+  height: 520px;
+  width: 325px;
   float: left;
 }
 
 .fb {
   background-color: #3B5998;
-  height: 65vh;
-  width: 42%;
+  height: 520px;
+  width: 325px;
   padding: 0.5%;
-  float: left;
-  margin-left: 14%;
+  float: right;
+  margin-right: 15%;
 }
 
 h2 {
