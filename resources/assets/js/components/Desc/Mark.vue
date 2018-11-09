@@ -69,7 +69,7 @@ export default {
         console.log($(v.$refs.text).scrollTop())
         $(v.$refs.text).animate({
           scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
-        }, {done: function(){ $scrolling = false; } }, 10000);
+        }, {duration: 1000, done: function(){ $scrolling = false; } });
         
         if(current.next().length > 0){
           current = current.next('.fade');
@@ -77,7 +77,7 @@ export default {
           current = $('.fade').first();
           $(v.$refs.text).animate({
             scrollTop: 0
-          }, {done: function(){ $scrolling = false; } }, 'slow');
+          }, {duration: 5000, done: function(){ $scrolling = false; } });
         }
       }
     })

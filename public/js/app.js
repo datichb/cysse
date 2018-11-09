@@ -16709,9 +16709,9 @@ module.exports = Cancel;
         console.log($(v.$refs.text).scrollTop());
         $(v.$refs.text).animate({
           scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
-        }, { done: function done() {
+        }, { duration: 1000, done: function done() {
             $scrolling = false;
-          } }, 10000);
+          } });
 
         if (current.next().length > 0) {
           current = current.next('.fade');
@@ -16719,9 +16719,9 @@ module.exports = Cancel;
           current = $('.fade').first();
           $(v.$refs.text).animate({
             scrollTop: 0
-          }, { done: function done() {
+          }, { duration: 5000, done: function done() {
               $scrolling = false;
-            } }, 'slow');
+            } });
         }
       }
     });
@@ -16801,9 +16801,9 @@ module.exports = Cancel;
         console.log($(v.$refs.text).scrollTop());
         $(v.$refs.text).animate({
           scrollTop: $(v.$refs.text).scrollTop() + current.outerHeight()
-        }, { done: function done() {
+        }, { duration: 1000, done: function done() {
             $scrolling = false;
-          } }, 10000);
+          } });
 
         if (current.next().length > 0) {
           current = current.next('.fade');
@@ -16811,9 +16811,9 @@ module.exports = Cancel;
           current = $('.fade').first();
           $(v.$refs.text).animate({
             scrollTop: 0
-          }, { done: function done() {
+          }, { duration: 5000, done: function done() {
               $scrolling = false;
-            } }, 'slow');
+            } });
         }
       }
     });
