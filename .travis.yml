@@ -18,8 +18,10 @@ dist: trusty
 sudo: required
 
 before_install:
+  - service mysql stop
+
   - mysql_upgrade
-  - mysql -e 'SET PASSWORD FOR "root"@"localhost" = PASSWORD("root");' -uroot  
+  - mysqld_safe --skip-grant-tables & mysql -e 'SET PASSWORD FOR "root"@"localhost" = PASSWORD("root");' -uroot  
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testing;'
 before_script:
   - cp .env.travis .env
