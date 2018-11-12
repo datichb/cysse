@@ -6,7 +6,7 @@ php:
 
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testing;'
-  - sudo mysql_upgrade -u root -p root
+  - sudo mysql_upgrade -u root -proot
   - sudo service mysql restart
 before_script:
   - cp .env.travis .env
