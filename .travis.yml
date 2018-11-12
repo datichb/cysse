@@ -18,7 +18,6 @@ dist: trusty
 sudo: required
 
 before_install:
-  - sudo service mysql stop
   - sudo mysql_upgrade
   - sudo mysqld_safe --skip-grant-tables & mysql -e 'SET PASSWORD FOR "root"@"localhost" = PASSWORD("root");' -uroot  
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testing;'
