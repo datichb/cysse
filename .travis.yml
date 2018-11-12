@@ -18,6 +18,7 @@ dist: trusty
 sudo: required
 
 before_install:
+  - mysql -e 'SET PASSWORD FOR "root"@"localhost" = PASSWORD("root");' -uroot  
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testing;'
 before_script:
   - cp .env.travis .env
