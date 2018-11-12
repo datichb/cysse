@@ -20,7 +20,7 @@ sudo: required
 before_install:
   - sudo mysql_upgrade
   - sudo mysqld_safe --skip-grant-tables & mysql -e 'SET PASSWORD FOR "root"@"localhost" = PASSWORD("root");'
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS testing;' -u root
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS testing;' -u root -proot
 before_script:
   - cp .env.travis .env
   - composer self-update
